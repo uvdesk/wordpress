@@ -7,8 +7,8 @@
  *
  * @author 		webkul
  * @category 	Core
- * @package 	uvdesk_api/Functions
- * @version     2.1.0
+ * @package 	uvdesk-app/Functions
+ * @version     1.0.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

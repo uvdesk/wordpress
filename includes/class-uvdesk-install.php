@@ -5,7 +5,7 @@
  * @author 		Webkul
  * @category 	Admin
  * @package 	webkul/Classes
- * @version     1.0.1
+ * @version     1.0.0
  */
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 if ( ! class_exists( 'UVDESK_Install' ) ) :

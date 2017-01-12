@@ -1,12 +1,12 @@
 <?php
 /**
  * Plugin Name: Uvdesk Ticket system in wordpress
- * Plugin URI: https://store.webkul.com/Wordpress-Woocommerce-Marketplace.html
+ * Plugin URI: https://wordpressdemo.webkul.com/uvdesk-app
  * Description: WordPress Uvdesk ticket system will integrate symphony based ticket in wordpress framework using symfony api.
- * Version: 1.0
+ * Version: 1.0.0
  * Author: Webkul
  * Author URI: http://webkul.com
- * Domain Path: plugins/marketplace
+ * Domain Path: plugins/uvdesk-app
  * License: GNU/GPL for more info see license.txt included with plugin
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
 **/
@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 define( 'UVDESK_PLUGIN_FILE', __FILE__ );
 
-define( 'UVDESK_VERSION', '1.0' ); 
+define( 'UVDESK_VERSION', '1.0.0' ); 
 
 define( 'UVDESK_API', plugin_dir_url(__FILE__)); 
  

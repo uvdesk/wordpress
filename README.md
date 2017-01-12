@@ -10,8 +10,7 @@ Uvdesk Is an online SAAS based customer support help-desk software which allows 
  - License: GNU/GPL for more info see license.txt included with plugin
  - License URI: http://www.gnu.org/licenseses/gpl-2.0.html
 
-Uvdesk app wordpress plugin will integrate uvdesk ticket sytem into wordpress . the tickets which are created by customers and managed by the admin or customer in uvdesk site will now can be managed by admin and customer using this plugin.
-This plugin provides certain functionality like creating tickets, list ticket and single ticket view pages for customer and for admin end admin can manage tickes delete assign update , can use filter like tckets by particular member, tcikets by status, tickets by priority etc.
+Uvdesk app wordpress plugin will integrate UVdesk ticket system into Wordpress. The tickets which are created by customers and managed by the admin or customer in UVdesk site will now be managed by admin and customer using this plugin. This plugin provides certain functionality like creating tickets, list ticket and single ticket view pages for the customer and for admin end admin can manage tickets delete assign update, can use the filter like tickets by the particular member, tickets by status, tickets by priority etc.
 
 ### Installation
 - Upload the `uvdesk-app` folder to the `/wp-content/plugins/` directory.

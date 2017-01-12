@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Handle frontend forms
  *
  * @class 		UVDESK_API_Form_Handler
- * @version		1.0.1
+ * @version		1.0.0
  * @package		uvdesk_app/include/
  * @category	Class
  * @author 		webkul
