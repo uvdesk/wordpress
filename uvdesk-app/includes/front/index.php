@@ -1,7 +1,7 @@
 <?php 
   
 
- function customer_login(){
+ function wk_customer_login(){
  	 
  	 if ( ! is_user_logged_in() ) { // Display WordPress login form:
         $args = array(
@@ -148,16 +148,16 @@ function display_uvdesk_form($atts) {
 	       
 	            if ('POST' == $_SERVER['REQUEST_METHOD'] && !empty( $_POST['action'] ) && $_POST['action'] == 'adduser') {               
 
-	                $user_pass = $_POST['user_pass'];
+	                $user_pass = sanitize_text_field($_POST['user_pass']);
 
-	                $user_login = explode("@", esc_attr($_POST['user_email'])); 
-	                 $user_name =  esc_attr( $_POST['user_name'] );
+	                $user_login = explode("@", sanitize_text_field($_POST['user_email'])); 
+	                 $user_name =  sanitize_text_field( $_POST['user_name'] );
 
 	                $user_cred = array(
 
-	                    'user_pass'  => esc_attr( $_POST['user_pass'] ),
+	                    'user_pass'  => sanitize_text_field( $_POST['user_pass'] ),
 	                    'user_login' => $user_login[0],
-	                    'user_email' => esc_attr( $_POST['user_email'] ),
+	                    'user_email' => sanitize_text_field( $_POST['user_email'] ),
 	                    'role'          => get_option( 'default_role' )
 
 	                );

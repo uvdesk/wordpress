@@ -6,7 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 }
 
-function customer_create_ticket() {  
+function wk_customer_create_ticket() {  
 
      $uv=new UvdeskProtected();
     $client_key=$uv->get_client_key();
@@ -65,7 +65,7 @@ function customer_create_ticket() {
                             $user=wp_get_current_user();
                             $user_name=$user->user_nicename;
                             $user_email=$user->user_email; 
-                            $_POST_data=array('name'=>$user_name,'from'=>$user_email,'subject'=>$_POST['subject'],'reply'=>$_POST['reply'],'type'=>'4');
+                            $_POST_data=array('name'=>$user_name,'from'=>$user_email,'subject'=>sanitize_text_field($_POST['subject']),'reply'=>sanitize_text_field($_POST['reply']),'type'=>'4');
                             if (!empty($user)) {
                                 if(empty($_FILES)){
                                     $obj=new UVDESK_API();

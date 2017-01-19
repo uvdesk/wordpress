@@ -87,9 +87,4 @@ function uvdesk_locate_template( $template_names, $load = false, $require_once =
  
 	return $located;
 }
-
-
- 
-
- 
 ?>

@@ -37,7 +37,5 @@ if ( ! defined( 'ABSPATH' ) ) {
 	        } 
 	    } 
 	} 
- 
 
-
-?> 
+?>

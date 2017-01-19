@@ -119,7 +119,7 @@ class UVDDDESK_API_Form_Handler {
 		
 		$current_user=wp_get_current_user();  
 	 	
-	 	$pagename=esc_attr(get_query_var('pagename'));
+	 	$pagename=sanitize_text_field(get_query_var('pagename'));
 	 	$main_page=get_query_var('main_page');	
 	 	$action=get_query_var('action');	
 	 	$tid=get_query_var('tid');	
@@ -133,27 +133,27 @@ class UVDDDESK_API_Form_Handler {
 				if(($main_page=="customer" && $action=="view" && $current_user->ID && $ticket_type="ticket" && !empty($tid)) || ($main_page=="customer" && $action=="view" && $current_user->ID && !empty($tid) & $pagination='page' && !empty($paged)))
 				{ 
 					require 'front/customer-ticket-view.php';
-					add_shortcode('uvdesk','customer_ticket_view');
+					add_shortcode('uvdesk','wk_customer_ticket_view');
 				}
 				else if( $main_page=="customer" && ($current_user->ID) && $pagination='page' && !empty($paged))
 				{  
 					require 'front/customer.php';
-					add_shortcode('uvdesk','customer_dashboard');
+					add_shortcode('uvdesk','wk_customer_dashboard');
 				}
 				elseif($main_page=="customer" && $create_ticket=="create-ticket" && $current_user->ID ){
 					require 'front/create-ticket.php';
-					add_shortcode('uvdesk','customer_create_ticket');
+					add_shortcode('uvdesk','wk_customer_create_ticket');
 				}
 				elseif( $main_page=="customer" && ($current_user->ID))
 				{  
 					require 'front/customer.php';
-					add_shortcode('uvdesk','customer_dashboard');
+					add_shortcode('uvdesk','wk_customer_dashboard');
 				}
 				elseif($main_page=="admin" && $action=="view" && $current_user->ID && $ticket_type="ticket" && !empty($tid) )
 				{  
 					
 					require 'front/admin-ticket-view.php';
-					add_shortcode('uvdesk','admin_ticket_view');
+					add_shortcode('uvdesk','wk_admin_ticket_view');
 				}
 				elseif($main_page=="download" && !empty($aid))
 				{  
@@ -164,11 +164,11 @@ class UVDDDESK_API_Form_Handler {
 				{ 
 					// var_dump($main_page);
 					require 'front/admin.php';
-					add_shortcode('uvdesk','admin_dashboard');
+					add_shortcode('uvdesk','wk_admin_dashboard');
 				}
 				else if($main_page=='login'){ 
 
-					add_shortcode('uvdesk','customer_login');
+					add_shortcode('uvdesk','wk_customer_login');
 
 				}
 				else if($main_page=='register'){ 
@@ -178,12 +178,12 @@ class UVDDDESK_API_Form_Handler {
 				}
 				else{
 					// call registration form from page
-					add_shortcode( 'uvdesk', 'customer_login' );
+					add_shortcode( 'uvdesk', 'wk_customer_login' );
 				}
 			}
 			else{
 				// call registration form from page
-				add_shortcode( 'uvdesk', 'customer_login' );
+				add_shortcode( 'uvdesk', 'wk_customer_login' );
 			}
 
 	}

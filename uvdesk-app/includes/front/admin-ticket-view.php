@@ -6,7 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 }
 
-function admin_ticket_view(){    
+function wk_admin_ticket_view(){    
 
 	$ticket_id=intval(get_query_var('tid'));
 	 
@@ -102,11 +102,11 @@ function admin_ticket_view(){
                            if(isset($_POST['agent_email']) && !empty($_POST['agent_email']) && isset($_POST['threadType']) && !empty($_POST['threadType']) && isset($_POST['status']) && !empty($_POST['status']) && isset($_POST['thread_desc']) && !empty($_POST['thread_desc'])){
                                         $sdt=explode(',',$_POST['status']);
                                         if(empty($_FILES['attachments']['type'][0])){  
-                                            $thread_status=UVDESK_API::post_thread_data_api('ticket/'.$sdt[1].'/threads.json',array('threadType'=>$_POST['threadType'],'reply'=>$_POST['thread_desc'],'status'=>$sdt[0],'actAsType'=>'agent','actAsEmail'=>$_POST['agent_email']));                 
+                                            $thread_status=UVDESK_API::post_thread_data_api('ticket/'.sanitize_text_field($sdt[1]).'/threads.json',array('threadType'=>sanitize_text_field($_POST['threadType']),'reply'=>sanitize_text_field($_POST['thread_desc']),'status'=>sanitize_text_field($sdt[0]),'actAsType'=>'agent','actAsEmail'=>sanitize_text_field($_POST['agent_email'])));                 
                                             $thread_status=json_decode($thread_status);
                                         }
                                         else{
-                                            $thread_status=UVDESK_API::post_thread_data_api_with_attachment('ticket/'.$sdt[1].'/threads.json',array('threadType'=>$_POST['threadType'],'reply'=>$_POST['thread_desc'],'status'=>$sdt[0],'actAsType'=>'agent','actAsEmail'=>$_POST['agent_email']),$_FILES['attachments']);                 
+                                            $thread_status=UVDESK_API::post_thread_data_api_with_attachment('ticket/'.sanitize_text_field($sdt[1]).'/threads.json',array('threadType'=>sanitize_text_field($_POST['threadType']),'reply'=>sanitize_text_field($_POST['thread_desc']),'status'=>sanitize_text_field($sdt[0]),'actAsType'=>'agent','actAsEmail'=>sanitize_text_field($_POST['agent_email'])),$_FILES['attachments']);                 
                                             $thread_status=json_decode($thread_status);   
                                         }
                                         echo '<div class="alert alert-success alert-fixed alert-load">

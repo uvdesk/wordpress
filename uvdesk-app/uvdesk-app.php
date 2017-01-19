@@ -1,9 +1,9 @@
 <?php
 /**
  * Plugin Name: Uvdesk Ticket system in wordpress
- * Plugin URI: https://wordpressdemo.webkul.com/uvdesk-app
+ * Plugin URI: https://store.webkul.com/Wordpress-Woocommerce-Marketplace.html
  * Description: WordPress Uvdesk ticket system will integrate symphony based ticket in wordpress framework using symfony api.
- * Version: 1.0.0
+ * Version: 1.0
  * Author: Webkul
  * Author URI: http://webkul.com
  * Domain Path: plugins/uvdesk-app
@@ -18,14 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 } 
 
-define( 'UVDESK_PLUGIN_FILE', __FILE__ );
-
-define( 'UVDESK_VERSION', '1.0.0' ); 
-
-define( 'UVDESK_API', plugin_dir_url(__FILE__)); 
- 
-
-
+  
 require_once('includes/class-uvdesk-protected.php');
  
 if ( ! class_exists( 'UVDESK_API' ) ) :
@@ -70,7 +63,8 @@ final class UVDESK_API extends UvdeskProtected{
 
 		}
 		
-		 
+		$this->wk_define_constants();
+
 		// Include required files
 		add_filter('rewrite_rules_array',array($this,'wp_insertcustom_rules'));
 
@@ -91,7 +85,16 @@ final class UVDESK_API extends UvdeskProtected{
 
 
 	}
- 
+ 	
+	function wk_define_constants(){
+
+		define( 'UVDESK_PLUGIN_FILE', __FILE__ );
+
+		define( 'UVDESK_VERSION', '1.0' ); 
+
+		define( 'UVDESK_API', plugin_dir_url(__FILE__)); 
+	}
+
  	function default_settings(){
 		
 		register_setting('webkul-uvdesk-settings-group','uvdesk_access_token');
@@ -290,6 +293,7 @@ final class UVDESK_API extends UvdeskProtected{
 			curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 			curl_setopt($ch, CURLOPT_HEADER, true);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 			$server_output = curl_exec($ch);
 			$info = curl_getinfo($ch);
 			$header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
@@ -339,6 +343,7 @@ final class UVDESK_API extends UvdeskProtected{
 		curl_setopt($ch, CURLOPT_HEADER, true);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 		$server_output = curl_exec($ch);
 		$info = curl_getinfo($ch);
 		$header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
@@ -378,6 +383,7 @@ final class UVDESK_API extends UvdeskProtected{
 			curl_setopt($ch,CURLOPT_HEADER,true);
 			curl_setopt($ch,CURLOPT_POSTFIELDS,$data);
 			curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
+			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 			$server_output = curl_exec($ch);
 			$info = curl_getinfo($ch);
 			$header_size = curl_getinfo($ch,CURLINFO_HEADER_SIZE);
@@ -449,6 +455,7 @@ final class UVDESK_API extends UvdeskProtected{
 			curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 			curl_setopt($ch, CURLOPT_HEADER, true);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 			$server_output = curl_exec($ch);
 			$info = curl_getinfo($ch);
 			$header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
@@ -487,6 +494,7 @@ final class UVDESK_API extends UvdeskProtected{
 			curl_setopt($ch,CURLOPT_HEADER,true);
 			curl_setopt($ch,CURLOPT_POSTFIELDS,$data);
 			curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
+			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 			$server_output = curl_exec($ch);
 			$info = curl_getinfo($ch);
 			$header_size = curl_getinfo($ch,CURLINFO_HEADER_SIZE);
@@ -540,6 +548,7 @@ final class UVDESK_API extends UvdeskProtected{
 			curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 			curl_setopt($ch, CURLOPT_HEADER, true);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 			$output = curl_exec($ch);
 			$info = curl_getinfo($ch);
 			$header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
@@ -576,6 +585,7 @@ final class UVDESK_API extends UvdeskProtected{
 			curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 			curl_setopt($ch, CURLOPT_HEADER, true);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 			$output = curl_exec($ch);
 			$info = curl_getinfo($ch);
 			$header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE); 
@@ -608,6 +618,7 @@ final class UVDESK_API extends UvdeskProtected{
 			curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 			curl_setopt($ch, CURLOPT_HEADER, true);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 			$output = curl_exec($ch);
 			$info = curl_getinfo($ch);
 			$header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE); 
@@ -627,6 +638,7 @@ final class UVDESK_API extends UvdeskProtected{
 	}
  
 	public static function get_attachment_data_api($attachment_url_param=''){
+		
 			$uv=new UvdeskProtected();   
 			 
 			$domain = $uv->get_company_domain();   
@@ -639,6 +651,7 @@ final class UVDESK_API extends UvdeskProtected{
 			curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 			curl_setopt($ch, CURLOPT_HEADER, true);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 			$output = curl_exec($ch);
 			$info = curl_getinfo($ch);
 			$header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
@@ -659,7 +672,7 @@ final class UVDESK_API extends UvdeskProtected{
 	function update_tag_via_api(){
 
 		if(check_ajax_referer( 'api-ajaxnonce', 'nonce',false)){
-			$tag=esc_attr($_POST['tag']);
+			$tag=sanitize_text_field($_POST['tag']);
 			$tid=intval($_POST['ticket_id']);
 			if($tag){
 				$data_tag=UVDESK_API::post_tag_ticket('ticket/'.$tid.'/tags.json',array('name'=>$tag)); 
@@ -676,7 +689,7 @@ final class UVDESK_API extends UvdeskProtected{
 	function delete_tag_via_api(){
 
 		if(check_ajax_referer( 'api-ajaxnonce', 'nonce',false)){
-			$tag_id=esc_attr($_POST['tag-id']);
+			$tag_id=sanitize_text_field($_POST['tag-id']);
 			$tid=intval($_POST['ticket_id']);
 			if(intval($tag_id)){
 				$data_tag=UVDESK_API::delete_tag_ticket('ticket/'.$tid.'/tags.json',array('id'=>$tag_id));  
@@ -702,7 +715,7 @@ final class UVDESK_API extends UvdeskProtected{
 
 		if(check_ajax_referer( 'api-ajaxnonce', 'nonce',false)){
 
-			$hash=esc_attr($_POST['hash']);
+			$hash=sanitize_text_field($_POST['hash']);
 			if($hash){
 					$data_hashapi=UVDESK_API::get_customer_data_api('tickets.json',array($hash=>1));   
 					if($data_hashapi){
@@ -745,9 +758,8 @@ final class UVDESK_API extends UvdeskProtected{
 	 function get_default_data() {
 
         if(check_ajax_referer( 'api-ajaxnonce', 'nonce',false)){
-           
-
-            $data_customerapi=UVDESK_API::get_customer_data_api('tickets.json',array('sort'=>'t.id','direction'=>'asc'));
+            
+            $data_customerapi=UVDESK_API::get_customer_data_api('tickets.json',array('sort'=>'t.id','direction'=>'desc'));
             if(!empty($data_customerapi)){ 
                 $content=$this->final_json_data($data_customerapi);
          
@@ -766,7 +778,7 @@ final class UVDESK_API extends UvdeskProtected{
     function get_tag_data() {
         if(check_ajax_referer( 'api-ajaxnonce', 'nonce',false)){           
 
-            $data_customerapi=UVDESK_API::get_customer_data_api('tags.json',array('sort'=>'name','direction'=>'asc'));
+            $data_customerapi=UVDESK_API::get_customer_data_api('tags.json',array('sort'=>'name','direction'=>'desc'));
 
             if(!empty($data_customerapi)){ 
                      
@@ -808,7 +820,7 @@ final class UVDESK_API extends UvdeskProtected{
 	function get_data_via_api(){
 
 		if(check_ajax_referer( 'api-ajaxnonce', 'nonce',false)){
-			$tab_id=esc_attr($_POST['tab_id']);
+			$tab_id=sanitize_text_field($_POST['tab_id']);
 			if($tab_id){
 					$data_api=UVDESK_API::get_customer_data_api('tickets.json',array('status'=>intval($tab_id)));  	
 					if($data_api){
@@ -832,7 +844,8 @@ final class UVDESK_API extends UvdeskProtected{
 
 		if(check_ajax_referer( 'api-ajaxnonce', 'nonce',false)){ 
 
-				$data_assign_api=UVDESK_API::get_customer_data_api('customers.json');  	
+				$data_assign_api=UVDESK_API::get_customer_data_api('customers.json'); 
+
 				if($data_assign_api){  
 					wp_send_json_success($data_assign_api);
 				}
@@ -873,8 +886,7 @@ final class UVDESK_API extends UvdeskProtected{
 		if(check_ajax_referer( 'api-ajaxnonce', 'nonce',false)){ 
 
 				$data_group_api=UVDESK_API::get_customer_data_api('groups.json');  	
-				 var_dump($data_group_api);
-				 die;
+				 
 				if($data_group_api){  
 					wp_send_json_success($data_group_api);
 				}
@@ -913,20 +925,30 @@ final class UVDESK_API extends UvdeskProtected{
 	function filter_members_via_api(){
 
 		if(check_ajax_referer( 'api-ajaxnonce', 'nonce',false)){
+			
 			$m_id=intval($_POST['member_id']);  
+			
 			if($m_id){
+				
 				$data_assign_api=UVDESK_API::get_customer_data_api('tickets.json',array('agent'=>$m_id));  	
+				
 				if($data_assign_api){ 
+					
 					$content=$this->final_json_data($data_assign_api);
+					
 					wp_send_json_success($content);
 				}
 				else{
 					
 					wp_send_json_error($data_assign_api);
+			
 				}
+			
 			}
 			else{
+			
 				echo "Please enter a valid Tab Id";
+			
 			}	
 			
 			die;
@@ -935,7 +957,7 @@ final class UVDESK_API extends UvdeskProtected{
 
 	function get_data_via_priority(){
 
-		$priority_filter = $_POST['priority_filter'];
+		$priority_filter = sanitize_text_field($_POST['priority_filter']);
 		if($priority_filter){
 			$data_api=UVDESK_API::get_customer_data_api('tickets.json',array('priority'=>intval($priority_filter)));
 
@@ -953,14 +975,14 @@ final class UVDESK_API extends UvdeskProtected{
 	function sort_ticket_via_api(){
 
 		if(check_ajax_referer( 'api-ajaxnonce', 'nonce',false)){
-			$field=esc_attr($_POST['field']); 
+			$field=sanitize_text_field($_POST['field']); 
 		 	$is_admin=intval($_POST['is_admin']);
 		 	$current_user=wp_get_current_user();
 
 			$c_email=$current_user->user_email;
 
 			if($field){ 
-				$data_customerapi=UVDESK_API::get_customer_data_api('tickets.json',array('sort'=>$field,'direction'=>'asc','search'=>$c_email)); 
+				$data_customerapi=UVDESK_API::get_customer_data_api('tickets.json',array('sort'=>$field,'direction'=>'desc','search'=>$c_email)); 
 				if(!empty($data_customerapi)){  
 					if ($is_admin==1) {
 						$content=$this->final_json_data($data_customerapi);
@@ -987,10 +1009,10 @@ final class UVDESK_API extends UvdeskProtected{
 	function update_priority_via_api(){
 
 		if(check_ajax_referer( 'api-ajaxnonce', 'nonce',false)){
-			$field=esc_attr($_POST['field']); 
+			$field=sanitize_text_field($_POST['field']); 
 		 	$is_admin=intval($_POST['is_admin']);
 			if($field){ 
-				$data_customerapi=UVDESK_API::get_customer_data_api('tickets.json',array('sort'=>$field,'direction'=>'asc')); 
+				$data_customerapi=UVDESK_API::get_customer_data_api('tickets.json',array('sort'=>$field,'direction'=>'desc')); 
 				if(!empty($data_customerapi)){  
 					if ($is_admin==1) {
 						$content=$this->final_json_data($data_customerapi);
@@ -1017,7 +1039,7 @@ final class UVDESK_API extends UvdeskProtected{
 
 		if(check_ajax_referer( 'api-ajaxnonce', 'nonce',false)){
 
-			$ticket_ids=esc_attr($_POST['ticket_id']); 
+			$ticket_ids=sanitize_text_field($_POST['ticket_id']); 
 			$ticket_ids=explode(",", $ticket_ids);
 			$priority=intval($_POST['priority']); 
 		 	$json_data=array('ids'=>$ticket_ids,'priorityId'=>$priority); 
@@ -1047,7 +1069,7 @@ final class UVDESK_API extends UvdeskProtected{
 
 		if(check_ajax_referer( 'api-ajaxnonce', 'nonce',false)){
 
-			$ticket_ids=esc_attr($_POST['ticket_id']); 
+			$ticket_ids=sanitize_text_field($_POST['ticket_id']); 
 			$ticket_ids=explode(",", $ticket_ids);
 			$agent=intval($_POST['agent']); 
 		 	$json_data=array('ids'=>$ticket_ids,'agentId'=>$agent); 
@@ -1077,7 +1099,7 @@ final class UVDESK_API extends UvdeskProtected{
 
 		if(check_ajax_referer( 'api-ajaxnonce', 'nonce',false)){
 
-			$ticket_ids=esc_attr($_POST['ticket_id']); 
+			$ticket_ids=sanitize_text_field($_POST['ticket_id']); 
 			$ticket_ids=explode(",", $ticket_ids);
 			$label=intval($_POST['label']); 
 		 	$json_data=array('ids'=>$ticket_ids,'labelId'=>$label); 
@@ -1108,7 +1130,7 @@ final class UVDESK_API extends UvdeskProtected{
 		 
 		if(check_ajax_referer( 'api-ajaxnonce', 'nonce',false)){
 
-			$ticket_ids=esc_attr($_POST['ticket_id']); 
+			$ticket_ids=sanitize_text_field($_POST['ticket_id']); 
 			$ticket_ids=explode(",", $ticket_ids);
 			$status=intval($_POST['status']); 
 		 	$json_data=array('ids'=>$ticket_ids,'statusId'=>$status); 
@@ -1144,7 +1166,7 @@ final class UVDESK_API extends UvdeskProtected{
 			$c_email=$current_user->user_email;
 			if($field){ 
 
-				$data_customerapi=UVDESK_API::get_customer_data_api('tickets.json',array('status'=>$field,'direction'=>'asc','search'=>$c_email)); 
+				$data_customerapi=UVDESK_API::get_customer_data_api('tickets.json',array('status'=>$field,'direction'=>'desc','search'=>$c_email)); 
 				if(!empty($data_customerapi)){  
 					$content=$this->final_json_data_customer($data_customerapi);
 			 
@@ -1165,7 +1187,7 @@ final class UVDESK_API extends UvdeskProtected{
 
 	function get_data_via_type(){
 
-		$type_filter = $_POST['type_filter'];
+		$type_filter = sanitize_text_field($_POST['type_filter']);
 
 		if($type_filter){
 			$data_api=UVDESK_API::get_customer_data_api('tickets.json',array('type'=>intval($type_filter)));
@@ -1183,11 +1205,10 @@ final class UVDESK_API extends UvdeskProtected{
 	function get_data_via_tag(){
 		if(check_ajax_referer( 'api-ajaxnonce', 'nonce',false)){
 
-			$tag_filter = $_POST['tag_filter'];
-			$tag_filter= trim($tag_filter); 
+			$tag_filter = sanitize_text_field($_POST['tag_filter']);
+			$tag_filter= sanitize_text_field($tag_filter); 
 			if($tag_filter){
-				$data_api=UVDESK_API::get_customer_data_api('tickets.json',array('tags'=>intval($tag_filter)));
-				var_dump($data_api);
+				$data_api=UVDESK_API::get_customer_data_api('tickets.json',array('tags'=>intval($tag_filter))); 
 				if($data_api){
 					$content=$this->final_json_data($data_api);
 					wp_send_json_success($content);
@@ -1205,7 +1226,7 @@ final class UVDESK_API extends UvdeskProtected{
 	function delete_ticket_via_api(){
 
 		if(check_ajax_referer( 'api-ajaxnonce', 'nonce',false)){
-			$t_id=$_POST['ticket_id'];
+			$t_id=intval($_POST['ticket_id']);
 			$json_id=array('ids'=>$t_id); 
 			if($t_id){ 
 				$data_deleted_ticket=UVDESK_API::update_ticket('tickets/trash.json',$json_id);   
@@ -1644,27 +1665,7 @@ function seller_metabox() {
   			</div>
     </div>
     <?php
-} 
-
-function save_version_meta( $post_id, $post, $update)
-{
-	global $wpdb;
-  	if ( isset( $_POST['blog_meta_box_nonce'] ) ) {
-  	// Verify that the nonce is valid.
-  	if ( wp_verify_nonce( $_POST['blog_meta_box_nonce'], 'blog_save_meta_box_data' ) ) {
-      
-       	if(!empty($_REQUEST['seller_id']) && !empty($_REQUEST['post_id'])){
- 
-       		$table_name = "{$wpdb->prefix}posts";
-
-       		$res = $wpdb->update($table_name,array('post_author'=> $_REQUEST['seller_id']), array('ID' => $_REQUEST['post_id']), array('%d'), array('%d'));    		
-
-       	}
-      
-      }
-  	}
- 
-}
+	}	 
 }
 
  

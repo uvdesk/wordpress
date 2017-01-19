@@ -6,7 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 }
 
-function customer_ticket_view(){    
+function wk_customer_ticket_view(){    
 
     $ticket_id=intval(get_query_var('tid'));
 
@@ -620,14 +620,14 @@ function customer_ticket_view(){
                 		   
                 		   if(isset($_POST['customer_email']) && !empty($_POST['customer_email']) && isset($_POST['threadType']) && !empty($_POST['threadType']) && isset($_POST['status']) && !empty($_POST['status']) && isset($_POST['thread_desc']) && !empty($_POST['thread_desc'])){
             		   				$sdt=explode(',',$_POST['status']);
-                                      $reply=$_POST['thread_desc']; 
+                                      $reply=sanitize_text_field($_POST['thread_desc']); 
                                      if(empty($_FILES['attachments']['type'])){
                                        
-             						     $thread_status=UVDESK_API::post_thread_data_api('ticket/'.$sdt[1].'/threads.json',array('threadType'=>$_POST['threadType'],'reply'=>$reply,'status'=>$sdt[0],'actAsType'=>'customer','actAsEmail'=>$_POST['customer_email'])); 		   		
+             						     $thread_status=UVDESK_API::post_thread_data_api('ticket/'.sanitize_text_field($sdt[1]).'/threads.json',array('threadType'=>sanitize_text_field($_POST['threadType']),'reply'=>$reply,'status'=>sanitize_text_field($sdt[0]),'actAsType'=>'customer','actAsEmail'=>sanitize_text_field($_POST['customer_email']))); 		   		
                                      }
                                      else{
 
-                                         $thread_status=UVDESK_API::post_thread_data_api('ticket/'.$sdt[1].'/threads.json',array('threadType'=>$_POST['threadType'],'reply'=>$reply,'status'=>$sdt[0],'actAsType'=>'customer','actAsEmail'=>$_POST['customer_email']),$_FILES['attachments']); 
+                                         $thread_status=UVDESK_API::post_thread_data_api('ticket/'.sanitize_text_field($sdt[1]).'/threads.json',array('threadType'=>sanitize_text_field($_POST['threadType']),'reply'=>$reply,'status'=>sanitize_text_field($sdt[0]),'actAsType'=>'customer','actAsEmail'=>sanitize_text_field($_POST['customer_email'])),$_FILES['attachments']); 
 
                                      }
 

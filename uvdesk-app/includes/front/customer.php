@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @author 		webkul
  */  
 
-function customer_dashboard(){  
+function wk_customer_dashboard(){  
 
 	$uvdesk_access_token=get_option('uvdesk_access_token');
 	

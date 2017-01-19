@@ -8,7 +8,8 @@ License: GNU/GPL for more info see license.txt included with plugin
 License URI: http://www.gnu.org/licenseses/gpl-2.0.html
 
 == Description==
-
+Uvdesk App plugins works only on the api provided by UVDESK SAAS Based application that is basically a ticket sytem built on SYMFONY.
+This plugins uses Uvdesk SAAS based application api and uses the api calls to generate ticket system at wordpress plugin system.
 Uvdesk app wordpress plugin will integrate uvdesk ticket sytem into wordpress . the tickets which are created by customers and managed by the admin or customer in uvdesk site will now can be managed by admin and customer using this plugin.
 This plugin provides certain functionality like creating tickets, list ticket and single ticket view pages for customer 
 and for admin end admin can manage tickes delete assign update , can use filter like tckets by particular member, tcikets by status, tickets by priority etc.

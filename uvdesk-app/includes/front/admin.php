@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @author 		webkul
  */  
 
-function admin_dashboard(){  
+function wk_admin_dashboard(){ 
 
 	$paged=get_query_var('paged');
 	
@@ -28,22 +28,22 @@ function admin_dashboard(){
 		
 		if(!empty($paged)){
 
-			$data_api=UVDESK_API::get_customer_data_api('tickets.json',array('sort'=>'t.id','direction'=>'asc','page'=>$paged));  	 
+			$data_api=UVDESK_API::get_customer_data_api('tickets.json',array('sort'=>'t.id','direction'=>'desc','page'=>$paged));  	 
 
 		}
 		elseif(!empty($search)){
 			
-			$data_api=UVDESK_API::get_customer_data_api('tickets.json',array('sort'=>'t.id','search'=>$search,'direction'=>'asc'));  	 
+			$data_api=UVDESK_API::get_customer_data_api('tickets.json',array('sort'=>'t.id','search'=>$search,'direction'=>'desc'));  	 
 
 		}
 		elseif(!empty($paged) && !empty($search)){
 			
-			$data_api=UVDESK_API::get_customer_data_api('tickets.json',array('sort'=>'t.id','search'=>$search,'direction'=>'asc','page'=>$paged));  	 
+			$data_api=UVDESK_API::get_customer_data_api('tickets.json',array('sort'=>'t.id','search'=>$search,'direction'=>'desc','page'=>$paged));  	 
 
 		}
 		else{
 			
-			$data_api=UVDESK_API::get_customer_data_api('tickets.json',array('sort'=>'t.id','direction'=>'asc'));  	 
+			$data_api=UVDESK_API::get_customer_data_api('tickets.json',array('sort'=>'t.id','direction'=>'desc'));  	 
 
 		}
 
@@ -765,7 +765,5 @@ function admin_dashboard(){
 	else{
 		echo "<h1>Please Enter a valid Access Token</h1>";
 	}
- 
-	
-	
+ 	
 }
