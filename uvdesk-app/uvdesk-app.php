@@ -232,13 +232,13 @@ final class UVDESK_API extends UvdeskProtected{
 		
 		wp_enqueue_script( 'uvdesk-recaptcha-script','https://www.google.com/recaptcha/api.js'); 
 
-		wp_enqueue_script('bootstrap-script','https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js');
+		wp_enqueue_script('bootstrap-script', plugin_dir_url(__FILE__). 'includes/libraries/bootstrap.min.js');
     
-		wp_enqueue_style( 'boostrap-css', 'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css');
+		wp_enqueue_style( 'boostrap-css', plugin_dir_url(__FILE__). 'includes/libraries/bootstrap.min.css');
 		
-		wp_enqueue_style( 'boostrap-select-css', 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/css/bootstrap-select.min.css');
+		wp_enqueue_style( 'boostrap-select-css', plugin_dir_url(__FILE__). 'includes/libraries/bootstrap-select.min.css');
 
-		wp_enqueue_script('boostrap-select-js','https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/js/bootstrap-select.js');
+		wp_enqueue_script('boostrap-select-js', plugin_dir_url(__FILE__). 'includes/libraries/bootstrap-select.js');
 		 
 		wp_enqueue_style('uvdesk-style', UVDESK_API. 'assets/css/style.css'); 
 		
