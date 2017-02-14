@@ -9,9 +9,8 @@ Uvdesk Is an online SAAS based customer support help-desk software which allows 
  - Stable tag: 2.0
  - License: GNU/GPL for more info see license.txt included with plugin
  - License URI: http://www.gnu.org/licenseses/gpl-2.0.html
-
-Uvdesk app wordpress plugin will integrate uvdesk ticket sytem into wordpress . the tickets which are created by customers and managed by the admin or customer in uvdesk site will now can be managed by admin and customer using this plugin.
-This plugin provides certain functionality like creating tickets, list ticket and single ticket view pages for customer and for admin end admin can manage tickes delete assign update , can use filter like tckets by particular member, tcikets by status, tickets by priority etc.
+ 
+Uvdesk App plugin works on the API provided by the UVdesk Helpdesk ( https://www.uvdesk.com/en/ ) a SAAS Based application ) ticket system developed on SYMFONY. The customer can submit the form by entering their basic details like name, mail id and a new ticket is created when form is submitted. Basic customer data like email id only is synced from Wordpress to UVdesk and those data will only get synced with your UVdesk Account only. Wordpress related data will not be sent to the UVdesk. The tickets which are created by customers are managed by the support staff. This plugin provides functionality like creating tickets, list ticket and single ticket view pages for customer. The admin can manage tickets, delete, assign, update, can use filter to search any particular ticket.
 
 ### Installation
 - Upload the `uvdesk-app` folder to the `/wp-content/plugins/` directory.
