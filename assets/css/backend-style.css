@@ -1,0 +1,217 @@
+.priority-check{
+  display: inline-block;
+  vertical-align: middle;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+.uv-tk-manage-wrapper,.uv-tk-manage-sidebar{
+display : inline-block;
+width: 68%;
+}
+.uv-tk-manage-sidebar{
+width: 30%;
+vertical-align: top;
+}
+header h1{
+display:inline-block;
+}
+header .back-to-list{
+display:inline-block;
+vertical-align: super !important;
+}
+.wk-highlight {
+font-size: 15px;
+color: grey;
+}
+.pre-loader{
+  display:none;
+  margin: auto;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: rgba(255, 255, 255, 0.3);
+}
+.ajax-loader-img{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+}
+.tkt-intro .wk-space{
+padding-right: 20px;
+}
+.wk-cards{
+background-color: #ffffff;
+border-radius: 3px;
+margin: 15px;
+padding: 10px;
+}
+.replay-inline span{
+display:inline-block;
+}
+.replay-inline{
+background-color: #e7e7e7;
+border: 1px solid #e3d3d3;
+padding: 5px;
+border-radius: 3px;
+}
+.tab-block.form-div {
+margin: 15px;
+padding: 10px;
+background-color: #fff;
+}
+span.tkt-timestamp {
+font-size: 15px;
+padding-top: 10px;
+float: right;
+}
+.replay-inline img {
+width: 40px;
+height: 40px;
+vertical-align: middle;
+}
+span.tkt-name {
+font-size: 17px;
+text-transform: capitalize;
+font-weight: 500;
+color: #00749f;
+padding-left: 5px;
+vertical-align: middle;
+}
+.tkt-message {
+margin: 5px;
+padding: 10px;
+}
+
+.tkt-message img {
+max-width:100%;
+}
+
+.wk-accord:before{
+content: "\f140";
+display: inline-block;
+font: 400 20px/1 dashicons;
+vertical-align: middle;
+}
+.wk-accord.close:before {
+content: "\f142";
+}
+.remove-file:before{
+background: 0 0;
+color: #72777c;
+display:inline-block !important;
+content: "\f153";
+display: block;
+font: 400 16px/20px dashicons;
+height: 20px;
+}
+.remove-file{
+position: absolute;
+margin-left: 31px;
+margin-top: -4px;
+cursor: pointer;
+z-index: 100;
+}
+#attachments{
+opacity: 0;
+width: 30px;
+z-index: 99;
+position: absolute;
+height: 30px;
+}
+.form-group.attachments {
+padding: 10px;
+}
+span#addFile {
+display: block;
+margin : 10px;
+cursor : pointer;
+width : fit-content;
+}
+.labelWidget{
+width: 30px;
+position: relative;
+height: 30px;
+display: inline-block;
+margin-left: 20px;
+border: 1px solid;
+border-radius: 3px;
+}
+.attach-file:before {
+content: "\f132";
+z-index: 10;
+font: 400 20px/1 dashicons;
+position: absolute;
+margin: 5px;
+}
+.attach-file.close:before{
+content: "\f105";
+pointer-events: none;
+z-index: 1000;
+}
+.attachments a{
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  margin: -1px 2px;
+  border: 1px solid;
+}
+.wk-file-zip:before{
+  content: "\f501";
+  z-index: 10;
+  font: 400 20px/1 dashicons;
+  position: absolute;
+  margin: 5px;
+  padding:5px;
+}
+.wk-file:before{
+  content: "\f498";
+  z-index: 10;
+  font: 400 20px/1 dashicons;
+  position: absolute;
+  margin: 5px;
+  padding:5px;
+}
+.wk-delete-tkt-reply:before{
+  content:"\f182";
+  display: inline-block;
+  font: 400 20px/1 dashicons;
+  vertical-align: middle;
+  cursor: pointer;
+}
+.wk-starred-ico:before{
+  content: "\f154";
+  display: inline-block;
+  font: 400 20px/1 dashicons;
+  vertical-align: middle;
+  cursor: pointer;
+  color: inherit;
+}
+.wk-starred-ico.stared:before{
+  color:#eeee27;
+  content: "\f155";
+}
+.tkt-section a {
+  text-decoration: none;
+}
+span.pagination-space {
+    min-width: 40px;
+    height: 40px;
+    background: #0085ba;
+    color: #fff;
+    font-size: 17px;
+    position: absolute;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 2.25;
+    left: 17px;
+    top: -20px;
+    cursor: pointer;
+}
+.action-class select,.filter-class select {
+    margin: 10px auto;
+    width: 100%;
+}

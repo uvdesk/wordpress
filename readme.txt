@@ -1,14 +1,62 @@
-=== UVdesk App ===
+=== UVdesk Free Helpdesk for Wordpress ===
 Contributors: webkul
-Tags: form, database, db, data, value, shortcode, submit
+Tags: form, database, db, data, value, shortcode, submit, helpdesk, customer support, form builder, social app integration, Knowledge base, Agent Reports, Task, Helpdesk
 Requires at least: 3.2
-Tested up to: 4.7
+Tested up to: 4.9.5
 Stable tag: 2.0
 License: GNU/GPL for more info see license.txt included with plugin
 License URI: http://www.gnu.org/licenseses/gpl-2.0.html
 
 == Description==
-Uvdesk App plugin works on the API provided by the UVdesk Helpdesk ( https://www.uvdesk.com/en/ ) a SAAS Based application ) ticket system developed on SYMFONY. The customer can submit the form by entering their basic details like name, mail id and a new ticket is created when form is submitted. Basic customer data like email id only is synced from Wordpress to UVdesk and those data will only get synced with your UVdesk Account only. Wordpress related data will not be sent to the UVdesk. The tickets which are created by customers are managed by the support staff. This plugin provides functionality like creating tickets, list ticket and single ticket view pages for customer. The admin can manage tickets, delete, assign, update, can use filter to search any particular ticket.
+Uvdesk is a omni channel helpdesk for providing quick assistance to customers through diverse horizontal mediums. It needs only quick sign up to be yours for delivering fantastic customer support for your channel
+
+Numerious Apps Integrations - [https://support.uvdesk.com/en/folder/184](https://support.uvdesk.com/en/folder/184)
+
+Automated Systems - [https://support.uvdesk.com/en/folder/175](https://support.uvdesk.com/en/folder/175)
+
+Effective Ticket Tools - [https://support.uvdesk.com/en/folder/181](https://support.uvdesk.com/en/folder/181)
+
+Store Upfront Setting -  [https://support.uvdesk.com/en/folder/174](https://support.uvdesk.com/en/folder/174)
+
+Custom Forms - [https://support.uvdesk.com/en/category/245](https://support.uvdesk.com/en/category/245)
+
+Tracking of Support Staff - [https://support.uvdesk.com/en/folder/179](https://support.uvdesk.com/en/folder/179)
+
+Much More - [https://support.uvdesk.com/en/](https://support.uvdesk.com/en/)
+
+[youtube https://www.youtube.com/watch?v=nd-fDLNNFfc]
+
+== Whats new? ==
+
+1. With the latest upgrade to PWA, now you can use UVdesk seamlessly on your smartphone like a native mobile app with features like offline syncing, mobile view UI, faster page load and addition to the home screen.
+
+2. [YouTube](https://support.uvdesk.com/en/blog/uvdesk-how-to-install-and-configure-youtube-app) app integration is now available along with [SLA](https://support.uvdesk.com/en/blog/uvdesk-sla) and [E-mail](https://support.uvdesk.com/en/blog/uvdesk-ticket-delivery-status) delivery status.
+
+3. Upload File Size of any limit from [Google Drive](https://support.uvdesk.com/en/blog/uvdesk-google-drive), [OneDrive](https://support.uvdesk.com/en/blog/uvdesk-onedrive), [Box](https://support.uvdesk.com/en/blog/uvdesk-box) and [Dropbox](https://support.uvdesk.com/en/blog/uvdesk-dropbox).
+
+**Free WordPress Helpdesk**
+
+To make the whole process easier for both whether they are customers or support staff for providing efficient support with the assurance that no lead remain unsolved Uvdesk Wordpress helpdesk is there to make it true.Provide
+
+This app is free of cost.
+
+It allows customer to send support request anytime 24x7
+
+Admin and assigned could reply on support request
+
+Using effective tools to manage tickets support team could respond quickly.
+
+Admin and assigned could distinguish all tickets based on their status Pending, Resolved, Spam, Answered.
+
+Support staff can filter any ticket on the basis of Assigned to, Customer, Group, Team, Priority, Type, Tag, Mailbox, Source, after date, before or on a date.
+
+To garner customer’s details it allows to fetch order details of woocommerce store
+
+Customer support and authentication simultaneously under crow's net.
+
+Both admin and customer gets notified on new query and new reply respectively.
+
+Both admin and buyer can view history of tickets.
 
 == Installation ==
 
@@ -19,7 +67,7 @@ Uvdesk App plugin works on the API provided by the UVdesk Helpdesk ( https://www
 
 == Screenshots ==
 
-1. The first screenshot 1.png shows first step to click on plugin menu and then click on add new sub menu option in dashboard.    
+1. The first screenshot 1.png shows first step to click on plugin menu and then click on add new sub menu option in dashboard.
 
 2. This screen shot description corresponds to 2.png. and it shows to click on upload plugin button.
 
@@ -44,7 +92,7 @@ Uvdesk App plugin works on the API provided by the UVdesk Helpdesk ( https://www
 12. This screen shot description corresponds to 12.png. This screen shows the ticket list view for the customer.
 
 13. This screen shot description corresponds to 13.png. This screen shows the tickets is also synced main uvdesk site.
-  
+
 
 == Frequently Asked Questions ==
 
@@ -52,7 +100,7 @@ Uvdesk App plugin works on the API provided by the UVdesk Helpdesk ( https://www
 
 Feel free to do so.
 
-For any Query please generate a ticket at https://webkul.com/ticket/ 
+For any Query please generate a ticket at [https://support.uvdesk.com/](https://support.uvdesk.com/)
 
 == Upgrade Notice ==
 
@@ -60,6 +108,11 @@ For any Query please generate a ticket at https://webkul.com/ticket/
 This will include if in case the symfony api is updated for uvdesk app so in that one should must update this plugin since we will be also updating the code and the older version will not work according to new api of symfony
 
 == Changelog ==
+
+= 2.0.0 =
+
+1. Admin access is been provided in the backend.
+2. Improved user interface for both admin and customer side ticket system.
 
 = 1.0.0 =
 Initial release
