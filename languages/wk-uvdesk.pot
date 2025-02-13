@@ -1,0 +1,899 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: UVdesk Free Helpdesk\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-02-07 12:35+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.6.14; wp-6.7.1\n"
+"X-Domain: wk-uvdesk"
+
+#: templates/front/class-wk-uvdesk-customer-ticket-view.php:224
+msgid " Agent -"
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-admin-ticket.php:343
+msgid " Tickets agent changed successfully.."
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-admin-ticket.php:313
+msgid " Tickets priority changed successfully.."
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-admin-ticket.php:284
+msgid " Tickets status changed successfully.."
+msgstr ""
+
+#: includes/front/class-wk-uvdesk-front-function.php:635
+#: templates/front/class-wk-uvdesk-customer-ticket-view.php:175
+msgid "#"
+msgstr ""
+
+#: includes/front/class-wk-uvdesk-front-function.php:440
+#: includes/front/class-wk-uvdesk-front-function.php:909
+#: templates/admin/class-wk-uvdesk-manage-ticket.php:500
+#: templates/front/class-wk-uvdesk-customer-ticket-view.php:462
+#: templates/front/class-wk-uvdesk-customer-create-ticket.php:205
+msgid "+ Attach File"
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-backend-setting.php:63
+msgid "Access Token"
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-manage-ticket.php:270
+#: templates/admin/class-wk-uvdesk-admin-ticket.php:471
+msgid "Add agent"
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-manage-ticket.php:281
+msgid "Add priority"
+msgstr ""
+
+#: includes/front/class-wk-uvdesk-front-function.php:647
+#: templates/front/class-wk-uvdesk-customer-ticket-view.php:187
+msgid "Agent"
+msgstr ""
+
+#: includes/front/class-wk-uvdesk-front-function.php:680
+#: templates/admin/class-wk-uvdesk-manage-ticket.php:268
+msgid "Agent - "
+msgstr ""
+
+#: includes/common/class-wk-uvdesk-common-function.php:557
+#: templates/admin/class-wk-uvdesk-admin-ticket.php:425
+#: templates/front/class-wk-uvdesk-customer.php:100
+#: templates/front/class-wk-uvdesk-customer.php:132
+msgid "Agent Name"
+msgstr ""
+
+#: templates/front/class-wk-uvdesk-register.php:136
+msgid "All fields are required and password must be at least 8 characters."
+msgstr ""
+
+#: includes/front/class-wk-uvdesk-front-function.php:629
+#: templates/admin/class-wk-uvdesk-manage-ticket.php:249
+#: templates/admin/class-wk-uvdesk-admin-ticket.php:643
+#: templates/front/class-wk-uvdesk-customer-ticket-view.php:169
+msgid "All tickets"
+msgstr ""
+
+#: templates/front/class-wk-uvdesk-register.php:94
+msgid "Already Have An Account?"
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-admin-ticket.php:120
+#: templates/admin/class-wk-uvdesk-admin-ticket.php:677
+#: templates/front/class-wk-uvdesk-customer.php:112
+msgid "Answered"
+msgstr ""
+
+#. %s: Error message
+#: helper/class-wk-uvdesk-api-handler.php:684
+#: helper/class-wk-uvdesk-api-handler.php:769
+#, php-format
+msgid "API Communication Error: %s"
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-admin-ticket.php:769
+msgid "Apply"
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-admin-ticket.php:751
+msgid "Assign Agent"
+msgstr ""
+
+#: includes/front/class-wk-uvdesk-front-function.php:444
+#: includes/front/class-wk-uvdesk-front-function.php:913
+#: templates/admin/class-wk-uvdesk-manage-ticket.php:504
+#: templates/front/class-wk-uvdesk-customer-ticket-view.php:466
+#: templates/front/class-wk-uvdesk-customer-create-ticket.php:209
+msgid "Attach File"
+msgstr ""
+
+#: includes/front/class-wk-uvdesk-front-function.php:418
+#: templates/front/class-wk-uvdesk-customer-create-ticket.php:183
+msgid "Back"
+msgstr ""
+
+#: includes/front/class-wk-uvdesk-front-function.php:435
+#: templates/front/class-wk-uvdesk-customer-create-ticket.php:200
+msgid "Brief Description about your query"
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-admin-ticket.php:732
+msgid "Bulk Filters"
+msgstr ""
+
+#: templates/front/class-wk-uvdesk-register.php:126
+msgid "Captcha error"
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-admin-ticket.php:742
+msgid "Change Priority"
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-admin-ticket.php:734
+msgid "Change Status"
+msgstr ""
+
+#: includes/front/class-wk-uvdesk-front-function.php:449
+#: templates/front/class-wk-uvdesk-register.php:83
+#: templates/front/class-wk-uvdesk-customer-create-ticket.php:214
+msgid "Check for client Keys"
+msgstr ""
+
+#: includes/front/class-wk-uvdesk-front-function.php:425
+#: includes/front/class-wk-uvdesk-front-function.php:430
+#: includes/front/class-wk-uvdesk-front-function.php:434
+#: templates/front/class-wk-uvdesk-customer-create-ticket.php:190
+msgid "Choose query type"
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-admin-ticket.php:728
+msgid "Clear Filters"
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-backend-setting.php:73
+msgid "Client Key OR Site Key"
+msgstr ""
+
+#: includes/class-wk-uvdesk.php:122
+msgid "Cloning is forbidden."
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-admin-ticket.php:118
+#: templates/admin/class-wk-uvdesk-admin-ticket.php:675
+msgid "Closed"
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-backend-setting.php:67
+msgid "Company Domain"
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-manage-ticket.php:212
+msgid "Contact technical team ..."
+msgstr ""
+
+#: includes/front/class-wk-uvdesk-front-function.php:417
+#: templates/front/class-wk-uvdesk-customer-create-ticket.php:182
+msgid "Create a Ticket"
+msgstr ""
+
+#: includes/front/class-wk-uvdesk-front-function.php:453
+#: templates/front/class-wk-uvdesk-customer.php:93
+#: templates/front/class-wk-uvdesk-customer-create-ticket.php:234
+msgid "Create Ticket"
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-manage-ticket.php:267
+msgid "Created on -"
+msgstr ""
+
+#: includes/front/class-wk-uvdesk-front-function.php:677
+#: templates/front/class-wk-uvdesk-customer-ticket-view.php:221
+msgid "Created on - "
+msgstr ""
+
+#: templates/front/class-wk-uvdesk-customer-ticket-view.php:247
+msgid "Created ticket"
+msgstr ""
+
+#: includes/front/class-wk-uvdesk-front-function.php:705
+msgid "created ticket"
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-manage-ticket.php:520
+msgid "Customer"
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-admin-ticket.php:424
+msgid "Customer Name"
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-manage-ticket.php:303
+msgid "Customer Thumbnail"
+msgstr ""
+
+#: includes/common/class-wk-uvdesk-common-function.php:555
+#: templates/front/class-wk-uvdesk-customer.php:130
+msgid "Date"
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-manage-ticket.php:303
+msgid "Default Thumbnail"
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-admin-ticket.php:512
+msgid "Delete"
+msgstr ""
+
+#: includes/class-wk-uvdesk.php:131
+msgid "Deserializing instances of this class is forbidden."
+msgstr ""
+
+#: includes/admin/class-wk-uvdesk-admin-function.php:67
+msgid "Docs"
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-backend-setting.php:74
+msgid "eg :-12***********12"
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-backend-setting.php:77
+msgid "eg :-12***********34"
+msgstr ""
+
+#: templates/front/class-wk-uvdesk-register.php:69
+msgid "Email"
+msgstr ""
+
+#: templates/front/class-wk-uvdesk-register.php:141
+msgid "Email already exists."
+msgstr ""
+
+#: includes/front/class-wk-uvdesk-front-function.php:106
+msgid "Email or Username"
+msgstr ""
+
+#: includes/front/class-wk-uvdesk-front-function.php:431
+#: templates/front/class-wk-uvdesk-customer-create-ticket.php:196
+msgid "Enter Subject"
+msgstr ""
+
+#: helper/class-wk-uvdesk-api-handler.php:121
+msgid "Error, Please check the endpoint."
+msgstr ""
+
+#: helper/class-wk-uvdesk-api-handler.php:173
+msgid "Error, request data not valid. (http-code: 400)"
+msgstr ""
+
+#: helper/class-wk-uvdesk-api-handler.php:175
+#: helper/class-wk-uvdesk-api-handler.php:640
+msgid "Error, resource not found (http-code: 404)"
+msgstr ""
+
+#: helper/class-wk-uvdesk-api-handler.php:195
+msgid "Error: API endpoint is required."
+msgstr ""
+
+#: helper/class-wk-uvdesk-api-handler.php:249
+msgid "Error: Bad Request. (HTTP Code: 400)"
+msgstr ""
+
+#. %1$d: HTTP status code, %2$s: Response message
+#: helper/class-wk-uvdesk-api-handler.php:255
+#, php-format
+msgid "Error: HTTP Status Code: %1$d. Response: %2$s"
+msgstr ""
+
+#: helper/class-wk-uvdesk-api-handler.php:204
+msgid "Error: Missing UVDesk configuration."
+msgstr ""
+
+#: helper/class-wk-uvdesk-api-handler.php:425
+msgid "Error: Request data not valid. (HTTP Code: 400)"
+msgstr ""
+
+#: helper/class-wk-uvdesk-api-handler.php:702
+#: helper/class-wk-uvdesk-api-handler.php:790
+msgid "Error: Resource not found (HTTP Code: 404)"
+msgstr ""
+
+#: helper/class-wk-uvdesk-api-handler.php:251
+#: helper/class-wk-uvdesk-api-handler.php:427
+#: helper/class-wk-uvdesk-api-handler.php:477
+#: helper/class-wk-uvdesk-api-handler.php:526
+msgid "Error: Resource not found. (HTTP Code: 404)"
+msgstr ""
+
+#. %1$d: HTTP status code, %2$s: Response message
+#: helper/class-wk-uvdesk-api-handler.php:717
+#: helper/class-wk-uvdesk-api-handler.php:804
+#, php-format
+msgid "Error: Unexpected HTTP Status Code %1$d. Response: %2$s"
+msgstr ""
+
+#: includes/admin/class-wk-uvdesk-admin-function.php:34
+msgid "Extensions"
+msgstr ""
+
+#: helper/class-wk-uvdesk-api-handler.php:64
+msgid "File not found"
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-admin-ticket.php:725
+msgid "Filter"
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-admin-ticket.php:702
+msgid "Filter Agent"
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-admin-ticket.php:686
+msgid "Filter by Priority"
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-admin-ticket.php:669
+msgid "Filter by Status"
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-backend-setting.php:75
+msgid "Google RECAPTCHA"
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-manage-ticket.php:75
+msgid "here"
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-manage-ticket.php:286
+#: templates/admin/class-wk-uvdesk-admin-ticket.php:126
+#: templates/admin/class-wk-uvdesk-admin-ticket.php:691
+msgid "High"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "http://webkul.com"
+msgstr ""
+
+#. URI of the plugin
+msgid "https://wordpress.org/plugins/uvdesk/"
+msgstr ""
+
+#: includes/front/class-wk-uvdesk-front-function.php:634
+#: templates/front/class-wk-uvdesk-customer-ticket-view.php:174
+msgid "ID"
+msgstr ""
+
+#: includes/common/class-wk-uvdesk-common-function.php:553
+#: templates/front/class-wk-uvdesk-customer.php:128
+msgid "Id"
+msgstr ""
+
+#: helper/class-wk-uvdesk-api-handler.php:656
+msgid "Invalid attachment URL parameter"
+msgstr ""
+
+#: includes/front/class-wk-uvdesk-front-function.php:117
+msgid "Invalid details- please enter valid details."
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-manage-ticket.php:223
+#: templates/admin/class-wk-uvdesk-manage-ticket.php:235
+msgid "Invalid Details."
+msgstr ""
+
+#: helper/class-wk-uvdesk-api-handler.php:74
+msgid "Invalid file type"
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-manage-ticket.php:594
+msgid "Invalid setting details."
+msgstr ""
+
+#: helper/class-wk-uvdesk-api-handler.php:738
+msgid "Invalid URL parameter for ticket data"
+msgstr ""
+
+#: includes/front/class-wk-uvdesk-front-function.php:701
+#: includes/front/class-wk-uvdesk-front-function.php:794
+#: includes/front/class-wk-uvdesk-front-function.php:878
+#: templates/admin/class-wk-uvdesk-manage-ticket.php:391
+#: templates/admin/class-wk-uvdesk-manage-ticket.php:464
+#: templates/admin/class-wk-uvdesk-manage-ticket.php:525
+#: templates/admin/class-wk-uvdesk-admin-ticket.php:776
+msgid "Loading ..."
+msgstr ""
+
+#: includes/class-wk-uvdesk.php:82 includes/class-wk-uvdesk.php:87
+#: includes/front/class-wk-uvdesk-front-function.php:625
+#: templates/admin/class-wk-uvdesk-manage-ticket.php:252
+#: templates/front/class-wk-uvdesk-customer.php:105
+#: templates/front/class-wk-uvdesk-customer-ticket-view.php:161
+msgid "Loading..."
+msgstr ""
+
+#: includes/front/class-wk-uvdesk-front-function.php:109
+#: templates/front/class-wk-uvdesk-register.php:95
+msgid "Login"
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-manage-ticket.php:284
+#: templates/admin/class-wk-uvdesk-admin-ticket.php:124
+#: templates/admin/class-wk-uvdesk-admin-ticket.php:689
+msgid "Low"
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-manage-ticket.php:285
+#: templates/admin/class-wk-uvdesk-admin-ticket.php:125
+#: templates/admin/class-wk-uvdesk-admin-ticket.php:690
+msgid "Medium"
+msgstr ""
+
+#: includes/front/class-wk-uvdesk-front-function.php:115
+msgid "Member Login"
+msgstr ""
+
+#: includes/front/class-wk-uvdesk-front-function.php:434
+#: templates/front/class-wk-uvdesk-customer-create-ticket.php:199
+msgid "Message"
+msgstr ""
+
+#: templates/front/class-wk-uvdesk-register.php:63
+msgid "Name"
+msgstr ""
+
+#: templates/front/class-wk-uvdesk-customer.php:202
+msgid "Next"
+msgstr ""
+
+#: includes/common/class-wk-uvdesk-common-function.php:629
+msgid "Next »"
+msgstr ""
+
+#: includes/common/class-wk-uvdesk-common-function.php:540
+#: templates/front/class-wk-uvdesk-customer.php:247
+msgid "No Record Found"
+msgstr ""
+
+#: includes/common/class-wk-uvdesk-common-function.php:595
+#: includes/front/class-wk-uvdesk-front-function.php:652
+#: includes/front/class-wk-uvdesk-front-function.php:684
+#: templates/admin/class-wk-uvdesk-manage-ticket.php:470
+#: templates/front/class-wk-uvdesk-customer.php:171
+#: templates/front/class-wk-uvdesk-customer-ticket-view.php:192
+#: templates/front/class-wk-uvdesk-customer-ticket-view.php:228
+msgid "Not Assigned"
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-admin-ticket.php:115
+#: templates/admin/class-wk-uvdesk-admin-ticket.php:672
+#: templates/front/class-wk-uvdesk-customer.php:110
+msgid "Open"
+msgstr ""
+
+#: includes/front/class-wk-uvdesk-front-function.php:123
+#: templates/front/class-wk-uvdesk-register.php:93
+msgid "OR"
+msgstr ""
+
+#: includes/front/class-wk-uvdesk-front-function.php:107
+#: templates/front/class-wk-uvdesk-register.php:75
+msgid "Password"
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-admin-ticket.php:116
+#: templates/admin/class-wk-uvdesk-admin-ticket.php:673
+#: templates/front/class-wk-uvdesk-customer.php:111
+msgid "Pending"
+msgstr ""
+
+#: templates/front/class-wk-uvdesk-register.php:114
+msgid "Please check the captcha form."
+msgstr ""
+
+#: includes/front/class-wk-uvdesk-front-function.php:283
+#: templates/front/class-wk-uvdesk-customer-create-ticket.php:69
+msgid "Please check the the captcha form."
+msgstr ""
+
+#: includes/front/class-wk-uvdesk-front-function.php:602
+#: templates/admin/class-wk-uvdesk-manage-ticket.php:223
+#: templates/admin/class-wk-uvdesk-manage-ticket.php:235
+#: templates/front/class-wk-uvdesk-customer.php:87
+#: templates/front/class-wk-uvdesk-customer-ticket-view.php:132
+msgid "Please contact Administrator."
+msgstr ""
+
+#: includes/front/class-wk-uvdesk-front-function.php:391
+#: includes/front/class-wk-uvdesk-front-function.php:927
+#: templates/front/class-wk-uvdesk-customer.php:256
+#: templates/front/class-wk-uvdesk-customer-ticket-view.php:480
+#: templates/front/class-wk-uvdesk-customer-create-ticket.php:176
+msgid "Please Enter a valid Access Token"
+msgstr ""
+
+#: includes/common/class-wk-uvdesk-common-function.php:54
+#: includes/common/class-wk-uvdesk-common-function.php:85
+#: includes/common/class-wk-uvdesk-common-function.php:122
+#: includes/common/class-wk-uvdesk-common-function.php:175
+msgid "Please enter a valid filter"
+msgstr ""
+
+#: includes/common/class-wk-uvdesk-common-function.php:202
+msgid "Please enter a valid ticket Id"
+msgstr ""
+
+#: includes/front/class-wk-uvdesk-front-function.php:369
+msgid "Please insert a valid image."
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-manage-ticket.php:198
+#: templates/front/class-wk-uvdesk-customer-create-ticket.php:155
+msgid ""
+"Please upload a valid file (PDF, DOC, DOCX, PNG, JPG, JPEG, GIF, ZIP, RAR) "
+"with maximum size of 20MB"
+msgstr ""
+
+#: includes/front/class-wk-uvdesk-front-function.php:452
+#: templates/front/class-wk-uvdesk-customer-create-ticket.php:217
+msgid "Please verify that you are not a robot."
+msgstr ""
+
+#: templates/front/class-wk-uvdesk-customer.php:203
+msgid "Previous"
+msgstr ""
+
+#: includes/front/class-wk-uvdesk-front-function.php:659
+#: templates/front/class-wk-uvdesk-customer-ticket-view.php:201
+msgid "Priority"
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-manage-ticket.php:279
+msgid "Priority -"
+msgstr ""
+
+#: includes/front/class-wk-uvdesk-front-function.php:124
+msgid "Register Here"
+msgstr ""
+
+#: templates/front/class-wk-uvdesk-register.php:166
+msgid "Registration failed. Please try again."
+msgstr ""
+
+#: templates/front/class-wk-uvdesk-register.php:156
+msgid "Registration user account created"
+msgstr ""
+
+#: includes/front/class-wk-uvdesk-front-function.php:108
+msgid "Remember Me"
+msgstr ""
+
+#: includes/common/class-wk-uvdesk-common-function.php:554
+#: includes/front/class-wk-uvdesk-front-function.php:917
+#: templates/admin/class-wk-uvdesk-manage-ticket.php:509
+#: templates/front/class-wk-uvdesk-customer.php:129
+#: templates/front/class-wk-uvdesk-customer-ticket-view.php:470
+msgid "Reply"
+msgstr ""
+
+#: includes/common/class-wk-uvdesk-common-function.php:219
+#: includes/common/class-wk-uvdesk-common-function.php:255
+msgid "Required parameters are missing"
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-admin-ticket.php:117
+#: templates/admin/class-wk-uvdesk-admin-ticket.php:674
+#: templates/front/class-wk-uvdesk-customer.php:113
+msgid "Resolved"
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-admin-ticket.php:201
+#: templates/admin/class-wk-uvdesk-admin-ticket.php:208
+#: templates/front/class-wk-uvdesk-customer.php:117
+#: templates/front/class-wk-uvdesk-customer.php:119
+msgid "Search"
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-admin-ticket.php:206
+msgid "Search by subject..."
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-admin-ticket.php:665
+msgid "Search Filters"
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-backend-setting.php:76
+msgid "Secret Key"
+msgstr ""
+
+#: templates/front/class-wk-uvdesk-customer-ticket-view.php:69
+msgid "Security verification failed. Please try again."
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-manage-ticket.php:73
+msgid "Select a ticket first from"
+msgstr ""
+
+#: includes/admin/class-wk-uvdesk-admin-function.php:35
+msgid "Services"
+msgstr ""
+
+#: includes/admin/class-wk-uvdesk-admin-function.php:48
+msgid "Settings"
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-backend-setting.php:57
+msgid "Settings saved successfully."
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-backend-setting.php:71
+msgid "Setup Recaptcha"
+msgstr ""
+
+#: templates/front/class-wk-uvdesk-register.php:58
+msgid "Sign Up"
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-backend-setting.php:75
+msgid "Site"
+msgstr ""
+
+#: includes/front/class-wk-uvdesk-front-function.php:386
+#: templates/front/class-wk-uvdesk-customer-create-ticket.php:170
+msgid "Some fields are empty."
+msgstr ""
+
+#: includes/front/class-wk-uvdesk-front-function.php:298
+#: includes/front/class-wk-uvdesk-front-function.php:544
+#: templates/admin/class-wk-uvdesk-manage-ticket.php:148
+#: templates/front/class-wk-uvdesk-customer-create-ticket.php:85
+msgid "Sorry, your nonce did not verify."
+msgstr ""
+
+#: templates/front/class-wk-uvdesk-customer.php:97
+msgid "Sort By - "
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-admin-ticket.php:119
+#: templates/admin/class-wk-uvdesk-admin-ticket.php:676
+msgid "Spam"
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-admin-ticket.php:420
+msgid "Starred"
+msgstr ""
+
+#: includes/front/class-wk-uvdesk-front-function.php:664
+#: templates/front/class-wk-uvdesk-customer-ticket-view.php:206
+msgid "Status"
+msgstr ""
+
+#: includes/common/class-wk-uvdesk-common-function.php:556
+#: includes/front/class-wk-uvdesk-front-function.php:430
+#: templates/admin/class-wk-uvdesk-admin-ticket.php:423
+#: templates/front/class-wk-uvdesk-customer.php:131
+#: templates/front/class-wk-uvdesk-customer-create-ticket.php:195
+msgid "Subject"
+msgstr ""
+
+#: templates/front/class-wk-uvdesk-customer-ticket-view.php:213
+msgid "Subject :-"
+msgstr ""
+
+#: includes/front/class-wk-uvdesk-front-function.php:671
+msgid "Subject :- "
+msgstr ""
+
+#: templates/front/class-wk-uvdesk-register.php:89
+msgid "Submit"
+msgstr ""
+
+#: includes/admin/class-wk-uvdesk-admin-function.php:68
+#: includes/front/class-wk-uvdesk-front-function.php:426
+#: templates/front/class-wk-uvdesk-customer-create-ticket.php:191
+msgid "Support"
+msgstr ""
+
+#: includes/common/class-wk-uvdesk-common-function.php:234
+msgid "There is an error in deleting thread1"
+msgstr ""
+
+#: includes/common/class-wk-uvdesk-common-function.php:238
+msgid "There is an error in deleting thread2"
+msgstr ""
+
+#: includes/front/class-wk-uvdesk-front-function.php:383
+#: templates/front/class-wk-uvdesk-customer-create-ticket.php:167
+msgid "There is some issue with user permission try again."
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-admin-ticket.php:352
+msgid "There was an error tickets agent."
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-admin-ticket.php:322
+msgid "There was an error tickets priority."
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-admin-ticket.php:293
+msgid "There was an error tickets status."
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-backend-setting.php:69
+msgid "This field is the domain of your organization."
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-manage-ticket.php:244
+msgid "Ticket #"
+msgstr ""
+
+#: helper/class-wk-uvdesk-api-handler.php:114
+msgid "Ticket created successfully."
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-admin-ticket.php:421
+#: templates/front/class-wk-uvdesk-customer.php:97
+#: templates/front/class-wk-uvdesk-customer.php:99
+msgid "Ticket Id"
+msgstr ""
+
+#: templates/front/class-wk-uvdesk-customer-ticket-view.php:172
+msgid "TICKET INFROMATION"
+msgstr ""
+
+#: includes/front/class-wk-uvdesk-front-function.php:632
+msgid "TICKET INFROMATION dfsdffs"
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-admin-ticket.php:651
+msgid "Ticket(s) deleted successfully."
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-manage-ticket.php:562
+msgid "Tickets"
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-admin-ticket.php:88
+#: templates/admin/class-wk-uvdesk-admin-ticket.php:141
+msgid "Tickets per page"
+msgstr ""
+
+#: includes/front/class-wk-uvdesk-front-function.php:638
+#: templates/admin/class-wk-uvdesk-admin-ticket.php:422
+#: templates/front/class-wk-uvdesk-customer-ticket-view.php:178
+msgid "Timestamp"
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-manage-ticket.php:562
+msgid "Total"
+msgstr ""
+
+#: includes/front/class-wk-uvdesk-front-function.php:642
+#: templates/front/class-wk-uvdesk-customer-ticket-view.php:182
+msgid "Total Replies"
+msgstr ""
+
+#: includes/front/class-wk-uvdesk-front-function.php:423
+#: templates/front/class-wk-uvdesk-customer-create-ticket.php:188
+msgid "Type"
+msgstr ""
+
+#: helper/class-wk-uvdesk-api-handler.php:69
+msgid "Unable to read file"
+msgstr ""
+
+#: helper/class-wk-uvdesk-api-handler.php:128
+msgid "Unknown error occurred!"
+msgstr ""
+
+#: includes/common/class-wk-uvdesk-common-function.php:400
+#: includes/common/class-wk-uvdesk-common-function.php:472
+#: includes/front/class-wk-uvdesk-front-function.php:725
+#: includes/front/class-wk-uvdesk-front-function.php:825
+#: templates/admin/class-wk-uvdesk-manage-ticket.php:328
+#: templates/admin/class-wk-uvdesk-manage-ticket.php:413
+#: templates/front/class-wk-uvdesk-customer-ticket-view.php:268
+#: templates/front/class-wk-uvdesk-customer-ticket-view.php:374
+msgid "Uploaded files"
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-manage-ticket.php:287
+#: templates/admin/class-wk-uvdesk-admin-ticket.php:127
+#: templates/admin/class-wk-uvdesk-admin-ticket.php:692
+msgid "Urgent"
+msgstr ""
+
+#: includes/front/class-wk-uvdesk-front-function.php:119
+msgid "User"
+msgstr ""
+
+#: templates/front/class-wk-uvdesk-customer-ticket-view.php:345
+msgid "user-img"
+msgstr ""
+
+#. Name of the plugin
+msgid "UVdesk Free Helpdesk"
+msgstr ""
+
+#: includes/admin/class-wk-uvdesk-admin-function.php:33
+msgid "UVDesk Setting"
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-backend-setting.php:54
+msgid "UVDesk Settings"
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-backend-setting.php:65
+msgid "Uvdesk Site"
+msgstr ""
+
+#: includes/admin/class-wk-uvdesk-admin-function.php:32
+msgid "UVdesk Ticket System"
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-admin-ticket.php:633
+msgid "Uvdesk Tickets List"
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-admin-ticket.php:499
+msgid "View"
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-manage-ticket.php:579
+msgid "View All"
+msgstr ""
+
+#: includes/admin/class-wk-uvdesk-admin-function.php:67
+msgid "View documentation"
+msgstr ""
+
+#: includes/admin/class-wk-uvdesk-admin-function.php:68
+msgid "Visit customer support"
+msgstr ""
+
+#. Author of the plugin
+msgid "Webkul"
+msgstr ""
+
+#: includes/front/class-wk-uvdesk-front-function.php:396
+msgid "wk-uvdesk"
+msgstr ""
+
+#. %s: Error message
+#: helper/class-wk-uvdesk-api-handler.php:234
+#, php-format
+msgid "WordPress HTTP API Error: %s"
+msgstr ""
+
+#. Description of the plugin
+msgid ""
+"WordPress Uvdesk ticket system will integrate symphony based ticket in "
+"WordPress framework using symfony api."
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-backend-setting.php:75
+msgid "You can create recaptcha keys from"
+msgstr ""
+
+#: includes/front/class-wk-uvdesk-front-function.php:882
+#: templates/front/class-wk-uvdesk-customer-ticket-view.php:435
+msgid "You can write your reply"
+msgstr ""
+
+#: templates/admin/class-wk-uvdesk-backend-setting.php:65
+msgid "You need to create access token from  "
+msgstr ""
+
+#: includes/common/class-wk-uvdesk-common-function.php:630
+msgid "« Previous"
+msgstr ""

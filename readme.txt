@@ -1,11 +1,16 @@
-=== UVdesk Free Helpdesk for Wordpress ===
+=== UVdesk Free Helpdesk ===
 Contributors: webkul
-Tags: form, database, db, data, value, shortcode, submit, helpdesk, customer support, form builder, social app integration, Knowledge base, Agent Reports, Task, Helpdesk
-Requires at least: 3.2
-Tested up to: 4.9.5
-Stable tag: 2.0
-License: GNU/GPL for more info see license.txt included with plugin
-License URI: http://www.gnu.org/licenseses/gpl-2.0.html
+Tags: help, helpdesk, support, ticket
+Requires at least: 6.5
+Tested up to: 6.7
+Stable tag: 2.0.2
+Requires PHP: 7.4
+Tested up to PHP: 8.3
+License: GPLv3
+License URI: http://www.gnu.org/licenses/gpl-3.0.html
+Donate link: https://marketplace.webkul.com/knowledgebase/make-payment-customization/
+
+Uvdesk is an omnichannel helpdesk designed to deliver swift and efficient customer support across multiple platforms.
 
 == Description==
 Uvdesk is a omni channel helpdesk for providing quick assistance to customers through diverse horizontal mediums. It needs only quick sign up to be yours for delivering fantastic customer support for your channel
@@ -60,6 +65,13 @@ Both admin and buyer can view history of tickets.
 
 == Installation ==
 
+= Minimum Requirements =
+
+* WordPress 6.5 or greater
+* PHP version 7.4 or greater
+* MySQL version 5.0 or greater
+* WordPress Memory limit of 64 MB or greater (128 MB or higher is preferred)
+
 1. Upload the `uvdesk-app` folder to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
 3. Configure the plugin using the 'uvdesk-settings' menu
@@ -109,10 +121,24 @@ This will include if in case the symfony api is updated for uvdesk app so in tha
 
 == Changelog ==
 
+= 2.0.2 =
+
+* Added: Page selection for booking widget display, activation functions, domain validation, and translations.
+* Updated: Admin panel, file structure to use singleton pattern.
+* Fixed: CSS issues with new WordPress versions, minor code formatting, and security vulnerabilities.
+
+= 2.0.1 =
+
+1. Fixed the issue of creating multiple page on activating plugin.
+2. Added the additional checks for the token validation.
+
 = 2.0.0 =
 
-1. Admin access is been provided in the backend.
+1. Admin access is been provided in the wordpress backend.
 2. Improved user interface for both admin and customer side ticket system.
+3. Removed bootstrap dependency.
+4. Added feature of automatic redirection according to user role at login.
+5. Updated module according to the latest API.
 
 = 1.0.0 =
 Initial release
