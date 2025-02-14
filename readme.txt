@@ -3,7 +3,7 @@ Contributors: webkul
 Tags: help, helpdesk, support, ticket
 Requires at least: 6.5
 Tested up to: 6.7
-Stable tag: 2.0.2
+Stable tag: 2.1.0
 Requires PHP: 7.4
 Tested up to PHP: 8.3
 License: GPLv3
@@ -72,7 +72,7 @@ Both admin and buyer can view history of tickets.
 * MySQL version 5.0 or greater
 * WordPress Memory limit of 64 MB or greater (128 MB or higher is preferred)
 
-1. Upload the `uvdesk-app` folder to the `/wp-content/plugins/` directory
+1. Upload the `uvdesk` folder to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
 3. Configure the plugin using the 'uvdesk-settings' menu
 
@@ -121,7 +121,7 @@ This will include if in case the symfony api is updated for uvdesk app so in tha
 
 == Changelog ==
 
-= 2.0.2 =
+= 2.1.0 =
 
 * Added: Page selection for booking widget display, activation functions, domain validation, and translations.
 * Updated: Admin panel, file structure to use singleton pattern.
