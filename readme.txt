@@ -1,5 +1,5 @@
 === UVdesk Free Helpdesk ===
-Contributors: webkul
+Contributors: uvdesk, webkul
 Requires at least: 6.5
 Tested up to: 6.7
 Stable tag: 2.1.0
@@ -12,7 +12,8 @@ Donate link: https://marketplace.webkul.com/knowledgebase/make-payment-customiza
 
 Uvdesk is an omnichannel helpdesk designed to deliver swift and efficient customer support across multiple platforms.
 
-== Description==
+== Description ==
+
 Uvdesk is a omni channel helpdesk for providing quick assistance to customers through diverse horizontal mediums. It needs only quick sign up to be yours for delivering fantastic customer support for your channel
 
 Numerious Apps Integrations - [https://support.uvdesk.com/en/folder/184](https://support.uvdesk.com/en/folder/184)
@@ -76,6 +77,26 @@ Both admin and buyer can view history of tickets.
 2. Activate the plugin through the 'Plugins' menu in WordPress
 3. Configure the plugin using the 'uvdesk-settings' menu
 
+= Connect with us =
+
+- Check out [Our Website](https://webkul.com/)
+- Join our [Facebook Group](https://www.facebook.com/webkul/)
+- Visit our [Instagram Page](https://www.instagram.com/lifeatwebkul/)
+- Follow us on [X(formerly Twitter)](https://x.com/webkul/)
+- Learn more on our [YouTube Channel](https://www.youtube.com/webkul)
+- Follow us on [LinkedIn](https://in.linkedin.com/company/webkul)
+- Rate us on [WordPress](https://wordpress.org/support/plugin/uvdesk/reviews/?filter=5/#new-post/) :)
+
+= Privacy notices =
+
+For showing extensions and the support and services menu we are using our Webkul Services. So, confirming the privacy policies is recommended.
+
+* Extensions [Webkul Policy](https://webkul.com/privacy-policy/)
+
+= Developer Resources =
+
+UVdesk Free Helpdesk is open-source software and is made to be extended. To reduce zip size and optimize the code, we have added minified css and js assets but developers can find non-minified (un-compressed) sources at our public ([github repository](https://github.com/uvdesk/wordpress/)) here.
+
 
 == Screenshots ==
 
@@ -121,7 +142,7 @@ This will include if in case the symfony api is updated for uvdesk app so in tha
 
 == Changelog ==
 
-= 2.1.0 =
+= 2.1.0 - 2025-02-15 =
 
 * Added: Page selection for booking widget display, activation functions, domain validation, and translations.
 * Updated: Admin panel, file structure to use singleton pattern.
