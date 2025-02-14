@@ -11,7 +11,7 @@
 		"phpcbf": "cd $VAR && $PWD/.config/composer/vendor/squizlabs/php_codesniffer/bin/phpcbf --standard=$INIT_CWD/phpcs.xml --severity=1 --ignore-annotations --extensions=php,html $INIT_CWD/",
 		"phpcs": "mkdir -p phpcs-reports && cd $VAR && $PWD/.config/composer/vendor/squizlabs/php_codesniffer/bin/phpcs --standard=$INIT_CWD/phpcs.xml --severity=1 --ignore=*/wk_caching/* --report-source --report-xml=$INIT_CWD/phpcs-reports/phpcs-report-$(date \"+%Y-%m-%dT%H:%M:%S\").xml --ignore-annotations --extensions=php,html $INIT_CWD/",
 		"make-pot": "php -d xdebug.max_nesting_level=512 $(which wp) i18n make-pot --exclude=\"node_modules/,languages/,wk_caching/,.gitignore,.gitmodules,.gulpfile.js,.git,.webpack.config.js,package.json,package-lock.json,phpcs.xml,phpmd.xml,license.txt,readme.txt,assets/,$npm_package_name/\" --headers='{\"Report-Msgid-Bugs-To\":\"https://wordpress.org/support/plugin/uvdesk/\", \"language-team\":\"LANGUAGE <EMAIL@ADDRESS>\"}' . languages/wk-uvdesk.pot",
-		"zip": "npm run make-pot && mkdir -p $npm_package_name && cp -r assets/ autoloader/ helper/ includes/ languages/ templates/ index.php readme.txt $npm_package_name.php $npm_package_name && zip -r $npm_package_name.zip $npm_package_name && rm -r $npm_package_name"
+		"zip": "npm run phpcbf && npm run make-pot && mkdir -p $npm_package_name && cp -r assets/ autoloader/ helper/ includes/ languages/ templates/ index.php readme.txt $npm_package_name.php $npm_package_name && zip -r $npm_package_name.zip $npm_package_name && rm -r $npm_package_name"
   },
   "devDependencies": {
     "browser-sync": "^2.18.8",

@@ -149,6 +149,7 @@ if ( ! class_exists( 'WKUVDESK_Api_Handler' ) ) {
 				'Authorization' => 'Bearer ' . $uv->get_access_token(),
 				'Content-Type'  => 'application/json',
 			);
+
 			// Perform the request.
 			$response = wp_remote_post(
 				$url,
@@ -159,6 +160,7 @@ if ( ! class_exists( 'WKUVDESK_Api_Handler' ) ) {
 					'timeout' => self::$timeout,
 				)
 			);
+
 			// Check for errors.
 			if ( is_wp_error( $response ) ) {
 				return $response->get_error_message();
@@ -186,7 +188,7 @@ if ( ! class_exists( 'WKUVDESK_Api_Handler' ) ) {
 		 *
 		 * @return string|false API response or error message.
 		 */
-		public static function wk_uvdesk_post_thread_data_api( $thread_url_param = '', $thread_param = array() ) {
+		public static function wkuvdesk_post_thread_data_api( $thread_url_param = '', $thread_param = array() ) {
 			// Initialize UVDesk helper.
 			$uv = new WKUVDESK_Protected();
 
@@ -268,7 +270,7 @@ if ( ! class_exists( 'WKUVDESK_Api_Handler' ) ) {
 		 *
 		 * @return mixed
 		 */
-		public static function wk_uvdesk_post_thread_data_api_with_attachment( $thread_url_param = '', $thread_param = array(), $post_image = array() ) {
+		public static function wkuvdesk_post_thread_data_api_with_attachment( $thread_url_param = '', $thread_param = array(), $post_image = array() ) {
 			// Ensure we have required WordPress functions.
 			if ( ! function_exists( 'wp_parse_args' ) ) {
 				require_once ABSPATH . 'wp-includes/functions.php';
@@ -389,7 +391,7 @@ if ( ! class_exists( 'WKUVDESK_Api_Handler' ) ) {
 		 *
 		 * @return mixed
 		 */
-		public function wk_uvdesk_post_tag_ticket( $url_param = '', $param = array() ) {
+		public function wkuvdesk_post_tag_ticket( $url_param = '', $param = array() ) {
 			$uv     = new WKUVDESK_Protected();
 			$domain = $uv->get_company_domain();
 			// Construct the URL.
@@ -443,7 +445,7 @@ if ( ! class_exists( 'WKUVDESK_Api_Handler' ) ) {
 		 *
 		 * @return mixed|WP_Error Response data or WP_Error on failure.
 		 */
-		public static function wk_uvdesk_get_customer_data_api( $url_param = '', $query_params = array() ) {
+		public static function wkuvdesk_get_customer_data_api( $url_param = '', $query_params = array() ) {
 			$uv = new WKUVDESK_Protected();
 
 			// Build the query string from query parameters.
@@ -493,7 +495,7 @@ if ( ! class_exists( 'WKUVDESK_Api_Handler' ) ) {
 		 *
 		 * @return mixed
 		 */
-		public static function wk_uvdesk_delete_tag_ticket( $tag_url_param = '', $tag_params = array() ) {
+		public static function wkuvdesk_delete_tag_ticket( $tag_url_param = '', $tag_params = array() ) {
 			$uv     = new WKUVDESK_Protected();
 			$domain = $uv->get_company_domain();
 			$url    = 'https://' . $domain . '.uvdesk.com/en/api/' . $tag_url_param;
@@ -542,7 +544,7 @@ if ( ! class_exists( 'WKUVDESK_Api_Handler' ) ) {
 		 *
 		 * @return mixed
 		 */
-		public static function wk_uvdesk_threds_delete_tag_ticket( $tag_url_param = '', $tag_prm = array() ) {
+		public static function wkuvdesk_threds_delete_tag_ticket( $tag_url_param = '', $tag_prm = array() ) {
 			// Initialize UVDesk helper.
 			$uv     = new WKUVDESK_Protected();
 			$domain = $uv->get_company_domain();
@@ -607,7 +609,7 @@ if ( ! class_exists( 'WKUVDESK_Api_Handler' ) ) {
 		 *
 		 * @return mixed
 		 */
-		public static function wk_uvdesk_update_ticket( $ticket_url_param = '', $ticket_params = array() ) {
+		public static function wkuvdesk_update_ticket( $ticket_url_param = '', $ticket_params = array() ) {
 			$uv     = new WKUVDESK_Protected();
 			$domain = $uv->get_company_domain();
 			$url    = 'https://' . $domain . '.uvdesk.com/en/api/' . $ticket_url_param;
@@ -648,7 +650,7 @@ if ( ! class_exists( 'WKUVDESK_Api_Handler' ) ) {
 		 *
 		 * @return mixed
 		 */
-		public static function wk_uvdesk_get_attachment_data_api( $attachment_url_param = '' ) {
+		public static function wkuvdesk_get_attachment_data_api( $attachment_url_param = '' ) {
 			// Validate input.
 			if ( empty( $attachment_url_param ) ) {
 				return new \WP_Error(
@@ -730,7 +732,7 @@ if ( ! class_exists( 'WKUVDESK_Api_Handler' ) ) {
 		 *
 		 * @return mixed
 		 */
-		public function wk_uvdesk_get_patch_data_api( $patch_url_param = '', $ticket_prm = array() ) {
+		public function wkuvdesk_get_patch_data_api( $patch_url_param = '', $ticket_prm = array() ) {
 			// Validate input.
 			if ( empty( $patch_url_param ) ) {
 				return new \WP_Error(

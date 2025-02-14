@@ -116,7 +116,7 @@ if ( ! class_exists( 'WKUVDESK_Front_Function' ) ) {
 				if ( 'failed' === filter_input( INPUT_GET, 'login', FILTER_SANITIZE_FULL_SPECIAL_CHARS ) ) {
 					$output .= '<div class="text-center wk-uvdesk-pass-error"><span>' . esc_html__( 'Invalid details- please enter valid details.', 'wk-uvdesk' ) . '</span></div>';
 				}
-				$output .= '<div class="head"><img ' . wp_kses_post( Includes\WKUVDESK::wk_uvdesk_convert_attributes_to_html( WKUVDESK_PLUGIN_URL . 'assets/images/user.png' ) ) . '" alt="' . esc_attr__( 'User', 'wk-uvdesk' ) . '"/></div>';
+				$output .= '<div class="head"><img ' . wp_kses_post( Includes\WKUVDESK::wkuvdesk_convert_attributes_to_html( WKUVDESK_PLUGIN_URL . 'assets/images/user.png' ) ) . '" alt="' . esc_attr__( 'User', 'wk-uvdesk' ) . '"/></div>';
 				ob_start();
 				wp_login_form( $args );
 				$output .= ob_get_clean();
@@ -548,7 +548,7 @@ if ( ! class_exists( 'WKUVDESK_Front_Function' ) ) {
 							$reply = isset( $_POST['thread_desc'] ) ? sanitize_textarea_field( wp_unslash( $_POST['thread_desc'] ) ) : '';
 
 							if ( isset( $_FILES['attachments']['type'] ) && 0 === count( $_FILES['attachments']['type'] ) ) {
-									$thread_status = Helper\WKUVDESK_Api_Handler::wk_uvdesk_post_thread_data_api(
+									$thread_status = Helper\WKUVDESK_Api_Handler::wkuvdesk_post_thread_data_api(
 										'ticket/' . sanitize_text_field( $sdt[1] ) . '/threads.json',
 										array(
 											'threadType' => sanitize_text_field( filter_input( INPUT_POST, 'threadType', FILTER_SANITIZE_FULL_SPECIAL_CHARS ) ),
@@ -559,7 +559,7 @@ if ( ! class_exists( 'WKUVDESK_Front_Function' ) ) {
 										)
 									);
 							} else {
-									$thread_status = Helper\WKUVDESK_Api_Handler::wk_uvdesk_post_thread_data_api_with_attachment(
+									$thread_status = Helper\WKUVDESK_Api_Handler::wkuvdesk_post_thread_data_api_with_attachment(
 										'ticket/' . sanitize_text_field( $sdt[1] ) . '/threads.json',
 										array(
 											'threadType' => sanitize_text_field( filter_input( INPUT_POST, 'threadType', FILTER_SANITIZE_FULL_SPECIAL_CHARS ) ),
@@ -596,7 +596,7 @@ if ( ! class_exists( 'WKUVDESK_Front_Function' ) ) {
 					'actAsType'  => 'customer',
 					'actAsEmail' => $c_email,
 				);
-				$ticket_details = Helper\WKUVDESK_Api_Handler::wk_uvdesk_get_customer_data_api( 'ticket/' . $ticket_id . '.json', $arr_sum );
+				$ticket_details = Helper\WKUVDESK_Api_Handler::wkuvdesk_get_customer_data_api( 'ticket/' . $ticket_id . '.json', $arr_sum );
 
 				if ( isset( $ticket_details->error ) || empty( $ticket_details ) ) {
 					echo '<h4>' . esc_html( $ticket_details->error_description ) . '</h1><h4>' . esc_html__( 'Please contact Administrator.', 'wk-uvdesk' ) . '</h3>';
@@ -617,19 +617,19 @@ if ( ! class_exists( 'WKUVDESK_Front_Function' ) ) {
 							$created_thread = $ticket_details->create_thread->reply;
 					}
 
-					$ticket_thread = Helper\WKUVDESK_Api_Handler::wk_uvdesk_get_customer_data_api( 'ticket/' . $ticket_details->ticket->id . '/trash.json' );
+					$ticket_thread = Helper\WKUVDESK_Api_Handler::wkuvdesk_get_customer_data_api( 'ticket/' . $ticket_details->ticket->id . '/trash.json' );
 					?>
 			<div class="uv-uvdesk-block-container wk-uvdesk-content-wrap">
 				<div class="uvuvdesk-pre-loader">
 					<?php
-					echo '<img ' . wp_kses( Includes\WKUVDESK::wk_uvdesk_convert_attributes_to_html( array() ), $allowed_html ) . ' alt="' . esc_attr_e( 'Loading...', 'wk-uvdesk' ) . '" />';
+					echo '<img ' . wp_kses( Includes\WKUVDESK::wkuvdesk_convert_attributes_to_html( array() ), $allowed_html ) . ' alt="' . esc_attr_e( 'Loading...', 'wk-uvdesk' ) . '" />';
 					?>
 				</div>
 				<div class="tkt-front-header">
 					<a href="<?php echo esc_url( site_url() . '/uvdesk/customer/' ); ?>" class='to-main-list'>  <?php esc_html_e( 'All tickets', 'wk-uvdesk' ); ?></a>
 				</div>
 				<div class="side-section-front">
-					<p class='side-sec-head'><?php esc_html_e( 'TICKET INFROMATION dfsdffs', 'wk-uvdesk' ); ?></p>
+					<p class='side-sec-head'><?php esc_html_e( 'TICKET INFROMATION', 'wk-uvdesk' ); ?></p>
 					<span>
 						<span class="side-title"><?php esc_html_e( 'ID', 'wk-uvdesk' ); ?></span>
 						<span class="side-info"><?php esc_html_e( '#', 'wk-uvdesk' ); ?> <?php echo esc_html( $ticket_details->ticket->id ); ?></span>
@@ -647,10 +647,7 @@ if ( ! class_exists( 'WKUVDESK_Front_Function' ) ) {
 						<span class="side-title"><?php esc_html_e( 'Agent', 'wk-uvdesk' ); ?></span>
 						<span class="side-info">
 							<?php
-							$agent_name = ! empty( $ticket_details->ticket->agent->detail->name ) ?
-														esc_html( $ticket_details->ticket->agent->detail->name ) :
-														esc_html__( 'Not Assigned', 'wk-uvdesk' );
-							echo esc_html( $agent_name );
+							echo empty( $ticket_details->ticket->agent->detail->name ) ? esc_html__( 'Not Assigned', 'wk-uvdesk' ) : esc_html( $ticket_details->ticket->agent->detail->name );
 							?>
 							</span>
 					</span>
@@ -698,7 +695,7 @@ if ( ! class_exists( 'WKUVDESK_Front_Function' ) ) {
 											$thumbnail = isset( $ticket_details->ticket->customer->detail->customer->smallThumbnail ) && ! empty( $ticket_details->ticket->customer->detail->customer->smallThumbnail ) ?
 												$ticket_details->ticket->customer->detail->customer->smallThumbnail :
 												'https://cdn.uvdesk.com/uvdesk/images/e09dabf.png';
-											echo '<img ' . wp_kses( Includes\WKUVDESK::wk_uvdesk_convert_attributes_to_html( $thumbnail ), $allowed_html ) . ' alt="' . esc_attr__( 'Loading ...', 'wk-uvdesk' ) . '" />';
+											echo '<img ' . wp_kses( Includes\WKUVDESK::wkuvdesk_convert_attributes_to_html( $thumbnail ), $allowed_html ) . ' alt="' . esc_attr__( 'Loading ...', 'wk-uvdesk' ) . '" />';
 											?>
 										</span>
 										<span class="info">
@@ -738,7 +735,7 @@ if ( ! class_exists( 'WKUVDESK_Front_Function' ) ) {
 													$wk_image = str_replace( '/company/', '/thread_image_orignal/', $wk_image );
 													?>
 																<a href="<?php echo esc_url( $wk_image ); ?>" target="_blank">
-																	<img <?php echo wp_kses( Includes\WKUVDESK::wk_uvdesk_convert_attributes_to_html( $wk_image ), $allowed_html ); ?> class="fa fa-file zip" title="<?php echo esc_attr( $anamea ); ?>" data-toggle="tooltip" data-original-title="<?php echo esc_attr( $attchment_value->name ); ?>"/>
+																	<img <?php echo wp_kses( Includes\WKUVDESK::wkuvdesk_convert_attributes_to_html( $wk_image ), $allowed_html ); ?> class="fa fa-file zip" title="<?php echo esc_attr( $anamea ); ?>" data-toggle="tooltip" data-original-title="<?php echo esc_attr( $attchment_value->name ); ?>"/>
 																</a>
 																<?php
 												} elseif ( 'zip' === $aname ) {
@@ -791,7 +788,7 @@ if ( ! class_exists( 'WKUVDESK_Front_Function' ) ) {
 													<span class="img-icon">
 														<?php
 														$thumbnail = ! empty( $thread_value->user->smallThumbnail ) ? $thread_value->user->smallThumbnail : 'https://cdn.uvdesk.com/uvdesk/images/e09dabf.png';
-														echo '<img ' . wp_kses_post( Includes\WKUVDESK::wk_uvdesk_convert_attributes_to_html( $thumbnail ) ) . ' alt="' . esc_attr__( 'Loading ...', 'wk-uvdesk' ) . '" />';
+														echo '<img ' . wp_kses_post( Includes\WKUVDESK::wkuvdesk_convert_attributes_to_html( $thumbnail ) ) . ' alt="' . esc_attr__( 'Loading ...', 'wk-uvdesk' ) . '" />';
 														?>
 														</span>
 														<span class="info">
@@ -838,7 +835,7 @@ if ( ! class_exists( 'WKUVDESK_Front_Function' ) ) {
 																			$wk_image = str_replace( '/company/', '/thread_image_orignal/', $wk_image );
 																			?>
 																		<a href="<?php echo esc_url( $wk_image ); ?>" target="_blank">
-																			<img <?php echo wp_kses_post( Includes\WKUVDESK::wk_uvdesk_convert_attributes_to_html( $wk_image ) ); ?> class="fa fa-file zip" title="<?php echo esc_attr( $anamea ); ?>" data-toggle="<?php echo esc_attr( 'tooltip' ); ?>" data-original-title="<?php echo esc_attr( $attchment_value->name ); ?>">
+																			<img <?php echo wp_kses_post( Includes\WKUVDESK::wkuvdesk_convert_attributes_to_html( $wk_image ) ); ?> class="fa fa-file zip" title="<?php echo esc_attr( $anamea ); ?>" data-toggle="<?php echo esc_attr( 'tooltip' ); ?>" data-original-title="<?php echo esc_attr( $attchment_value->name ); ?>">
 																		</a>
 																				<?php
 																		} elseif ( 'zip' === $aname ) {
@@ -875,7 +872,7 @@ if ( ! class_exists( 'WKUVDESK_Front_Function' ) ) {
 												$thumbnail_url = isset( $ticket_details->ticket->customer->detail->customer->smallThumbnail ) && ! empty( $ticket_details->ticket->customer->detail->customer->smallThumbnail )
 													? esc_url( $ticket_details->ticket->customer->detail->customer->smallThumbnail )
 													: 'https://cdn.uvdesk.com/uvdesk/images/e09dabf.png';
-												echo '<img ' . wp_kses_post( Includes\WKUVDESK::wk_uvdesk_convert_attributes_to_html( $thumbnail ) ) . ' alt="' . esc_attr__( 'Loading ...', 'wk-uvdesk' ) . '" />';
+												echo '<img ' . wp_kses_post( Includes\WKUVDESK::wkuvdesk_convert_attributes_to_html( $thumbnail ) ) . ' alt="' . esc_attr__( 'Loading ...', 'wk-uvdesk' ) . '" />';
 												?>
 										</span>
 										<span class="info">

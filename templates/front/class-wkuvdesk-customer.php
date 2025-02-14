@@ -81,7 +81,7 @@ if ( ! class_exists( 'WKUVDESK_Customer' ) ) {
 				}
 
 				// Call the API with the filter parameters.
-				$data_api = Helper\WKUVDESK_Api_Handler::wk_uvdesk_get_customer_data_api( 'tickets.json', $arr_sum );
+				$data_api = Helper\WKUVDESK_Api_Handler::wkuvdesk_get_customer_data_api( 'tickets.json', $arr_sum );
 
 				if ( isset( $data_api->error ) || empty( $data_api ) ) {
 					echo '<h4>' . esc_html( $data_api->error_description ) . '</h4><h3>' . esc_html__( 'Please contact Administrator.', 'wk-uvdesk' ) . '</h3>';
@@ -102,7 +102,7 @@ if ( ! class_exists( 'WKUVDESK_Customer' ) ) {
 								</div>
 							</div>
 							<div class="uvuvdesk-pre-loader">
-								<img class="uv-uvdesk-ajax-loader-img" <?php echo wp_kses_post( Includes\WKUVDESK::wk_uvdesk_convert_attributes_to_html( array() ) ); ?>  alt="<?php esc_attr_e( 'Loading...', 'wk-uvdesk' ); ?>" />
+								<img class="uv-uvdesk-ajax-loader-img" <?php echo wp_kses_post( Includes\WKUVDESK::wkuvdesk_convert_attributes_to_html( array() ) ); ?>  alt="<?php esc_attr_e( 'Loading...', 'wk-uvdesk' ); ?>" />
 							</div>
 					</div>
 					<div class="tab-listing" id="uv-uvdesk-tab-id-filter">
@@ -133,8 +133,8 @@ if ( ! class_exists( 'WKUVDESK_Customer' ) ) {
 								</tr>
 								<?php
 								$count = 1;
-								if ( ! empty( $data_api->tickets ) && isset( $data_api->tickets ) ) {
-									foreach ( $data_api->tickets as $ticket_key => $ticket_value ) {
+								if ( ! empty( $data_api->tickets ) ) {
+									foreach ( $data_api->tickets as $ticket_value ) {
 										?>
 										<tr data-toggle="tooltip" data-placement="<?php echo esc_attr( 'left' ); ?>" title="" class="Open 1 unread" data-original-title="<?php echo esc_attr( 'Open' ); ?>" >
 												<td class="check-col">
@@ -170,7 +170,6 @@ if ( ! class_exists( 'WKUVDESK_Customer' ) ) {
 													<?php
 													echo ! empty( $ticket_value->agent->name ) ? esc_attr( $ticket_value->agent->name ) : esc_html__( 'Not Assigned', 'wk-uvdesk' );
 													?>
-
 													</a>
 												</td>
 											</tr>

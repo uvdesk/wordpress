@@ -67,7 +67,7 @@ class WKUVDESK_Admin_Ticket extends \WP_List_Table {
 		add_filter( 'set-screen-option', array( $this, 'save_screen_options' ), 10, 3 );
 
 		// Set parent defaults.
-		$this->data_api_members = Helper\WKUVDESK_Api_Handler::wk_uvdesk_get_customer_data_api(
+		$this->data_api_members = Helper\WKUVDESK_Api_Handler::wkuvdesk_get_customer_data_api(
 			'members.json',
 			array(
 				'sort'     => 'name',
@@ -152,7 +152,7 @@ class WKUVDESK_Admin_Ticket extends \WP_List_Table {
 	 * @return void
 	 */
 	private function fetch_member_data() {
-		$this->data_api_members = Helper\WKUVDESK_Api_Handler::wk_uvdesk_get_customer_data_api(
+		$this->data_api_members = Helper\WKUVDESK_Api_Handler::wkuvdesk_get_customer_data_api(
 			'members.json',
 			array(
 				'sort'     => 'name',
@@ -223,7 +223,7 @@ class WKUVDESK_Admin_Ticket extends \WP_List_Table {
 			return (object) array();
 		}
 
-		return Helper\WKUVDESK_Api_Handler::wk_uvdesk_get_customer_data_api( 'tickets.json', $params );
+		return Helper\WKUVDESK_Api_Handler::wkuvdesk_get_customer_data_api( 'tickets.json', $params );
 	}
 
 	/**
@@ -275,7 +275,7 @@ class WKUVDESK_Admin_Ticket extends \WP_List_Table {
 						'ids'      => $ticket_ids,
 						'statusId' => $change_status,
 					);
-					$data      = Helper\WKUVDESK_Api_Handler::wk_uvdesk_update_ticket( 'tickets/status.json', $json_data );
+					$data      = Helper\WKUVDESK_Api_Handler::wkuvdesk_update_ticket( 'tickets/status.json', $json_data );
 					if ( ! empty( $data->success ) ) {
 						add_action(
 							'admin_notices',
@@ -304,7 +304,7 @@ class WKUVDESK_Admin_Ticket extends \WP_List_Table {
 						'ids'        => $ticket_ids,
 						'priorityId' => $change_priority,
 					);
-					$data      = Helper\WKUVDESK_Api_Handler::wk_uvdesk_update_ticket( 'tickets/priority.json', $json_data );
+					$data      = Helper\WKUVDESK_Api_Handler::wkuvdesk_update_ticket( 'tickets/priority.json', $json_data );
 					if ( ! empty( $data->success ) ) {
 						add_action(
 							'admin_notices',
@@ -333,7 +333,7 @@ class WKUVDESK_Admin_Ticket extends \WP_List_Table {
 						'ids'     => $ticket_ids,
 						'agentId' => $change_agent,
 					);
-					$data      = Helper\WKUVDESK_Api_Handler::wk_uvdesk_update_ticket( 'tickets/agent.json', $json_data );
+					$data      = Helper\WKUVDESK_Api_Handler::wkuvdesk_update_ticket( 'tickets/agent.json', $json_data );
 
 					if ( ! empty( $data->success ) ) {
 						add_action(
@@ -632,7 +632,7 @@ $ticket_obj = new WKUVDESK_Admin_Ticket();
 <header style="display:inline-block">
 	<h1 style="display:inline-block"><?php esc_html_e( 'Uvdesk Tickets List', 'wk-uvdesk' ); ?></h1>
 	<?php
-	$data_api = Helper\WKUVDESK_Api_Handler::wk_uvdesk_get_customer_data_api( 'tickets.json', array() );
+	$data_api = Helper\WKUVDESK_Api_Handler::wkuvdesk_get_customer_data_api( 'tickets.json', array() );
 	if ( ! empty( $data_api->error ) ) {
 		$notice = $data_api->error_description ?? $data_api->error;
 		echo '<br><h3>' . esc_html( $notice ) . '</h3>';
