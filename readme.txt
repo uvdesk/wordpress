@@ -1,11 +1,11 @@
 === UVdesk Free Helpdesk ===
 Contributors: webkul
-Tags: help, helpdesk, support, ticket
 Requires at least: 6.5
 Tested up to: 6.7
 Stable tag: 2.1.0
 Requires PHP: 7.4
 Tested up to PHP: 8.3
+Tags: helpdesk, support-tickets, uvdesk-help, uvdesk-ticket, uvdesk-helpdesk
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Donate link: https://marketplace.webkul.com/knowledgebase/make-payment-customization/
