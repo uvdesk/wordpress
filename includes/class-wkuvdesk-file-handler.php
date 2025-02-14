@@ -32,7 +32,7 @@ if ( ! class_exists( 'WKUVDESK_File_Handler' ) ) {
 		 * @return void
 		 */
 		public function __construct() {
-			$this->wk_uvdesk_native_files();
+			$this->wkuvdesk_native_files();
 		}
 
 		/**
@@ -40,7 +40,7 @@ if ( ! class_exists( 'WKUVDESK_File_Handler' ) ) {
 		 *
 		 * @return void
 		 */
-		public function wk_uvdesk_native_files() {
+		public function wkuvdesk_native_files() {
 			if ( is_admin() ) {
 				Admin\WKUVDESK_Admin_Hook::get_instance();
 			} else {

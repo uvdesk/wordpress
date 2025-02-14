@@ -35,7 +35,6 @@ if ( ! class_exists( 'WKUVDESK_Admin_Function' ) ) {
 			add_submenu_page( 'uvdesk_ticket_system', esc_html__( 'Services', 'wk-uvdesk' ), esc_html__( 'Services', 'wk-uvdesk' ), 'manage_options', 'uvdesk_services', array( $this, 'wkuvdesk_services_menu' ) );
 		}
 
-
 		/**
 		 * Show setting links.
 		 *

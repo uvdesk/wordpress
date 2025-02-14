@@ -43,7 +43,7 @@ if ( ! class_exists( 'WKUVDESK_Common_Function' ) ) {
 
 				if ( $json_data ) {
 					$function_handler = new Helper\WKUVDESK_Api_Handler();
-					$data_customerapi = $function_handler->wk_uvdesk_update_ticket( 'tickets/agent.json', $json_data );
+					$data_customerapi = $function_handler->wkuvdesk_update_ticket( 'tickets/agent.json', $json_data );
 
 					if ( ! empty( $data_customerapi ) ) {
 						wp_send_json_success( $data_customerapi );
@@ -74,7 +74,7 @@ if ( ! class_exists( 'WKUVDESK_Common_Function' ) ) {
 				);
 				if ( $json_data ) {
 					$function_handler = new Helper\WKUVDESK_Api_Handler();
-					$data_customerapi = $function_handler->wk_uvdesk_update_ticket( 'tickets/priority.json', $json_data );
+					$data_customerapi = $function_handler->wkuvdesk_update_ticket( 'tickets/priority.json', $json_data );
 
 					if ( ! empty( $data_customerapi ) ) {
 						wp_send_json_success( $data_customerapi );
@@ -101,7 +101,7 @@ if ( ! class_exists( 'WKUVDESK_Common_Function' ) ) {
 				$m_id             = filter_input( INPUT_POST, 'member_id', FILTER_SANITIZE_NUMBER_INT );
 				$m_id             = empty( $m_id ) ? $current_user->ID : wp_unslash( $m_id );
 				$function_handler = new Helper\WKUVDESK_Api_Handler();
-				$data_assign_api  = $function_handler->wk_uvdesk_get_customer_data_api( 'tickets.json', array( 'agent' => $m_id ) );
+				$data_assign_api  = $function_handler->wkuvdesk_get_customer_data_api( 'tickets.json', array( 'agent' => $m_id ) );
 				$c_email          = $current_user->user_email;
 
 				if ( $field ) {
@@ -111,9 +111,9 @@ if ( ! class_exists( 'WKUVDESK_Common_Function' ) ) {
 						'actAsEmail' => $c_email,
 						'actAsType'  => 'customer',
 					);
-					$data_customerapi = $function_handler->wk_uvdesk_get_customer_data_api( 'tickets.json', $arr_sum );
+					$data_customerapi = $function_handler->wkuvdesk_get_customer_data_api( 'tickets.json', $arr_sum );
 					if ( ! empty( $data_customerapi ) ) {
-						$content = $this->wk_uvdesk_final_json_data_customer( $data_customerapi );
+						$content = $this->wkuvdesk_final_json_data_customer( $data_customerapi );
 						wp_send_json_success( $content );
 					} else {
 						wp_send_json_error( $data_assign_api );
@@ -147,8 +147,8 @@ if ( ! class_exists( 'WKUVDESK_Common_Function' ) ) {
 					$function_handler = new Helper\WKUVDESK_Api_Handler();
 					if ( ! $is_admin ) {
 						$m_id             = filter_input( INPUT_POST, 'member_id', FILTER_SANITIZE_NUMBER_INT ) ? filter_input( INPUT_POST, 'member_id', FILTER_SANITIZE_NUMBER_INT ) : $current_user->ID;
-						$data_assign_api  = $function_handler->wk_uvdesk_get_customer_data_api( 'tickets.json', array( 'agent' => $m_id ) );
-						$data_customerapi = $function_handler->wk_uvdesk_get_customer_data_api(
+						$data_assign_api  = $function_handler->wkuvdesk_get_customer_data_api( 'tickets.json', array( 'agent' => $m_id ) );
+						$data_customerapi = $function_handler->wkuvdesk_get_customer_data_api(
 							'tickets.json',
 							array(
 								'sort'      => $field,
@@ -156,7 +156,7 @@ if ( ! class_exists( 'WKUVDESK_Common_Function' ) ) {
 							)
 						);
 					} else {
-						$data_customerapi = $function_handler->wk_uvdesk_get_customer_data_api(
+						$data_customerapi = $function_handler->wkuvdesk_get_customer_data_api(
 							'tickets.json',
 							array(
 								'sort'      => $field,
@@ -166,7 +166,7 @@ if ( ! class_exists( 'WKUVDESK_Common_Function' ) ) {
 						);
 					}
 					if ( ! empty( $data_customerapi ) ) {
-						$content = $this->wk_uvdesk_final_json_data_customer( $data_customerapi, $link_page );
+						$content = $this->wkuvdesk_final_json_data_customer( $data_customerapi, $link_page );
 						wp_send_json_success( $content );
 					} else {
 						wp_send_json_error( $data_assign_api );
@@ -190,10 +190,10 @@ if ( ! class_exists( 'WKUVDESK_Common_Function' ) ) {
 				$tid     = $page[0];
 				$page_no = $page[1] + 1;
 				if ( 0 !== $tid ) {
-					$data_assign_api = Helper\WKUVDESK_Api_Handler::wk_uvdesk_get_customer_data_api( 'ticket/' . $tid . '/threads.json', array( 'page' => $page_no ) );
+					$data_assign_api = Helper\WKUVDESK_Api_Handler::wkuvdesk_get_customer_data_api( 'ticket/' . $tid . '/threads.json', array( 'page' => $page_no ) );
 
 					if ( $data_assign_api ) {
-						$content = $this->wk_uvdesk_final_thread_json_data( $data_assign_api, $tid );
+						$content = $this->wkuvdesk_final_thread_json_data( $data_assign_api, $tid );
 						wp_send_json_success( $content );
 					} else {
 						wp_send_json_error( $data_assign_api );
@@ -261,7 +261,7 @@ if ( ! class_exists( 'WKUVDESK_Common_Function' ) ) {
 					'editType' => 'star',
 					'value'    => $ticket_stared,
 				);
-				$data_starred_ticket = $function_handler->wk_uvdesk_get_patch_data_api( 'ticket/' . $t_id . '.json', $json_data );
+				$data_starred_ticket = $function_handler->wkuvdesk_get_patch_data_api( 'ticket/' . $t_id . '.json', $json_data );
 
 				if ( $data_starred_ticket ) {
 					wp_send_json_success( $data_starred_ticket );
@@ -373,7 +373,7 @@ if ( ! class_exists( 'WKUVDESK_Common_Function' ) ) {
 						<div class="thread-created-info">
 							<div class="msg-header">
 								<span class="img-icon">
-									<?php echo wp_kses_post( '<img ' . wp_kses( Includes\WKUVDESK::wk_uvdesk_convert_attributes_to_html( $img_url ), $allowed_html ) . '>' ); ?>
+									<?php echo wp_kses_post( '<img ' . wp_kses( Includes\WKUVDESK::wkuvdesk_convert_attributes_to_html( $img_url ), $allowed_html ) . '>' ); ?>
 								</span>
 								<span class="info">
 									<span class="rpy-name">
@@ -410,7 +410,7 @@ if ( ! class_exists( 'WKUVDESK_Common_Function' ) ) {
 														$wk_image = str_replace( '/company/', '/thread_image_orignal/', $wk_image );
 														?>
 															<a href="<?php echo esc_url( $wk_image ); ?>" title="<?php echo esc_attr( $anamea ); ?>" target="_blank">
-																<img <?php echo wp_kses( Includes\WKUVDESK::wk_uvdesk_convert_attributes_to_html( $wk_image ), $allowed_html ); ?> class="fa fa-file zip" title="<?php echo esc_attr( $anamea ); ?>" data-toggle="<?php echo esc_attr( 'tooltip' ); ?>" data-original-title="<?php echo esc_attr( $attchment_value->name ); ?>">
+																<img <?php echo wp_kses( Includes\WKUVDESK::wkuvdesk_convert_attributes_to_html( $wk_image ), $allowed_html ); ?> class="fa fa-file zip" title="<?php echo esc_attr( $anamea ); ?>" data-toggle="<?php echo esc_attr( 'tooltip' ); ?>" data-original-title="<?php echo esc_attr( $attchment_value->name ); ?>">
 															</a>
 														<?php
 													} elseif ( 'zip' === $aname ) {
@@ -451,7 +451,7 @@ if ( ! class_exists( 'WKUVDESK_Common_Function' ) ) {
 						$img_url      = ! empty( $thread_value->user->smallThumbnail ) ? esc_url( $thread_value->user->smallThumbnail ) : esc_url( 'https://cdn.uvdesk.com/uvdesk/images/e09dabf.png' );
 						echo '<div class="wk-cards tkt-replay " data-thread-id="' . esc_attr( $thread_value->id ) . '">';
 						echo '<div class= "uv-uvdesk-replay-inline" >';
-						echo '<img ' . wp_kses( Includes\WKUVDESK::wk_uvdesk_convert_attributes_to_html( $img_url ), $allowed_html ) . ' alt="' . esc_attr( $img_url ) . '" />';
+						echo '<img ' . wp_kses( Includes\WKUVDESK::wkuvdesk_convert_attributes_to_html( $img_url ), $allowed_html ) . ' alt="' . esc_attr( $img_url ) . '" />';
 						?>
 						<span class="tkt-name">
 							<?php echo esc_attr( ! empty( $thread_value->user->detail->agent ) ? $thread_value->user->detail->agent : $thread_value->user->detail->customer->name ); ?>
@@ -482,7 +482,7 @@ if ( ! class_exists( 'WKUVDESK_Common_Function' ) ) {
 												$wk_image = str_replace( '/company/', '/thread_image_orignal/', $wk_image );
 												?>
 												<a href="<?php echo esc_url( $wk_image ); ?>" title="<?php echo esc_attr( $anamea ); ?>" target="_blank">
-													<img  <?php echo wp_kses( Includes\WKUVDESK::wk_uvdesk_convert_attributes_to_html( $wk_image ), $allowed_html ); ?> class="fa fa-file zip" title="<?php echo esc_attr( $anamea ); ?>" data-toggle="<?php echo esc_attr( 'tooltip' ); ?>" data-original-title="<?php echo esc_attr( $attchment_value->name ); ?>"/>
+													<img  <?php echo wp_kses( Includes\WKUVDESK::wkuvdesk_convert_attributes_to_html( $wk_image ), $allowed_html ); ?> class="fa fa-file zip" title="<?php echo esc_attr( $anamea ); ?>" data-toggle="<?php echo esc_attr( 'tooltip' ); ?>" data-original-title="<?php echo esc_attr( $attchment_value->name ); ?>"/>
 												</a>
 												<?php
 											} elseif ( 'zip' === $aname ) {
@@ -525,7 +525,7 @@ if ( ! class_exists( 'WKUVDESK_Common_Function' ) ) {
 		/**
 		 * Final json data customer.
 		 *
-		 * @param array  $data_api data.
+		 * @param object $data_api data.
 		 * @param string $link_page link page.
 		 *
 		 * @return mixed

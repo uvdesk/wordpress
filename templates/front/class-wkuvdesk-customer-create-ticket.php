@@ -87,7 +87,8 @@ if ( ! class_exists( 'WKUVDESK_Customer_Create_Ticket' ) ) {
 								$user       = wp_get_current_user();
 								$user_name  = $user->user_nicename;
 								$user_email = $user->user_email;
-								$post_data  = array(
+
+								$post_data = array(
 									'name'    => $user_name,
 									'from'    => $user_email,
 									'subject' => sanitize_text_field( filter_input( INPUT_POST, 'subject', FILTER_SANITIZE_FULL_SPECIAL_CHARS ) ),
@@ -221,7 +222,7 @@ if ( ! class_exists( 'WKUVDESK_Customer_Create_Ticket' ) ) {
 									<div class="uv-uvdesk-captcha-error">
 
 												<?php
-												foreach ( $error as $sno => $err_mes ) {
+												foreach ( $error as $err_mes ) {
 													echo wp_kses_post( $err_mes . '<br>' );
 												}
 												?>
