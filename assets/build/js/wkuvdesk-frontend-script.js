@@ -189,3 +189,46 @@ $uv=jQuery.noConflict();
     });
 
 })(jQuery);
+
+jQuery(document).ready(function($) {
+	$('#wk-uvdesk-create-ticket-form').on('submit', function(e) {
+		var isValid = true;
+		$('.error-message').text('').css('color', 'red');
+
+		if (!$('#type').val()) {
+			$('#type-error').text(apiScript.type_error);
+			isValid = false;
+		}
+
+		if (!$('#subject').val()) {
+			$('#subject-error').text(apiScript.subject_error);
+			isValid = false;
+		}
+
+		if (!$('#reply').val()) {
+			$('#reply-error').text(apiScript.reply_error);
+			isValid = false;
+		}
+
+		var fileInput = $('#uv-uvdesk-attachments');
+		if (fileInput[0].files.length > 0) {
+			var file = fileInput[0].files[0];
+			var allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'image/png', 'image/jpeg', 'image/gif', 'application/zip', 'application/x-rar-compressed'];
+			var maxSize = 20 * 1024 * 1024; // 20MB
+
+			if (!allowedTypes.includes(file.type)) {
+				$('#file-error').text(apiScript.file_type_error);
+				isValid = false;
+			}
+
+			if (file.size > maxSize) {
+				$('#file-error').text(apiScript.file_size_error);
+				isValid = false;
+			}
+		}
+
+		if (!isValid) {
+			e.preventDefault();
+		}
+	});
+});

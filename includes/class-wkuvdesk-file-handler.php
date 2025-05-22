@@ -16,7 +16,7 @@ use WKUVDESK\Includes\Common;
 /**Check if class exists.*/
 if ( ! class_exists( 'WKUVDESK_File_Handler' ) ) {
 	/**
-	 * Class WKUVDESK_File_Handler.
+	 * Class WKUVDESK File Handler.
 	 */
 	class WKUVDESK_File_Handler {
 		/**

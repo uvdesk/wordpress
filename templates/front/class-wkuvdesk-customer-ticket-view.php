@@ -66,7 +66,7 @@ if ( ! class_exists( 'WKUVDESK_Customer_Ticket_View' ) ) {
 								echo '<div class="alert alert-danger alert-fixed">
 									<span>
 											<span class="uv-uvdesk-remove-file alert-msg"></span>
-											' . esc_html__( 'Security verification failed. Please try again.', 'wk-uvdesk' ) . '
+											' . esc_html__( 'Security verification failed. Please try again.', 'uvdesk' ) . '
 									</span>
 							</div>';
 							return;
@@ -129,7 +129,7 @@ if ( ! class_exists( 'WKUVDESK_Customer_Ticket_View' ) ) {
 				$ticket_details = Helper\WKUVDESK_Api_Handler::wkuvdesk_get_customer_data_api( 'ticket/' . $ticket_id . '.json', $arr_sum );
 
 				if ( isset( $ticket_details->error ) || empty( $ticket_details ) ) {
-					echo '<h4>' . esc_html( $ticket_details->error_description ) . '</h4><h4>' . esc_html__( 'Please contact Administrator.', 'wk-uvdesk' ) . '</h4>';
+					echo '<h4>' . esc_html( $ticket_details->error_description ) . '</h4><h4>' . esc_html__( 'Please contact Administrator.', 'uvdesk' ) . '</h4>';
 				} else {
 					if ( ! empty( $ticket_details->ticket->status->name ) && isset( $ticket_details->ticket->status->name ) ) {
 						$ticket_status_name = $ticket_details->ticket->status->name;
@@ -146,48 +146,116 @@ if ( ! class_exists( 'WKUVDESK_Customer_Ticket_View' ) ) {
 					if ( ! empty( $ticket_details->createThread->reply ) && isset( $ticket_details->createThread->reply ) ) {
 						$created_thread = $ticket_details->createThread->reply;
 					}
+
 					$ticket        = ! empty( $ticket_details->ticket->id ) ? $ticket_details->ticket->id : 0;
 					$ticket_thread = Helper\WKUVDESK_Api_Handler::wkuvdesk_get_customer_data_api( 'ticket/' . $ticket . '/threads.json' );
 
-					if ( ! empty( $ticket_thread->threads ) ) {
-						$ticket_thread->threads;
-					} else {
-						$ticket_thread->threads = array();
-					}
+					$ticket_thread->threads = ! empty( $ticket_thread->threads ) ? $ticket_thread->threads : array();
+
+					$allowed_html = array(
+						'a'      => array(
+							'href'   => true,
+							'title'  => true,
+							'class'  => true,
+							'target' => true,
+						),
+						'strong' => array(),
+						'em'     => array(),
+						'p'      => array(
+							'class' => true,
+						),
+						'div'    => array(
+							'class' => true,
+							'id'    => true,
+						),
+						'span'   => array(
+							'class' => true,
+						),
+						'br'     => array(),
+						'img'    => array(
+							'src'    => true,
+							'alt'    => true,
+							'class'  => true,
+							'width'  => true,
+							'height' => true,
+							'id'     => true,
+							'style'  => true,
+						),
+						'form'   => array(
+							'method' => true,
+							'action' => true,
+							'class'  => true,
+							'id'     => true,
+						),
+						'input'  => array(
+							'type'        => true,
+							'name'        => true,
+							'id'          => true,
+							'class'       => true,
+							'value'       => true,
+							'placeholder' => true,
+							'required'    => true,
+							'checked'     => true,
+						),
+						'label'  => array(
+							'for'   => true,
+							'class' => true,
+						),
+						'h1'     => array(
+							'class' => true,
+						),
+						'h2'     => array(
+							'class' => true,
+						),
+						'h3'     => array(
+							'class' => true,
+						),
+						'h4'     => array(
+							'class' => true,
+						),
+						'button' => array(
+							'type'  => true,
+							'class' => true,
+							'id'    => true,
+						),
+					);
+
 					$spinner_url  = admin_url( 'images/spinner-2x.gif' );
 					$spinner_args = array(
 						'src'   => $spinner_url,
 						'class' => 'uv-uvdesk-ajax-loader-img',
-						'alt'   => __( 'Loading...', 'wk-uvdesk' ),
+						'alt'   => esc_html__( 'Loading...', 'uvdesk' ),
 					);
 					?>
 					<div class="uv-uvdesk-block-container wk-uvdesk-content-wrap">
 						<div class="uvuvdesk-pre-loader">
-							<img <?php echo wp_kses_post( Includes\WKUVDESK::wkuvdesk_convert_attributes_to_html( $spinner_args ) ); ?> />
+							<?php
+							echo '<img ' . wp_kses( Includes\WKUVDESK::wkuvdesk_convert_attributes_to_html( $spinner_args ), $allowed_html ) . ' />';
+							?>
 						</div>
 						<div class="tkt-front-header">
-							<a href="<?php echo esc_url( site_url() . '/uvdesk/customer/' ); ?>" class='to-main-list'><?php esc_html_e( 'All tickets', 'wk-uvdesk' ); ?></a>
+							<a href="<?php echo esc_url( site_url() . '/uvdesk/customer/' ); ?>" class='to-main-list'><?php esc_html_e( 'All tickets', 'uvdesk' ); ?></a>
 						</div>
 						<div class="side-section-front">
-							<p class='side-sec-head'><?php esc_html_e( 'TICKET INFROMATION', 'wk-uvdesk' ); ?></p>
+							<p class='side-sec-head'><?php esc_html_e( 'TICKET INFROMATION', 'uvdesk' ); ?></p>
 							<span>
-								<span class="side-title"><?php esc_html_e( 'ID', 'wk-uvdesk' ); ?></span>
-								<span class="side-info"><?php esc_html_e( '#', 'wk-uvdesk' ); ?><?php echo esc_html( $ticket_details->ticket->id ); ?></span>
+								<span class="side-title"><?php esc_html_e( 'ID', 'uvdesk' ); ?></span>
+								<span class="side-info"><?php esc_html_e( '#', 'uvdesk' ); ?><?php echo ! empty( $ticket_details->ticket->id ) ? esc_html( $ticket_details->ticket->id ) : ''; ?></span>
 							</span>
 							<span>
-								<span class="side-title"><?php esc_html_e( 'Timestamp', 'wk-uvdesk' ); ?></span>
-								<span class="side-info"><?php echo esc_html( $ticket_details->ticket->formatedCreatedAt ); ?></span>
+								<span class="side-title"><?php esc_html_e( 'Timestamp', 'uvdesk' ); ?></span>
+								<span class="side-info"><?php echo isset( $ticket_details->ticket->formatedCreatedAt ) ? esc_html( $ticket_details->ticket->formatedCreatedAt ) : ''; ?></span>
 							</span>
 							<span>
-								<span class="side-title"><?php esc_html_e( 'Total Replies', 'wk-uvdesk' ); ?></span>
-								<span class="side-info"><?php echo esc_html( $ticket_details->ticketTotalThreads ); ?></span>
+								<span class="side-title"><?php esc_html_e( 'Total Replies', 'uvdesk' ); ?></span>
+								<span class="side-info"><?php echo isset( $ticket_details->ticketTotalThreads ) ? esc_html( $ticket_details->ticketTotalThreads ) : ''; ?></span>
 							</span>
 							<hr>
 							<span>
-								<span class="side-title"><?php esc_html_e( 'Agent', 'wk-uvdesk' ); ?></span>
+								<span class="side-title"><?php esc_html_e( 'Agent', 'uvdesk' ); ?></span>
 								<span class="side-info">
 									<?php
-									echo empty( $ticket_details->ticket->agent->detail->name ) ? esc_html__( 'Not Assigned', 'wk-uvdesk' ) : esc_html( $ticket_details->ticket->agent->detail->name );
+									echo empty( $ticket_details->ticket->agent->detail->name ) ? esc_html__( 'Not Assigned', 'uvdesk' ) : esc_html( $ticket_details->ticket->agent->detail->name );
 									?>
 								</span>
 							</span>
@@ -195,19 +263,89 @@ if ( ! class_exists( 'WKUVDESK_Customer_Ticket_View' ) ) {
 								if ( ! empty( $ticket_details->ticket->priority->name ) ) {
 									?>
 									<span>
-										<span class="side-title"><?php esc_html_e( 'Priority', 'wk-uvdesk' ); ?></span>
+										<span class="side-title"><?php esc_html_e( 'Priority', 'uvdesk' ); ?></span>
 										<span class="side-info"><b class="uv-uvdesk-priority-check" style="<?php echo esc_attr( 'background-color:' . $ticket_details->ticket->priority->color ); ?>"></b><?php echo esc_html( $ticket_details->ticket->priority->name ); ?></span>
 									</span>
-								<?php } ?>
+									<?php
+								}
+
+								$allowed_html = array(
+									'a'      => array(
+										'href'   => true,
+										'title'  => true,
+										'class'  => true,
+										'target' => true,
+									),
+									'strong' => array(),
+									'em'     => array(),
+									'p'      => array(
+										'class' => true,
+									),
+									'div'    => array(
+										'class' => true,
+										'id'    => true,
+									),
+									'span'   => array(
+										'class' => true,
+									),
+									'br'     => array(),
+									'img'    => array(
+										'src'    => true,
+										'alt'    => true,
+										'class'  => true,
+										'width'  => true,
+										'height' => true,
+										'id'     => true,
+										'style'  => true,
+									),
+									'form'   => array(
+										'method' => true,
+										'action' => true,
+										'class'  => true,
+										'id'     => true,
+									),
+									'input'  => array(
+										'type'        => true,
+										'name'        => true,
+										'id'          => true,
+										'class'       => true,
+										'value'       => true,
+										'placeholder' => true,
+										'required'    => true,
+										'checked'     => true,
+									),
+									'label'  => array(
+										'for'   => true,
+										'class' => true,
+									),
+									'h1'     => array(
+										'class' => true,
+									),
+									'h2'     => array(
+										'class' => true,
+									),
+									'h3'     => array(
+										'class' => true,
+									),
+									'h4'     => array(
+										'class' => true,
+									),
+									'button' => array(
+										'type'  => true,
+										'class' => true,
+										'id'    => true,
+									),
+								);
+								?>
 							<span>
-								<span class="side-title"><?php esc_html_e( 'Status', 'wk-uvdesk' ); ?></span>
+								<span class="side-title"><?php esc_html_e( 'Status', 'uvdesk' ); ?></span>
 								<span class="side-info"> <?php echo esc_html( $ticket_status_name ); ?></span>
 							</span>
 						</div>
 						<div class="whole-wrapper">
 								<div class="tkt-front-intro">
 									<div style="<?php echo esc_attr( 'display:inline-block;margin:10px 20px;' ); ?>">
-										<span style="<?php echo esc_attr( 'display:inline-block;font-size:20px' ); ?>" class="wk-highlight" ><?php esc_html_e( 'Subject :-', 'wk-uvdesk' ); ?></span>
+										<span style="<?php echo esc_attr( 'display:inline-block;font-size:20px' ); ?>" class="wk-highlight" ><?php esc_html_e( 'Subject :-', 'uvdesk' ); ?></span>
 										<h4 style="display:inline-block;" class="tkt-subject">
 											<?php
 											echo esc_html( $ticket_details->ticket->subject );
@@ -215,15 +353,21 @@ if ( ! class_exists( 'WKUVDESK_Customer_Ticket_View' ) ) {
 										</h4>
 										<p>
 											<span class="wk-space">
-											<span class="wk-highlight"><?php esc_html_e( 'Created on - ', 'wk-uvdesk' ); ?></span><?php echo esc_html( $ticket_details->ticket->formatedCreatedAt ); ?>
+											<span class="wk-highlight"><?php esc_html_e( 'Created on - ', 'uvdesk' ); ?></span><?php echo esc_html( $ticket_details->ticket->formatedCreatedAt ); ?>
 											</span>
 											<span class="wk-space">
-												<span class="wk-highlight"><?php esc_html_e( ' Agent -', 'wk-uvdesk' ); ?> </span>
+												<span class="wk-highlight"><?php esc_html_e( ' Agent -', 'uvdesk' ); ?> </span>
 												<?php
 													$agent_name = ! empty( $ticket_details->ticket->agent->detail->name ) ?
 														esc_html( $ticket_details->ticket->agent->detail->name ) :
-														esc_html__( 'Not Assigned', 'wk-uvdesk' );
-													echo esc_html( $agent_name );
+														esc_html__( 'Not Assigned', 'uvdesk' );
+
+												if ( isset( $ticket_details->ticket->agent->currentUserAgentInstance->name ) ) {
+													$agent_name = $ticket_details->ticket->agent->currentUserAgentInstance->name;
+												} elseif ( isset( $ticket_details->ticket->agent->detail->name ) ) {
+													$agent_name = $ticket_details->ticket->agent->detail->name;
+												}
+														echo wp_kses( $agent_name, $allowed_html );
 												?>
 											</span>
 										</p>
@@ -236,12 +380,15 @@ if ( ! class_exists( 'WKUVDESK_Customer_Ticket_View' ) ) {
 											<div class="msg-header">
 												<span class="img-icon">
 												<?php
-												$thumbnail = $ticket_details->ticket->customer->detail->customer->smallThumbnail ?? esc_url( 'https://cdn.uvdesk.com/uvdesk/images/e09dabf.png' );
-												echo '<img ' . wp_kses_post( Includes\WKUVDESK::wkuvdesk_convert_attributes_to_html( $thumbnail ) ) . ' />';
+													$thumbnail = $ticket_details->ticket->customer->detail->customer->smallThumbnail ?? esc_url( WKUVDESK_PLUGIN_URL . 'assets/images/e09dabf.png' );
+												echo '<img ' . wp_kses( Includes\WKUVDESK::wkuvdesk_convert_attributes_to_html( $thumbnail ), $allowed_html ) . '/>';
 												?>
 												</span>
 												<span class="info">
-													<span class="rpy-name"><?php echo ( esc_attr( $customer_name ) . '  ' ); ?></span>&emsp;<?php esc_html_e( 'Created ticket', 'wk-uvdesk' ); ?>
+													<span class="rpy-name"><?php echo ( esc_attr( $customer_name ) . '  ' ); ?></span>&emsp;
+																						<?php
+																						esc_html_e( 'Created ticket', 'uvdesk' );
+																						?>
 														<?php if ( ! empty( $ticket_created ) ) : ?>
 														<br>
 														<span class="create-date">
@@ -262,7 +409,7 @@ if ( ! class_exists( 'WKUVDESK_Customer_Ticket_View' ) ) {
 													?>
 													<div class="thread-attachments">
 															<div class="attachments">
-																<p><strong> <?php esc_html_e( 'Uploaded files', 'wk-uvdesk' ); ?> </strong></p>
+																<p><strong> <?php esc_html_e( 'Uploaded files', 'uvdesk' ); ?> </strong></p>
 																<?php
 																foreach ( $ticket_details->createThread->attachments as $attchment_key => $attchment_value ) :
 																	$domain       = get_option( 'uvdesk_company_domain', '' );
@@ -274,12 +421,79 @@ if ( ! class_exists( 'WKUVDESK_Customer_Ticket_View' ) ) {
 																	$img_ar       = array( 'png', 'jpg', 'jpeg' );
 
 																	if ( in_array( $aname, $img_ar, true ) ) {
-																		$wk_image = ! empty( $attchment_value->attachmentThumb ) ? $attchment_value->attachmentThumb : $attchment_value->path;
-																		$wk_image = str_replace( '/company/', '/thread_image_orignal/', $wk_image );
-																		$wk_image = str_replace( '/thread_image_thumb/', '/thread_image_orignal/', $wk_image );
+																		$wk_image     = ! empty( $attchment_value->attachmentThumb ) ? $attchment_value->attachmentThumb : $attchment_value->path;
+																		$wk_image     = str_replace( '/company/', '/thread_image_orignal/', $wk_image );
+																		$wk_image     = str_replace( '/thread_image_thumb/', '/thread_image_orignal/', $wk_image );
+																		$allowed_html = array(
+																			'a'    => array(
+																				'href' => true,
+																				'title' => true,
+																				'class' => true,
+																				'target' => true,
+																			),
+																			'strong' => array(),
+																			'em'   => array(),
+																			'p'    => array(
+																				'class' => true,
+																			),
+																			'div'  => array(
+																				'class' => true,
+																				'id' => true,
+																			),
+																			'span' => array(
+																				'class' => true,
+																			),
+																			'br'   => array(),
+																			'img'  => array(
+																				'src' => true,
+																				'alt' => true,
+																				'class' => true,
+																				'width' => true,
+																				'height' => true,
+																				'id'  => true,
+																				'style' => true,
+																			),
+																			'form' => array(
+																				'method' => true,
+																				'action' => true,
+																				'class' => true,
+																				'id' => true,
+																			),
+																			'input' => array(
+																				'type' => true,
+																				'name' => true,
+																				'id'   => true,
+																				'class' => true,
+																				'value' => true,
+																				'placeholder' => true,
+																				'required' => true,
+																				'checked' => true,
+																			),
+																			'label' => array(
+																				'for' => true,
+																				'class' => true,
+																			),
+																			'h1'   => array(
+																				'class' => true,
+																			),
+																			'h2'   => array(
+																				'class' => true,
+																			),
+																			'h3'   => array(
+																				'class' => true,
+																			),
+																			'h4'   => array(
+																				'class' => true,
+																			),
+																			'button' => array(
+																				'type' => true,
+																				'class' => true,
+																				'id'   => true,
+																			),
+																		);
 																		?>
 																		<a href="<?php echo esc_url( $wk_image ); ?>" target="_blank">
-																				<img <?php echo wp_kses_post( Includes\WKUVDESK::wkuvdesk_convert_attributes_to_html( $wk_image ) ); ?> class="fa fa-file zip" title="<?php echo esc_attr( $anamea ); ?>" data-toggle="tooltip" data-original-title="<?php echo esc_attr( $attchment_value->name ); ?>">
+																				<img <?php echo wp_kses( Includes\WKUVDESK::wkuvdesk_convert_attributes_to_html( $wk_image ), $allowed_html ); ?> class="fa fa-file zip" title="<?php echo esc_attr( $anamea ); ?>" data-toggle="tooltip" data-original-title="<?php echo esc_attr( $attchment_value->name ); ?>">
 
 																		</a>
 																		<?php
@@ -336,10 +550,77 @@ if ( ! class_exists( 'WKUVDESK_Customer_Ticket_View' ) ) {
 													<div class="msg-header">
 														<span class="img-icon">
 														<?php
-														$thumbnail = isset( $thread_value->user->smallThumbnail ) && ! empty( $thread_value->user->smallThumbnail ) ?
+														$allowed_html = array(
+															'a'    => array(
+																'href' => true,
+																'title' => true,
+																'class' => true,
+																'target' => true,
+															),
+															'strong' => array(),
+															'em'   => array(),
+															'p'    => array(
+																'class' => true,
+															),
+															'div'  => array(
+																'class' => true,
+																'id' => true,
+															),
+															'span' => array(
+																'class' => true,
+															),
+															'br'   => array(),
+															'img'  => array(
+																'src' => true,
+																'alt' => true,
+																'class' => true,
+																'width' => true,
+																'height' => true,
+																'id'  => true,
+																'style' => true,
+															),
+															'form' => array(
+																'method' => true,
+																'action' => true,
+																'class' => true,
+																'id' => true,
+															),
+															'input' => array(
+																'type' => true,
+																'name' => true,
+																'id'   => true,
+																'class' => true,
+																'value' => true,
+																'placeholder' => true,
+																'required' => true,
+																'checked' => true,
+															),
+															'label' => array(
+																'for' => true,
+																'class' => true,
+															),
+															'h1'   => array(
+																'class' => true,
+															),
+															'h2'   => array(
+																'class' => true,
+															),
+															'h3'   => array(
+																'class' => true,
+															),
+															'h4'   => array(
+																'class' => true,
+															),
+															'button' => array(
+																'type' => true,
+																'class' => true,
+																'id'   => true,
+															),
+														);
+														$thumbnail    = isset( $thread_value->user->smallThumbnail ) && ! empty( $thread_value->user->smallThumbnail ) ?
 															$thread_value->user->smallThumbnail :
-															'https://cdn.uvdesk.com/uvdesk/images/e09dabf.png';
-														echo '<img ' . wp_kses_post( Includes\WKUVDESK::wkuvdesk_convert_attributes_to_html( $thumbnail ) ) . ' alt="' . esc_attr__( 'user-img', 'wk-uvdesk' ) . '" class="img-circle" />';
+															WKUVDESK_PLUGIN_URL . 'assets/images/e09dabf.png';
+														echo '<img ' . wp_kses( Includes\WKUVDESK::wkuvdesk_convert_attributes_to_html( $thumbnail ), $allowed_html ) . ' alt="' . esc_attr__( 'user-img', 'uvdesk' ) . '" class="img-circle" />';
 														?>
 														</span>
 														<span class="info">
@@ -368,7 +649,7 @@ if ( ! class_exists( 'WKUVDESK_Customer_Ticket_View' ) ) {
 																?>
 														<div class="thread-attachments">
 															<div class="attachments">
-																<p><strong><?php esc_html_e( 'Uploaded files', 'wk-uvdesk' ); ?></strong></p>
+																<p><strong><?php esc_html_e( 'Uploaded files', 'uvdesk' ); ?></strong></p>
 																<?php
 																foreach ( $thread_value->attachments as $attchment_key => $attchment_value ) {
 																	$domain       = get_option( 'uvdesk_company_domain', '' );
@@ -380,14 +661,80 @@ if ( ! class_exists( 'WKUVDESK_Customer_Ticket_View' ) ) {
 																	$img_ar       = array( 'png', 'jpg', 'jpeg' );
 
 																	if ( in_array( $aname, $img_ar, true ) ) {
-																		$wk_image = ! empty( $attchment_value->attachmentThumb ) ? $attchment_value->attachmentThumb : $attchment_value->path;
-
-																		$wk_img_main = ! empty( $attchment_value->path ) ? $attchment_value->path : $attchment_value->attachmentThumb;
-																		$wk_image    = str_replace( '/company/', '/thread_image_orignal/', $wk_image );
-																		$wk_image    = str_replace( '/thread_image_thumb/', '/thread_image_orignal/', $wk_image );
+																		$wk_image     = ! empty( $attchment_value->attachmentThumb ) ? $attchment_value->attachmentThumb : $attchment_value->path;
+																		$wk_img_main  = ! empty( $attchment_value->path ) ? $attchment_value->path : $attchment_value->attachmentThumb;
+																		$wk_image     = str_replace( '/company/', '/thread_image_orignal/', $wk_image );
+																		$wk_image     = str_replace( '/thread_image_thumb/', '/thread_image_orignal/', $wk_image );
+																		$allowed_html = array(
+																			'a'    => array(
+																				'href' => true,
+																				'title' => true,
+																				'class' => true,
+																				'target' => true,
+																			),
+																			'strong' => array(),
+																			'em'   => array(),
+																			'p'    => array(
+																				'class' => true,
+																			),
+																			'div'  => array(
+																				'class' => true,
+																				'id' => true,
+																			),
+																			'span' => array(
+																				'class' => true,
+																			),
+																			'br'   => array(),
+																			'img'  => array(
+																				'src' => true,
+																				'alt' => true,
+																				'class' => true,
+																				'width' => true,
+																				'height' => true,
+																				'id'  => true,
+																				'style' => true,
+																			),
+																			'form' => array(
+																				'method' => true,
+																				'action' => true,
+																				'class' => true,
+																				'id' => true,
+																			),
+																			'input' => array(
+																				'type' => true,
+																				'name' => true,
+																				'id'   => true,
+																				'class' => true,
+																				'value' => true,
+																				'placeholder' => true,
+																				'required' => true,
+																				'checked' => true,
+																			),
+																			'label' => array(
+																				'for' => true,
+																				'class' => true,
+																			),
+																			'h1'   => array(
+																				'class' => true,
+																			),
+																			'h2'   => array(
+																				'class' => true,
+																			),
+																			'h3'   => array(
+																				'class' => true,
+																			),
+																			'h4'   => array(
+																				'class' => true,
+																			),
+																			'button' => array(
+																				'type' => true,
+																				'class' => true,
+																				'id'   => true,
+																			),
+																		);
 																		?>
 																		<a href="<?php echo esc_url( $wk_img_main ); ?>" target="_blank">
-																				<img <?php echo wp_kses_post( Includes\WKUVDESK::wkuvdesk_convert_attributes_to_html( $wk_image ) ); ?> class="fa fa-file zip" title="<?php echo esc_attr( $anamea ); ?>" data-toggle="<?php echo esc_attr( 'tooltip' ); ?>" data-original-title="<?php echo esc_attr( $attchment_value->name ); ?>">
+																				<img <?php echo wp_kses( Includes\WKUVDESK::wkuvdesk_convert_attributes_to_html( $wk_image ), $allowed_html ); ?> class="fa fa-file zip" title="<?php echo esc_attr( $anamea ); ?>" data-toggle="<?php echo esc_attr( 'tooltip' ); ?>" data-original-title="<?php echo esc_attr( $attchment_value->name ); ?>">
 																		</a>
 																		<?php
 																	} elseif ( 'zip' === $aname ) {
@@ -401,10 +748,9 @@ if ( ! class_exists( 'WKUVDESK_Customer_Ticket_View' ) ) {
 																	} else {
 																		$attach_url = esc_url( 'https://' . esc_attr( $domain ) . '.uvdesk.com/en/api/ticket/attachment/' . esc_attr( $aid ) . '.json?access_token=' . esc_attr( $access_token ) );
 																		?>
-
-																<a href="<?php echo esc_url( $attach_url ); ?>" target="_blank">
-																	<i class="wk-file" title="<?php echo esc_attr( $anamea ); ?>" data-toggle="<?php echo esc_attr( 'tooltip' ); ?>" data-original-title="<?php echo esc_attr( $attchment_value->name ); ?>"></i>
-																</a>
+																		<a href="<?php echo esc_url( $attach_url ); ?>" target="_blank">
+																			<i class="wk-file" title="<?php echo esc_attr( $anamea ); ?>" data-toggle="<?php echo esc_attr( 'tooltip' ); ?>" data-original-title="<?php echo esc_attr( $attchment_value->name ); ?>"></i>
+																		</a>
 																		<?php
 																	}
 																}
@@ -422,14 +768,81 @@ if ( ! class_exists( 'WKUVDESK_Customer_Ticket_View' ) ) {
 									<div class="msg-header">
 										<span class="img-icon">
 											<?php
-											$thumbnail = isset( $ticket_details->ticket->customer->detail->customer->smallThumbnail ) && ! empty( $ticket_details->ticket->customer->detail->customer->smallThumbnail )
+											$allowed_html = array(
+												'a'      => array(
+													'href' => true,
+													'title' => true,
+													'class' => true,
+													'target' => true,
+												),
+												'strong' => array(),
+												'em'     => array(),
+												'p'      => array(
+													'class' => true,
+												),
+												'div'    => array(
+													'class' => true,
+													'id' => true,
+												),
+												'span'   => array(
+													'class' => true,
+												),
+												'br'     => array(),
+												'img'    => array(
+													'src' => true,
+													'alt' => true,
+													'class' => true,
+													'width' => true,
+													'height' => true,
+													'id'  => true,
+													'style' => true,
+												),
+												'form'   => array(
+													'method' => true,
+													'action' => true,
+													'class' => true,
+													'id' => true,
+												),
+												'input'  => array(
+													'type' => true,
+													'name' => true,
+													'id'   => true,
+													'class' => true,
+													'value' => true,
+													'placeholder' => true,
+													'required' => true,
+													'checked' => true,
+												),
+												'label'  => array(
+													'for' => true,
+													'class' => true,
+												),
+												'h1'     => array(
+													'class' => true,
+												),
+												'h2'     => array(
+													'class' => true,
+												),
+												'h3'     => array(
+													'class' => true,
+												),
+												'h4'     => array(
+													'class' => true,
+												),
+												'button' => array(
+													'type' => true,
+													'class' => true,
+													'id'   => true,
+												),
+											);
+											$thumbnail    = isset( $ticket_details->ticket->customer->detail->customer->smallThumbnail ) && ! empty( $ticket_details->ticket->customer->detail->customer->smallThumbnail )
 												? $ticket_details->ticket->customer->detail->customer->smallThumbnail
-												: 'https://cdn.uvdesk.com/uvdesk/images/e09dabf.png';
-											echo wp_kses_post( '<img ' . wp_kses_post( Includes\WKUVDESK::wkuvdesk_convert_attributes_to_html( $thumbnail ) ) . '/>' );
+												: WKUVDESK_PLUGIN_URL . 'assets/images/e09dabf.png';
+											echo wp_kses_post( '<img ' . wp_kses( Includes\WKUVDESK::wkuvdesk_convert_attributes_to_html( $thumbnail ), $allowed_html ) . '/>' );
 											?>
 										</span>
 										<span class="info">
-											<span class="rpy-name"><?php esc_html_e( 'You can write your reply', 'wk-uvdesk' ); ?></span>
+											<span class="rpy-name"><?php esc_html_e( 'You can write your reply', 'uvdesk' ); ?></span>
 										</span>
 									</div>
 									<form enctype="multipart/form-data" method="post" action="">
@@ -452,19 +865,18 @@ if ( ! class_exists( 'WKUVDESK_Customer_Ticket_View' ) ) {
 											);
 
 											wp_editor( esc_attr( '' ), esc_attr( 'product_desc' ), $settings );
-
 											?>
 										<div class="form-group wk-uvdesk-attachments">
 											<div class="labelWidget">
-													<input id="uv-uvdesk-attachments" class="fileHide" type="file" enableremoveoption="<?php echo esc_attr( 'enableRemoveOption' ); ?>" decoratecss="<?php echo esc_attr( 'attach-file' ); ?>" decoratefile="<?php echo esc_attr( 'decorateFile' ); ?>" infolabeltext="<?php esc_attr_e( '+ Attach File', 'wk-uvdesk' ); ?>" infolabel="<?php echo esc_attr( 'right' ); ?>" name="attachments[]">
+													<input id="uv-uvdesk-attachments" class="fileHide" type="file" enableremoveoption="<?php echo esc_attr( 'enableRemoveOption' ); ?>" decoratecss="<?php echo esc_attr( 'attach-file' ); ?>" decoratefile="<?php echo esc_attr( 'decorateFile' ); ?>" infolabeltext="<?php esc_attr_e( '+ Attach File', 'uvdesk' ); ?>" infolabel="<?php echo esc_attr( 'right' ); ?>" name="attachments[]">
 													<label class="attach-file pointer"></label>
 													<i class="uv-uvdesk-remove-file" id="remove-att"></i>
 											</div>
-											<span id="addFile" class="label-right pointer"><?php esc_html_e( 'Attach File', 'wk-uvdesk' ); ?></span>
+											<span id="addFile" class="label-right pointer"><?php esc_html_e( 'Attach File', 'uvdesk' ); ?></span>
 										</div>
 										<div class="reply-submit">
 											<button class="submit-rply" type="submit" name="submit-thread" value="submit-thread">
-												<?php esc_html_e( 'Reply', 'wk-uvdesk' ); ?>
+												<?php esc_html_e( 'Reply', 'uvdesk' ); ?>
 											</button>
 										</div>
 									</form>
@@ -474,7 +886,7 @@ if ( ! class_exists( 'WKUVDESK_Customer_Ticket_View' ) ) {
 					<?php
 				}
 			} else {
-				esc_html_e( 'Please Enter a valid Access Token', 'wk-uvdesk' );
+				esc_html_e( 'Please Enter a valid Access Token', 'uvdesk' );
 			}
 		}
 	}

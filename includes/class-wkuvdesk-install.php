@@ -92,6 +92,7 @@ if ( ! class_exists( 'WKUVDESK_Install' ) ) {
 			if ( ! static::$instance ) {
 				static::$instance = new self();
 			}
+
 			return static::$instance;
 		}
 	}

@@ -1,7 +1,7 @@
 === UVdesk Free Helpdesk ===
 Contributors: uvdesk, webkul
 Requires at least: 6.5
-Tested up to: 6.7
+Tested up to: 6.8
 Stable tag: 2.1.0
 Requires PHP: 7.4
 Tested up to PHP: 8.3
@@ -97,6 +97,23 @@ For showing extensions and the support and services menu we are using our Webkul
 
 UVdesk Free Helpdesk is open-source software and is made to be extended. To reduce zip size and optimize the code, we have added minified css and js assets but developers can find non-minified (un-compressed) sources at our public ([github repository](https://github.com/uvdesk/wordpress/)) here.
 
+== External Services ==
+
+This plugin uses Google reCAPTCHA to protect forms from spam and abuse by ensuring that form submissions are made by real users.
+It sends the following data to Google when the form containing reCAPTCHA is loaded or submitted:
+
+User’s IP address
+Browser and device information
+The content and context of the current page (e.g., page URL)
+User interaction data (mouse movements, clicks, etc.)
+
+This data is used by Google to determine whether the user is a human or a bot.
+The service is provided by Google LLC.
+
+Google reCAPTCHA Terms of Service
+Google Privacy Policy
+
+This integration is necessary to reduce spam and automated abuse on your website.
 
 == Screenshots ==
 
@@ -138,11 +155,11 @@ For any Query please generate a ticket at [https://support.uvdesk.com/](https://
 == Upgrade Notice ==
 
 = 1.0.0 =
-This will include if in case the symfony api is updated for uvdesk app so in that one should must update this plugin since we will be also updating the code and the older version will not work according to new api of symfony
+This will include if in case the Symfony api is updated for uvdesk app so in that one should must update this plugin since we will be also updating the code and the older version will not work according to new api of Symfony
 
 == Changelog ==
 
-= 2.1.0 - 2025-02-15 =
+= 2.1.0 - 2025-05-23 =
 
 * Added: Page selection for booking widget display, activation functions, domain validation, and translations.
 * Updated: Admin panel, file structure to use singleton pattern.

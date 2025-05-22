@@ -29,10 +29,10 @@ if ( ! class_exists( 'WKUVDESK_Admin_Function' ) ) {
 		 * @return void
 		 */
 		public function wkuvdesk_admin_menu() {
-			add_menu_page( esc_html__( 'UVdesk Ticket System', 'wk-uvdesk' ), esc_html__( 'UVdesk Ticket System', 'wk-uvdesk' ), 'manage_options', 'uvdesk_ticket_system', array( $this, 'wkuvdesk_ticket_list' ), 'dashicons-admin-page', 3 );
-			add_submenu_page( 'uvdesk_ticket_system', esc_html__( 'UVDesk Setting', 'wk-uvdesk' ), esc_html__( 'UVDesk Setting', 'wk-uvdesk' ), 'manage_options', 'uvdesk_setting', array( $this, 'wkuvdesk_configuration_menu' ) );
-			add_submenu_page( 'uvdesk_ticket_system', esc_html__( 'Extensions', 'wk-uvdesk' ), esc_html__( 'Extensions', 'wk-uvdesk' ), 'manage_options', 'uvdesk_extensions', array( $this, 'wkuvdesk_extensions_menu' ) );
-			add_submenu_page( 'uvdesk_ticket_system', esc_html__( 'Services', 'wk-uvdesk' ), esc_html__( 'Services', 'wk-uvdesk' ), 'manage_options', 'uvdesk_services', array( $this, 'wkuvdesk_services_menu' ) );
+			add_menu_page( esc_html__( 'UVdesk Ticket System', 'uvdesk' ), esc_html__( 'UVdesk Ticket System', 'uvdesk' ), 'manage_options', 'uvdesk_ticket_system', array( $this, 'wkuvdesk_ticket_list' ), 'dashicons-admin-page', 3 );
+			add_submenu_page( 'uvdesk_ticket_system', esc_html__( 'UVDesk Setting', 'uvdesk' ), esc_html__( 'UVDesk Setting', 'uvdesk' ), 'manage_options', 'uvdesk_setting', array( $this, 'wkuvdesk_configuration_menu' ) );
+			add_submenu_page( 'uvdesk_ticket_system', esc_html__( 'Extensions', 'uvdesk' ), esc_html__( 'Extensions', 'uvdesk' ), 'manage_options', 'uvdesk_extensions', array( $this, 'wkuvdesk_extensions_menu' ) );
+			add_submenu_page( 'uvdesk_ticket_system', esc_html__( 'Services', 'uvdesk' ), esc_html__( 'Services', 'uvdesk' ), 'manage_options', 'uvdesk_services', array( $this, 'wkuvdesk_services_menu' ) );
 		}
 
 		/**
@@ -44,7 +44,7 @@ if ( ! class_exists( 'WKUVDESK_Admin_Function' ) ) {
 		 */
 		public function wkuvdesk_add_plugin_setting_links( $links ) {
 			$action_links = array(
-				'settings' => '<a href="' . esc_url( admin_url( 'admin.php?page=uvdesk_ticket_system' ) ) . '" aria-label="' . esc_attr__( 'Settings', 'wk-uvdesk' ) . '">' . esc_html__( 'Settings', 'wk-uvdesk' ) . '</a>',
+				'settings' => '<a href="' . esc_url( admin_url( 'admin.php?page=uvdesk_ticket_system' ) ) . '" aria-label="' . esc_attr__( 'Settings', 'uvdesk' ) . '">' . esc_html__( 'Settings', 'uvdesk' ) . '</a>',
 			);
 
 			return array_merge( $action_links, $links );
@@ -63,8 +63,8 @@ if ( ! class_exists( 'WKUVDESK_Admin_Function' ) ) {
 		public function wkuvdesk_plugin_row_meta( $links, $file ) {
 			if ( plugin_basename( WKUVDESK_PLUGIN_BASENAME ) === $file ) {
 				$row_meta = array(
-					'docs'    => '<a target="_blank" href="' . esc_url( 'https://webkul.com/blog/wordpress-helpdesk-plugin/' ) . '" aria-label="' . esc_attr__( 'View documentation', 'wk-uvdesk' ) . '">' . esc_html__( 'Docs', 'wk-uvdesk' ) . '</a>',
-					'support' => '<a target="_blank" href="' . esc_url( 'https://webkul.uvdesk.com/' ) . '" aria-label="' . esc_attr__( 'Visit customer support', 'wk-uvdesk' ) . '">' . esc_html__( 'Support', 'wk-uvdesk' ) . '</a>',
+					'docs'    => '<a target="_blank" href="' . esc_url( 'https://webkul.com/blog/wordpress-helpdesk-plugin/' ) . '" aria-label="' . esc_attr__( 'View documentation', 'uvdesk' ) . '">' . esc_html__( 'Docs', 'uvdesk' ) . '</a>',
+					'support' => '<a target="_blank" href="' . esc_url( 'https://webkul.uvdesk.com/' ) . '" aria-label="' . esc_attr__( 'Visit customer support', 'uvdesk' ) . '">' . esc_html__( 'Support', 'uvdesk' ) . '</a>',
 				);
 
 				return array_merge( $links, $row_meta );
@@ -116,10 +116,54 @@ if ( ! class_exists( 'WKUVDESK_Admin_Function' ) ) {
 		 * @return void
 		 */
 		public function wkuvdesk_default_settings() {
-			register_setting( 'webkul-uvdesk-settings-group', 'uvdesk_access_token' );
-			register_setting( 'webkul-uvdesk-settings-group', 'uvdesk_company_domain' );
-			register_setting( 'webkul-uvdesk-settings-group', 'uvdesk_client_key' );
-			register_setting( 'webkul-uvdesk-settings-group', 'uvdesk_secret_key' );
+			register_setting(
+				'webkul-uvdesk-settings-group',
+				'uvdesk_access_token',
+				apply_filters(
+					'wkuvdesk_access_token_args',
+					array(
+						'type'              => 'string',
+						'sanitize_callback' => 'sanitize_text_field',
+						'default'           => '',
+					)
+				)
+			);
+			register_setting(
+				'webkul-uvdesk-settings-group',
+				'uvdesk_company_domain',
+				apply_filters(
+					'wkuvdesk_company_domain_args',
+					array(
+						'type'              => 'string',
+						'sanitize_callback' => 'sanitize_text_field',
+						'default'           => '',
+					)
+				)
+			);
+			register_setting(
+				'webkul-uvdesk-settings-group',
+				'uvdesk_client_key',
+				apply_filters(
+					'wkuvdesk_client_key_args',
+					array(
+						'type'              => 'string',
+						'sanitize_callback' => 'sanitize_text_field',
+						'default'           => '',
+					)
+				)
+			);
+			register_setting(
+				'webkul-uvdesk-settings-group',
+				'uvdesk_secret_key',
+				apply_filters(
+					'wkuvdesk_secret_key_args',
+					array(
+						'type'              => 'string',
+						'sanitize_callback' => 'sanitize_text_field',
+						'default'           => '',
+					)
+				)
+			);
 		}
 
 		/**

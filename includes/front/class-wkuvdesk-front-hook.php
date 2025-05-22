@@ -44,6 +44,7 @@ if ( ! class_exists( 'WKUVDESK_Front_Hook' ) ) {
 			if ( ! static::$instance ) {
 				static::$instance = new self();
 			}
+
 			return static::$instance;
 		}
 	}

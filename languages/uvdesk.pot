@@ -9,11 +9,11 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-02-14T11:57:50+00:00\n"
+"POT-Creation-Date: 2025-05-22T08:01:10+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.10.0\n"
 "language-team: LANGUAGE <EMAIL@ADDRESS>\n"
-"X-Domain: wk-uvdesk\n"
+"X-Domain: uvdesk\n"
 
 #. Plugin Name of the plugin
 #: uvdesk.php
@@ -40,94 +40,102 @@ msgstr ""
 msgid "http://webkul.com"
 msgstr ""
 
-#: helper/class-wkuvdesk-api-handler.php:64
-msgid "File not found"
+#: helper/class-wkuvdesk-api-handler.php:52
+msgid "Invalid IP address."
 msgstr ""
 
 #: helper/class-wkuvdesk-api-handler.php:69
+msgid "Too many requests. Please try again later."
+msgstr ""
+
+#: helper/class-wkuvdesk-api-handler.php:118
+msgid "File not found"
+msgstr ""
+
+#: helper/class-wkuvdesk-api-handler.php:123
 msgid "Unable to read file"
 msgstr ""
 
-#: helper/class-wkuvdesk-api-handler.php:74
+#: helper/class-wkuvdesk-api-handler.php:128
 msgid "Invalid file type"
 msgstr ""
 
-#: helper/class-wkuvdesk-api-handler.php:114
+#: helper/class-wkuvdesk-api-handler.php:168
 msgid "Ticket created successfully."
 msgstr ""
 
-#: helper/class-wkuvdesk-api-handler.php:121
+#: helper/class-wkuvdesk-api-handler.php:175
 msgid "Error, Please check the endpoint."
 msgstr ""
 
-#: helper/class-wkuvdesk-api-handler.php:128
+#: helper/class-wkuvdesk-api-handler.php:182
 msgid "Unknown error occurred!"
 msgstr ""
 
-#: helper/class-wkuvdesk-api-handler.php:175
+#: helper/class-wkuvdesk-api-handler.php:229
 msgid "Error, request data not valid. (http-code: 400)"
 msgstr ""
 
-#: helper/class-wkuvdesk-api-handler.php:177
-#: helper/class-wkuvdesk-api-handler.php:642
+#: helper/class-wkuvdesk-api-handler.php:231
+#: helper/class-wkuvdesk-api-handler.php:702
 msgid "Error, resource not found (http-code: 404)"
 msgstr ""
 
-#: helper/class-wkuvdesk-api-handler.php:197
+#: helper/class-wkuvdesk-api-handler.php:251
 msgid "Error: API endpoint is required."
 msgstr ""
 
-#: helper/class-wkuvdesk-api-handler.php:206
+#: helper/class-wkuvdesk-api-handler.php:260
 msgid "Error: Missing UVDesk configuration."
 msgstr ""
 
 #. translators: %s: Error message
-#: helper/class-wkuvdesk-api-handler.php:236
+#: helper/class-wkuvdesk-api-handler.php:290
 msgid "WordPress HTTP API Error: %s"
 msgstr ""
 
-#: helper/class-wkuvdesk-api-handler.php:251
+#: helper/class-wkuvdesk-api-handler.php:305
 msgid "Error: Bad Request. (HTTP Code: 400)"
 msgstr ""
 
-#: helper/class-wkuvdesk-api-handler.php:253
-#: helper/class-wkuvdesk-api-handler.php:429
-#: helper/class-wkuvdesk-api-handler.php:479
-#: helper/class-wkuvdesk-api-handler.php:528
+#: helper/class-wkuvdesk-api-handler.php:307
+#: helper/class-wkuvdesk-api-handler.php:483
+#: helper/class-wkuvdesk-api-handler.php:539
+#: helper/class-wkuvdesk-api-handler.php:588
 msgid "Error: Resource not found. (HTTP Code: 404)"
 msgstr ""
 
 #. translators: %1$d: HTTP status code, %2$s: Response message
-#: helper/class-wkuvdesk-api-handler.php:257
+#: helper/class-wkuvdesk-api-handler.php:311
 msgid "Error: HTTP Status Code: %1$d. Response: %2$s"
 msgstr ""
 
-#: helper/class-wkuvdesk-api-handler.php:427
+#: helper/class-wkuvdesk-api-handler.php:481
 msgid "Error: Request data not valid. (HTTP Code: 400)"
 msgstr ""
 
-#: helper/class-wkuvdesk-api-handler.php:658
+#: helper/class-wkuvdesk-api-handler.php:718
 msgid "Invalid attachment URL parameter"
 msgstr ""
 
 #. translators: %s: Error message
-#: helper/class-wkuvdesk-api-handler.php:686
-#: helper/class-wkuvdesk-api-handler.php:771
+#: helper/class-wkuvdesk-api-handler.php:746
+#: helper/class-wkuvdesk-api-handler.php:831
 msgid "API Communication Error: %s"
 msgstr ""
 
-#: helper/class-wkuvdesk-api-handler.php:704
-#: helper/class-wkuvdesk-api-handler.php:792
+#: helper/class-wkuvdesk-api-handler.php:764
+#: helper/class-wkuvdesk-api-handler.php:852
 msgid "Error: Resource not found (HTTP Code: 404)"
 msgstr ""
 
 #. translators: %1$d: HTTP status code, %2$s: Response message
-#: helper/class-wkuvdesk-api-handler.php:719
-#: helper/class-wkuvdesk-api-handler.php:806
+#: helper/class-wkuvdesk-api-handler.php:779
+#: helper/class-wkuvdesk-api-handler.php:866
 msgid "Error: Unexpected HTTP Status Code %1$d. Response: %2$s"
 msgstr ""
 
-#: helper/class-wkuvdesk-api-handler.php:740
+#: helper/class-wkuvdesk-api-handler.php:800
 msgid "Invalid URL parameter for ticket data"
 msgstr ""
 
@@ -164,7 +172,7 @@ msgid "Visit customer support"
 msgstr ""
 
 #: includes/admin/class-wkuvdesk-admin-function.php:67
-#: includes/front/class-wkuvdesk-front-function.php:426
+#: includes/front/class-wkuvdesk-front-function.php:425
 #: templates/front/class-wkuvdesk-customer-create-ticket.php:192
 msgid "Support"
 msgstr ""
@@ -172,17 +180,17 @@ msgstr ""
 #: includes/class-wkuvdesk.php:82
 #: includes/class-wkuvdesk.php:87
 #: includes/front/class-wkuvdesk-front-function.php:625
-#: templates/admin/class-wkuvdesk-manage-ticket.php:252
-#: templates/front/class-wkuvdesk-customer-ticket-view.php:161
-#: templates/front/class-wkuvdesk-customer.php:105
+#: templates/admin/class-wkuvdesk-manage-ticket.php:254
+#: templates/front/class-wkuvdesk-customer-ticket-view.php:227
+#: templates/front/class-wkuvdesk-customer.php:104
 msgid "Loading..."
 msgstr ""
 
-#: includes/class-wkuvdesk.php:122
+#: includes/class-wkuvdesk.php:123
 msgid "Cloning is forbidden."
 msgstr ""
 
-#: includes/class-wkuvdesk.php:131
+#: includes/class-wkuvdesk.php:132
 msgid "Deserializing instances of this class is forbidden."
 msgstr ""
 
@@ -214,58 +222,58 @@ msgstr ""
 #: includes/common/class-wkuvdesk-common-function.php:472
 #: includes/front/class-wkuvdesk-front-function.php:722
 #: includes/front/class-wkuvdesk-front-function.php:822
-#: templates/admin/class-wkuvdesk-manage-ticket.php:328
-#: templates/admin/class-wkuvdesk-manage-ticket.php:413
-#: templates/front/class-wkuvdesk-customer-ticket-view.php:265
-#: templates/front/class-wkuvdesk-customer-ticket-view.php:371
+#: templates/admin/class-wkuvdesk-manage-ticket.php:331
+#: templates/admin/class-wkuvdesk-manage-ticket.php:416
+#: templates/front/class-wkuvdesk-customer-ticket-view.php:412
+#: templates/front/class-wkuvdesk-customer-ticket-view.php:652
 msgid "Uploaded files"
 msgstr ""
 
 #: includes/common/class-wkuvdesk-common-function.php:540
-#: templates/front/class-wkuvdesk-customer.php:246
+#: templates/front/class-wkuvdesk-customer.php:243
 msgid "No Record Found"
 msgstr ""
 
 #: includes/common/class-wkuvdesk-common-function.php:553
-#: templates/front/class-wkuvdesk-customer.php:128
+#: templates/front/class-wkuvdesk-customer.php:127
 msgid "Id"
 msgstr ""
 
 #: includes/common/class-wkuvdesk-common-function.php:554
 #: includes/front/class-wkuvdesk-front-function.php:914
-#: templates/admin/class-wkuvdesk-manage-ticket.php:509
-#: templates/front/class-wkuvdesk-customer-ticket-view.php:467
-#: templates/front/class-wkuvdesk-customer.php:129
+#: templates/admin/class-wkuvdesk-manage-ticket.php:519
+#: templates/front/class-wkuvdesk-customer-ticket-view.php:879
+#: templates/front/class-wkuvdesk-customer.php:128
 msgid "Reply"
 msgstr ""
 
 #: includes/common/class-wkuvdesk-common-function.php:555
-#: templates/front/class-wkuvdesk-customer.php:130
+#: templates/front/class-wkuvdesk-customer.php:129
 msgid "Date"
 msgstr ""
 
 #: includes/common/class-wkuvdesk-common-function.php:556
-#: includes/front/class-wkuvdesk-front-function.php:430
-#: templates/admin/class-wkuvdesk-admin-ticket.php:423
-#: templates/front/class-wkuvdesk-customer-create-ticket.php:196
-#: templates/front/class-wkuvdesk-customer.php:131
+#: includes/front/class-wkuvdesk-front-function.php:429
+#: templates/admin/class-wkuvdesk-admin-ticket.php:424
+#: templates/front/class-wkuvdesk-customer-create-ticket.php:197
+#: templates/front/class-wkuvdesk-customer.php:130
 msgid "Subject"
 msgstr ""
 
 #: includes/common/class-wkuvdesk-common-function.php:557
-#: templates/admin/class-wkuvdesk-admin-ticket.php:425
-#: templates/front/class-wkuvdesk-customer.php:100
-#: templates/front/class-wkuvdesk-customer.php:132
+#: templates/admin/class-wkuvdesk-admin-ticket.php:426
+#: templates/front/class-wkuvdesk-customer.php:99
+#: templates/front/class-wkuvdesk-customer.php:131
 msgid "Agent Name"
 msgstr ""
 
 #: includes/common/class-wkuvdesk-common-function.php:595
 #: includes/front/class-wkuvdesk-front-function.php:650
 #: includes/front/class-wkuvdesk-front-function.php:681
-#: templates/admin/class-wkuvdesk-manage-ticket.php:470
-#: templates/front/class-wkuvdesk-customer-ticket-view.php:190
-#: templates/front/class-wkuvdesk-customer-ticket-view.php:225
-#: templates/front/class-wkuvdesk-customer.php:171
+#: templates/admin/class-wkuvdesk-manage-ticket.php:474
+#: templates/front/class-wkuvdesk-customer-ticket-view.php:258
+#: templates/front/class-wkuvdesk-customer-ticket-view.php:363
+#: templates/front/class-wkuvdesk-customer.php:170
 msgid "Not Assigned"
 msgstr ""
 
@@ -275,6 +283,26 @@ msgstr ""
 
 #: includes/common/class-wkuvdesk-common-function.php:630
 msgid "« Previous"
+msgstr ""
+
+#: includes/common/class-wkuvdesk-common-function.php:694
+msgid "Please select a query type"
+msgstr ""
+
+#: includes/common/class-wkuvdesk-common-function.php:695
+msgid "Please enter a subject"
+msgstr ""
+
+#: includes/common/class-wkuvdesk-common-function.php:696
+msgid "Please enter a message"
+msgstr ""
+
+#: includes/common/class-wkuvdesk-common-function.php:697
+msgid "Please upload a valid file type (PDF, DOC, DOCX, PNG, JPG, JPEG, GIF, ZIP, RAR)"
+msgstr ""
+
+#: includes/common/class-wkuvdesk-common-function.php:698
+msgid "File size should not exceed 20MB"
 msgstr ""
 
 #: includes/front/class-wkuvdesk-front-function.php:106
@@ -316,167 +344,168 @@ msgstr ""
 msgid "Register Here"
 msgstr ""
 
-#: includes/front/class-wkuvdesk-front-function.php:283
+#: includes/front/class-wkuvdesk-front-function.php:282
 #: templates/front/class-wkuvdesk-customer-create-ticket.php:69
 msgid "Please check the the captcha form."
 msgstr ""
 
-#: includes/front/class-wkuvdesk-front-function.php:298
+#: includes/front/class-wkuvdesk-front-function.php:297
 #: includes/front/class-wkuvdesk-front-function.php:544
-#: templates/admin/class-wkuvdesk-manage-ticket.php:148
+#: templates/admin/class-wkuvdesk-manage-ticket.php:149
 #: templates/front/class-wkuvdesk-customer-create-ticket.php:85
 msgid "Sorry, your nonce did not verify."
 msgstr ""
 
-#: includes/front/class-wkuvdesk-front-function.php:369
+#: includes/front/class-wkuvdesk-front-function.php:368
 msgid "Please insert a valid image."
 msgstr ""
 
-#: includes/front/class-wkuvdesk-front-function.php:383
+#: includes/front/class-wkuvdesk-front-function.php:382
 #: templates/front/class-wkuvdesk-customer-create-ticket.php:168
 msgid "There is some issue with user permission try again."
 msgstr ""
 
-#: includes/front/class-wkuvdesk-front-function.php:386
+#: includes/front/class-wkuvdesk-front-function.php:385
 #: templates/front/class-wkuvdesk-customer-create-ticket.php:171
 msgid "Some fields are empty."
 msgstr ""
 
-#: includes/front/class-wkuvdesk-front-function.php:391
+#: includes/front/class-wkuvdesk-front-function.php:390
 #: includes/front/class-wkuvdesk-front-function.php:924
 #: templates/front/class-wkuvdesk-customer-create-ticket.php:177
-#: templates/front/class-wkuvdesk-customer-ticket-view.php:477
-#: templates/front/class-wkuvdesk-customer.php:255
+#: templates/front/class-wkuvdesk-customer-ticket-view.php:889
+#: templates/front/class-wkuvdesk-customer.php:252
 msgid "Please Enter a valid Access Token"
 msgstr ""
 
-#: includes/front/class-wkuvdesk-front-function.php:396
-msgid "wk-uvdesk"
+#: includes/front/class-wkuvdesk-front-function.php:395
+msgid "uvdesk"
 msgstr ""
 
-#: includes/front/class-wkuvdesk-front-function.php:417
+#: includes/front/class-wkuvdesk-front-function.php:416
 #: templates/front/class-wkuvdesk-customer-create-ticket.php:183
 msgid "Create a Ticket"
 msgstr ""
 
-#: includes/front/class-wkuvdesk-front-function.php:418
+#: includes/front/class-wkuvdesk-front-function.php:417
 #: templates/front/class-wkuvdesk-customer-create-ticket.php:184
 msgid "Back"
 msgstr ""
 
-#: includes/front/class-wkuvdesk-front-function.php:423
+#: includes/front/class-wkuvdesk-front-function.php:422
 #: templates/front/class-wkuvdesk-customer-create-ticket.php:189
 msgid "Type"
 msgstr ""
 
-#: includes/front/class-wkuvdesk-front-function.php:425
-#: includes/front/class-wkuvdesk-front-function.php:430
-#: includes/front/class-wkuvdesk-front-function.php:434
+#: includes/front/class-wkuvdesk-front-function.php:424
+#: includes/front/class-wkuvdesk-front-function.php:429
+#: includes/front/class-wkuvdesk-front-function.php:433
 #: templates/front/class-wkuvdesk-customer-create-ticket.php:191
 msgid "Choose query type"
 msgstr ""
 
-#: includes/front/class-wkuvdesk-front-function.php:431
-#: templates/front/class-wkuvdesk-customer-create-ticket.php:197
+#: includes/front/class-wkuvdesk-front-function.php:430
+#: templates/front/class-wkuvdesk-customer-create-ticket.php:198
 msgid "Enter Subject"
 msgstr ""
 
-#: includes/front/class-wkuvdesk-front-function.php:434
-#: templates/front/class-wkuvdesk-customer-create-ticket.php:200
+#: includes/front/class-wkuvdesk-front-function.php:433
+#: templates/front/class-wkuvdesk-customer-create-ticket.php:202
 msgid "Message"
 msgstr ""
 
-#: includes/front/class-wkuvdesk-front-function.php:435
-#: templates/front/class-wkuvdesk-customer-create-ticket.php:201
+#: includes/front/class-wkuvdesk-front-function.php:434
+#: templates/front/class-wkuvdesk-customer-create-ticket.php:203
 msgid "Brief Description about your query"
 msgstr ""
 
-#: includes/front/class-wkuvdesk-front-function.php:440
+#: includes/front/class-wkuvdesk-front-function.php:439
 #: includes/front/class-wkuvdesk-front-function.php:906
-#: templates/admin/class-wkuvdesk-manage-ticket.php:500
-#: templates/front/class-wkuvdesk-customer-create-ticket.php:206
-#: templates/front/class-wkuvdesk-customer-ticket-view.php:459
+#: templates/admin/class-wkuvdesk-manage-ticket.php:510
+#: templates/front/class-wkuvdesk-customer-create-ticket.php:209
+#: templates/front/class-wkuvdesk-customer-ticket-view.php:871
 msgid "+ Attach File"
 msgstr ""
 
-#: includes/front/class-wkuvdesk-front-function.php:444
+#: includes/front/class-wkuvdesk-front-function.php:443
 #: includes/front/class-wkuvdesk-front-function.php:910
-#: templates/admin/class-wkuvdesk-manage-ticket.php:504
-#: templates/front/class-wkuvdesk-customer-create-ticket.php:210
-#: templates/front/class-wkuvdesk-customer-ticket-view.php:463
+#: templates/admin/class-wkuvdesk-manage-ticket.php:514
+#: templates/front/class-wkuvdesk-customer-create-ticket.php:213
+#: templates/front/class-wkuvdesk-customer-ticket-view.php:875
 msgid "Attach File"
 msgstr ""
 
-#: includes/front/class-wkuvdesk-front-function.php:449
-#: templates/front/class-wkuvdesk-customer-create-ticket.php:215
+#: includes/front/class-wkuvdesk-front-function.php:448
+#: templates/front/class-wkuvdesk-customer-create-ticket.php:220
 #: templates/front/class-wkuvdesk-register.php:83
 msgid "Check for client Keys"
 msgstr ""
 
-#: includes/front/class-wkuvdesk-front-function.php:452
-#: templates/front/class-wkuvdesk-customer-create-ticket.php:218
+#: includes/front/class-wkuvdesk-front-function.php:451
+#: templates/front/class-wkuvdesk-customer-create-ticket.php:223
 msgid "Please verify that you are not a robot."
 msgstr ""
 
-#: includes/front/class-wkuvdesk-front-function.php:453
-#: templates/front/class-wkuvdesk-customer-create-ticket.php:235
-#: templates/front/class-wkuvdesk-customer.php:93
+#: includes/front/class-wkuvdesk-front-function.php:452
+#: templates/front/class-wkuvdesk-customer-create-ticket.php:237
+#: templates/front/class-wkuvdesk-customer.php:92
 msgid "Create Ticket"
 msgstr ""
 
 #: includes/front/class-wkuvdesk-front-function.php:602
-#: templates/admin/class-wkuvdesk-manage-ticket.php:223
-#: templates/admin/class-wkuvdesk-manage-ticket.php:235
+#: templates/admin/class-wkuvdesk-manage-ticket.php:225
+#: templates/admin/class-wkuvdesk-manage-ticket.php:237
 #: templates/front/class-wkuvdesk-customer-ticket-view.php:132
-#: templates/front/class-wkuvdesk-customer.php:87
+#: templates/front/class-wkuvdesk-customer.php:86
 msgid "Please contact Administrator."
 msgstr ""
 
 #: includes/front/class-wkuvdesk-front-function.php:629
-#: templates/admin/class-wkuvdesk-admin-ticket.php:643
-#: templates/admin/class-wkuvdesk-manage-ticket.php:249
-#: templates/front/class-wkuvdesk-customer-ticket-view.php:169
+#: templates/admin/class-wkuvdesk-admin-ticket.php:659
+#: templates/admin/class-wkuvdesk-manage-ticket.php:251
+#: templates/front/class-wkuvdesk-customer-ticket-view.php:237
 msgid "All tickets"
 msgstr ""
 
 #: includes/front/class-wkuvdesk-front-function.php:632
-#: templates/front/class-wkuvdesk-customer-ticket-view.php:172
+#: templates/front/class-wkuvdesk-customer-ticket-view.php:240
 msgid "TICKET INFROMATION"
 msgstr ""
 
 #: includes/front/class-wkuvdesk-front-function.php:634
-#: templates/front/class-wkuvdesk-customer-ticket-view.php:174
+#: templates/front/class-wkuvdesk-customer-ticket-view.php:242
 msgid "ID"
 msgstr ""
 
 #: includes/front/class-wkuvdesk-front-function.php:635
-#: templates/front/class-wkuvdesk-customer-ticket-view.php:175
+#: templates/front/class-wkuvdesk-customer-ticket-view.php:243
 msgid "#"
 msgstr ""
 
 #: includes/front/class-wkuvdesk-front-function.php:638
 #: templates/admin/class-wkuvdesk-admin-ticket.php:422
-#: templates/front/class-wkuvdesk-customer-ticket-view.php:178
+#: templates/front/class-wkuvdesk-customer-ticket-view.php:246
 msgid "Timestamp"
 msgstr ""
 
 #: includes/front/class-wkuvdesk-front-function.php:642
-#: templates/front/class-wkuvdesk-customer-ticket-view.php:182
+#: templates/front/class-wkuvdesk-customer-ticket-view.php:250
 msgid "Total Replies"
 msgstr ""
 
 #: includes/front/class-wkuvdesk-front-function.php:647
-#: templates/front/class-wkuvdesk-customer-ticket-view.php:187
+#: templates/front/class-wkuvdesk-customer-ticket-view.php:255
 msgid "Agent"
 msgstr ""
 
 #: includes/front/class-wkuvdesk-front-function.php:656
-#: templates/front/class-wkuvdesk-customer-ticket-view.php:198
+#: templates/front/class-wkuvdesk-customer-ticket-view.php:266
 msgid "Priority"
 msgstr ""
 
 #: includes/front/class-wkuvdesk-front-function.php:661
-#: templates/front/class-wkuvdesk-customer-ticket-view.php:203
+#: templates/admin/class-wkuvdesk-admin-ticket.php:423
+#: templates/front/class-wkuvdesk-customer-ticket-view.php:341
 msgid "Status"
 msgstr ""
 
@@ -485,22 +514,21 @@ msgid "Subject :- "
 msgstr ""
 
 #: includes/front/class-wkuvdesk-front-function.php:674
-#: templates/front/class-wkuvdesk-customer-ticket-view.php:218
+#: templates/front/class-wkuvdesk-customer-ticket-view.php:356
 msgid "Created on - "
 msgstr ""
 
 #: includes/front/class-wkuvdesk-front-function.php:677
-#: templates/admin/class-wkuvdesk-manage-ticket.php:268
+#: templates/admin/class-wkuvdesk-manage-ticket.php:270
 msgid "Agent - "
 msgstr ""
 
 #: includes/front/class-wkuvdesk-front-function.php:698
 #: includes/front/class-wkuvdesk-front-function.php:791
 #: includes/front/class-wkuvdesk-front-function.php:875
-#: templates/admin/class-wkuvdesk-admin-ticket.php:776
-#: templates/admin/class-wkuvdesk-manage-ticket.php:391
-#: templates/admin/class-wkuvdesk-manage-ticket.php:464
-#: templates/admin/class-wkuvdesk-manage-ticket.php:525
+#: templates/admin/class-wkuvdesk-admin-ticket.php:791
+#: templates/admin/class-wkuvdesk-manage-ticket.php:394
+#: templates/admin/class-wkuvdesk-manage-ticket.php:467
 msgid "Loading ..."
 msgstr ""
 
@@ -509,7 +537,7 @@ msgid "created ticket"
 msgstr ""
 
 #: includes/front/class-wkuvdesk-front-function.php:879
-#: templates/front/class-wkuvdesk-customer-ticket-view.php:432
+#: templates/front/class-wkuvdesk-customer-ticket-view.php:845
 msgid "You can write your reply"
 msgstr ""
 
@@ -519,67 +547,66 @@ msgid "Tickets per page"
 msgstr ""
 
 #: templates/admin/class-wkuvdesk-admin-ticket.php:115
-#: templates/admin/class-wkuvdesk-admin-ticket.php:672
-#: templates/front/class-wkuvdesk-customer.php:110
+#: templates/admin/class-wkuvdesk-admin-ticket.php:688
+#: templates/front/class-wkuvdesk-customer.php:109
 msgid "Open"
 msgstr ""
 
 #: templates/admin/class-wkuvdesk-admin-ticket.php:116
-#: templates/admin/class-wkuvdesk-admin-ticket.php:673
-#: templates/front/class-wkuvdesk-customer.php:111
+#: templates/admin/class-wkuvdesk-admin-ticket.php:689
+#: templates/front/class-wkuvdesk-customer.php:110
 msgid "Pending"
 msgstr ""
 
 #: templates/admin/class-wkuvdesk-admin-ticket.php:117
-#: templates/admin/class-wkuvdesk-admin-ticket.php:674
-#: templates/front/class-wkuvdesk-customer.php:113
+#: templates/admin/class-wkuvdesk-admin-ticket.php:690
+#: templates/front/class-wkuvdesk-customer.php:112
 msgid "Resolved"
 msgstr ""
 
 #: templates/admin/class-wkuvdesk-admin-ticket.php:118
-#: templates/admin/class-wkuvdesk-admin-ticket.php:675
+#: templates/admin/class-wkuvdesk-admin-ticket.php:691
 msgid "Closed"
 msgstr ""
 
 #: templates/admin/class-wkuvdesk-admin-ticket.php:119
-#: templates/admin/class-wkuvdesk-admin-ticket.php:676
+#: templates/admin/class-wkuvdesk-admin-ticket.php:692
 msgid "Spam"
 msgstr ""
 
 #: templates/admin/class-wkuvdesk-admin-ticket.php:120
-#: templates/admin/class-wkuvdesk-admin-ticket.php:677
-#: templates/front/class-wkuvdesk-customer.php:112
+#: templates/admin/class-wkuvdesk-admin-ticket.php:693
+#: templates/front/class-wkuvdesk-customer.php:111
 msgid "Answered"
 msgstr ""
 
 #: templates/admin/class-wkuvdesk-admin-ticket.php:124
-#: templates/admin/class-wkuvdesk-admin-ticket.php:689
-#: templates/admin/class-wkuvdesk-manage-ticket.php:284
+#: templates/admin/class-wkuvdesk-admin-ticket.php:705
+#: templates/admin/class-wkuvdesk-manage-ticket.php:286
 msgid "Low"
 msgstr ""
 
 #: templates/admin/class-wkuvdesk-admin-ticket.php:125
-#: templates/admin/class-wkuvdesk-admin-ticket.php:690
-#: templates/admin/class-wkuvdesk-manage-ticket.php:285
+#: templates/admin/class-wkuvdesk-admin-ticket.php:706
+#: templates/admin/class-wkuvdesk-manage-ticket.php:287
 msgid "Medium"
 msgstr ""
 
 #: templates/admin/class-wkuvdesk-admin-ticket.php:126
-#: templates/admin/class-wkuvdesk-admin-ticket.php:691
-#: templates/admin/class-wkuvdesk-manage-ticket.php:286
+#: templates/admin/class-wkuvdesk-admin-ticket.php:707
+#: templates/admin/class-wkuvdesk-manage-ticket.php:288
 msgid "High"
 msgstr ""
 
 #: templates/admin/class-wkuvdesk-admin-ticket.php:127
-#: templates/admin/class-wkuvdesk-admin-ticket.php:692
-#: templates/admin/class-wkuvdesk-manage-ticket.php:287
+#: templates/admin/class-wkuvdesk-admin-ticket.php:708
+#: templates/admin/class-wkuvdesk-manage-ticket.php:289
 msgid "Urgent"
 msgstr ""
 
 #: templates/admin/class-wkuvdesk-admin-ticket.php:201
 #: templates/admin/class-wkuvdesk-admin-ticket.php:208
-#: templates/front/class-wkuvdesk-customer.php:117
-#: templates/front/class-wkuvdesk-customer.php:119
+#: templates/front/class-wkuvdesk-customer.php:118
 msgid "Search"
 msgstr ""
 
@@ -616,77 +643,77 @@ msgid "Starred"
 msgstr ""
 
 #: templates/admin/class-wkuvdesk-admin-ticket.php:421
-#: templates/front/class-wkuvdesk-customer.php:97
-#: templates/front/class-wkuvdesk-customer.php:99
+#: templates/front/class-wkuvdesk-customer.php:96
+#: templates/front/class-wkuvdesk-customer.php:98
 msgid "Ticket Id"
 msgstr ""
 
-#: templates/admin/class-wkuvdesk-admin-ticket.php:424
+#: templates/admin/class-wkuvdesk-admin-ticket.php:425
 msgid "Customer Name"
 msgstr ""
 
-#: templates/admin/class-wkuvdesk-admin-ticket.php:471
-#: templates/admin/class-wkuvdesk-manage-ticket.php:270
+#: templates/admin/class-wkuvdesk-admin-ticket.php:485
+#: templates/admin/class-wkuvdesk-manage-ticket.php:272
 msgid "Add agent"
 msgstr ""
 
-#: templates/admin/class-wkuvdesk-admin-ticket.php:499
+#: templates/admin/class-wkuvdesk-admin-ticket.php:513
 msgid "View"
 msgstr ""
 
-#: templates/admin/class-wkuvdesk-admin-ticket.php:512
+#: templates/admin/class-wkuvdesk-admin-ticket.php:526
 msgid "Delete"
 msgstr ""
 
-#: templates/admin/class-wkuvdesk-admin-ticket.php:633
+#: templates/admin/class-wkuvdesk-admin-ticket.php:649
 msgid "Uvdesk Tickets List"
 msgstr ""
 
-#: templates/admin/class-wkuvdesk-admin-ticket.php:651
+#: templates/admin/class-wkuvdesk-admin-ticket.php:667
 msgid "Ticket(s) deleted successfully."
 msgstr ""
 
-#: templates/admin/class-wkuvdesk-admin-ticket.php:665
+#: templates/admin/class-wkuvdesk-admin-ticket.php:681
 msgid "Search Filters"
 msgstr ""
 
-#: templates/admin/class-wkuvdesk-admin-ticket.php:669
+#: templates/admin/class-wkuvdesk-admin-ticket.php:685
 msgid "Filter by Status"
 msgstr ""
 
-#: templates/admin/class-wkuvdesk-admin-ticket.php:686
+#: templates/admin/class-wkuvdesk-admin-ticket.php:702
 msgid "Filter by Priority"
 msgstr ""
 
-#: templates/admin/class-wkuvdesk-admin-ticket.php:702
+#: templates/admin/class-wkuvdesk-admin-ticket.php:718
 msgid "Filter Agent"
 msgstr ""
 
-#: templates/admin/class-wkuvdesk-admin-ticket.php:725
+#: templates/admin/class-wkuvdesk-admin-ticket.php:741
 msgid "Filter"
 msgstr ""
 
-#: templates/admin/class-wkuvdesk-admin-ticket.php:728
+#: templates/admin/class-wkuvdesk-admin-ticket.php:744
 msgid "Clear Filters"
 msgstr ""
 
-#: templates/admin/class-wkuvdesk-admin-ticket.php:732
+#: templates/admin/class-wkuvdesk-admin-ticket.php:748
 msgid "Bulk Filters"
 msgstr ""
 
-#: templates/admin/class-wkuvdesk-admin-ticket.php:734
+#: templates/admin/class-wkuvdesk-admin-ticket.php:750
 msgid "Change Status"
 msgstr ""
 
-#: templates/admin/class-wkuvdesk-admin-ticket.php:742
+#: templates/admin/class-wkuvdesk-admin-ticket.php:758
 msgid "Change Priority"
 msgstr ""
 
-#: templates/admin/class-wkuvdesk-admin-ticket.php:751
+#: templates/admin/class-wkuvdesk-admin-ticket.php:767
 msgid "Assign Agent"
 msgstr ""
 
-#: templates/admin/class-wkuvdesk-admin-ticket.php:769
+#: templates/admin/class-wkuvdesk-admin-ticket.php:785
 msgid "Apply"
 msgstr ""
 
@@ -702,51 +729,51 @@ msgstr ""
 msgid "Access Token"
 msgstr ""
 
-#: templates/admin/class-wkuvdesk-backend-setting.php:65
+#: templates/admin/class-wkuvdesk-backend-setting.php:66
 msgid "You need to create access token from  "
 msgstr ""
 
-#: templates/admin/class-wkuvdesk-backend-setting.php:65
+#: templates/admin/class-wkuvdesk-backend-setting.php:66
 msgid "Uvdesk Site"
 msgstr ""
 
-#: templates/admin/class-wkuvdesk-backend-setting.php:67
+#: templates/admin/class-wkuvdesk-backend-setting.php:69
 msgid "Company Domain"
 msgstr ""
 
-#: templates/admin/class-wkuvdesk-backend-setting.php:69
+#: templates/admin/class-wkuvdesk-backend-setting.php:71
 msgid "This field is the domain of your organization."
 msgstr ""
 
-#: templates/admin/class-wkuvdesk-backend-setting.php:71
+#: templates/admin/class-wkuvdesk-backend-setting.php:73
 msgid "Setup Recaptcha"
 msgstr ""
 
-#: templates/admin/class-wkuvdesk-backend-setting.php:73
+#: templates/admin/class-wkuvdesk-backend-setting.php:75
 msgid "Client Key OR Site Key"
 msgstr ""
 
-#: templates/admin/class-wkuvdesk-backend-setting.php:74
+#: templates/admin/class-wkuvdesk-backend-setting.php:76
 msgid "eg :-12***********12"
 msgstr ""
 
-#: templates/admin/class-wkuvdesk-backend-setting.php:75
+#: templates/admin/class-wkuvdesk-backend-setting.php:78
 msgid "You can create recaptcha keys from"
 msgstr ""
 
-#: templates/admin/class-wkuvdesk-backend-setting.php:75
+#: templates/admin/class-wkuvdesk-backend-setting.php:78
 msgid "Google RECAPTCHA"
 msgstr ""
 
-#: templates/admin/class-wkuvdesk-backend-setting.php:75
+#: templates/admin/class-wkuvdesk-backend-setting.php:78
 msgid "Site"
 msgstr ""
 
-#: templates/admin/class-wkuvdesk-backend-setting.php:76
+#: templates/admin/class-wkuvdesk-backend-setting.php:80
 msgid "Secret Key"
 msgstr ""
 
-#: templates/admin/class-wkuvdesk-backend-setting.php:77
+#: templates/admin/class-wkuvdesk-backend-setting.php:81
 msgid "eg :-12***********34"
 msgstr ""
 
@@ -758,61 +785,61 @@ msgstr ""
 msgid "here"
 msgstr ""
 
-#: templates/admin/class-wkuvdesk-manage-ticket.php:198
-#: templates/front/class-wkuvdesk-customer-create-ticket.php:156
+#: templates/admin/class-wkuvdesk-manage-ticket.php:199
+#: templates/front/class-wkuvdesk-customer-create-ticket.php:155
 msgid "Please upload a valid file (PDF, DOC, DOCX, PNG, JPG, JPEG, GIF, ZIP, RAR) with maximum size of 20MB"
 msgstr ""
 
-#: templates/admin/class-wkuvdesk-manage-ticket.php:212
+#: templates/admin/class-wkuvdesk-manage-ticket.php:213
 msgid "Contact technical team ..."
 msgstr ""
 
-#: templates/admin/class-wkuvdesk-manage-ticket.php:223
-#: templates/admin/class-wkuvdesk-manage-ticket.php:235
+#: templates/admin/class-wkuvdesk-manage-ticket.php:225
+#: templates/admin/class-wkuvdesk-manage-ticket.php:237
 msgid "Invalid Details."
 msgstr ""
 
-#: templates/admin/class-wkuvdesk-manage-ticket.php:244
+#: templates/admin/class-wkuvdesk-manage-ticket.php:246
 msgid "Ticket #"
 msgstr ""
 
-#: templates/admin/class-wkuvdesk-manage-ticket.php:267
+#: templates/admin/class-wkuvdesk-manage-ticket.php:269
 msgid "Created on -"
 msgstr ""
 
-#: templates/admin/class-wkuvdesk-manage-ticket.php:279
+#: templates/admin/class-wkuvdesk-manage-ticket.php:281
 msgid "Priority -"
 msgstr ""
 
-#: templates/admin/class-wkuvdesk-manage-ticket.php:281
+#: templates/admin/class-wkuvdesk-manage-ticket.php:283
 msgid "Add priority"
 msgstr ""
 
-#: templates/admin/class-wkuvdesk-manage-ticket.php:303
+#: templates/admin/class-wkuvdesk-manage-ticket.php:305
 msgid "Default Thumbnail"
 msgstr ""
 
-#: templates/admin/class-wkuvdesk-manage-ticket.php:303
+#: templates/admin/class-wkuvdesk-manage-ticket.php:305
 msgid "Customer Thumbnail"
 msgstr ""
 
-#: templates/admin/class-wkuvdesk-manage-ticket.php:520
+#: templates/admin/class-wkuvdesk-manage-ticket.php:530
 msgid "Customer"
 msgstr ""
 
-#: templates/admin/class-wkuvdesk-manage-ticket.php:562
+#: templates/admin/class-wkuvdesk-manage-ticket.php:571
 msgid "Total"
 msgstr ""
 
-#: templates/admin/class-wkuvdesk-manage-ticket.php:562
+#: templates/admin/class-wkuvdesk-manage-ticket.php:571
 msgid "Tickets"
 msgstr ""
 
-#: templates/admin/class-wkuvdesk-manage-ticket.php:579
+#: templates/admin/class-wkuvdesk-manage-ticket.php:588
 msgid "View All"
 msgstr ""
 
-#: templates/admin/class-wkuvdesk-manage-ticket.php:594
+#: templates/admin/class-wkuvdesk-manage-ticket.php:603
 msgid "Invalid setting details."
 msgstr ""
 
@@ -820,31 +847,31 @@ msgstr ""
 msgid "Security verification failed. Please try again."
 msgstr ""
 
-#: templates/front/class-wkuvdesk-customer-ticket-view.php:210
+#: templates/front/class-wkuvdesk-customer-ticket-view.php:348
 msgid "Subject :-"
 msgstr ""
 
-#: templates/front/class-wkuvdesk-customer-ticket-view.php:221
+#: templates/front/class-wkuvdesk-customer-ticket-view.php:359
 msgid " Agent -"
 msgstr ""
 
-#: templates/front/class-wkuvdesk-customer-ticket-view.php:244
+#: templates/front/class-wkuvdesk-customer-ticket-view.php:390
 msgid "Created ticket"
 msgstr ""
 
-#: templates/front/class-wkuvdesk-customer-ticket-view.php:342
+#: templates/front/class-wkuvdesk-customer-ticket-view.php:623
 msgid "user-img"
 msgstr ""
 
-#: templates/front/class-wkuvdesk-customer.php:97
+#: templates/front/class-wkuvdesk-customer.php:96
 msgid "Sort By - "
 msgstr ""
 
-#: templates/front/class-wkuvdesk-customer.php:201
+#: templates/front/class-wkuvdesk-customer.php:200
 msgid "Next"
 msgstr ""
 
-#: templates/front/class-wkuvdesk-customer.php:202
+#: templates/front/class-wkuvdesk-customer.php:201
 msgid "Previous"
 msgstr ""
 
@@ -868,26 +895,26 @@ msgstr ""
 msgid "Already Have An Account?"
 msgstr ""
 
-#: templates/front/class-wkuvdesk-register.php:114
+#: templates/front/class-wkuvdesk-register.php:115
 msgid "Please check the captcha form."
 msgstr ""
 
-#: templates/front/class-wkuvdesk-register.php:126
+#: templates/front/class-wkuvdesk-register.php:127
 msgid "Captcha error"
 msgstr ""
 
-#: templates/front/class-wkuvdesk-register.php:136
+#: templates/front/class-wkuvdesk-register.php:137
 msgid "All fields are required and password must be at least 8 characters."
 msgstr ""
 
-#: templates/front/class-wkuvdesk-register.php:141
+#: templates/front/class-wkuvdesk-register.php:142
 msgid "Email already exists."
 msgstr ""
 
-#: templates/front/class-wkuvdesk-register.php:156
+#: templates/front/class-wkuvdesk-register.php:157
 msgid "Registration user account created"
 msgstr ""
 
-#: templates/front/class-wkuvdesk-register.php:166
+#: templates/front/class-wkuvdesk-register.php:167
 msgid "Registration failed. Please try again."
 msgstr ""

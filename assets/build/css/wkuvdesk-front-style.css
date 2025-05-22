@@ -748,3 +748,7 @@ span#addFile {
     transform: rotate(360deg);
   }
 }
+.wk-uvdesk-reply {
+  resize: vertical;
+  width: 100%;
+}

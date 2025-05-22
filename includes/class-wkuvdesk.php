@@ -79,12 +79,12 @@ if ( ! class_exists( 'WKUVDESK' ) ) {
 				$attributes  = array(
 					'src'   => $spinner_url,
 					'class' => 'uv-uvdesk-ajax-loader-img',
-					'alt'   => __( 'Loading...', 'wk-uvdesk' ),
+					'alt'   => esc_html__( 'Loading...', 'uvdesk' ),
 				);
 			} else {
 				$attributes = array(
 					'src' => $attributes,
-					'alt' => __( 'Loading...', 'wk-uvdesk' ),
+					'alt' => esc_html__( 'Loading...', 'uvdesk' ),
 				);
 			}
 
@@ -92,6 +92,7 @@ if ( ! class_exists( 'WKUVDESK' ) ) {
 			foreach ( $attributes as $key => $value ) {
 				$html .= sprintf( '%s="%s" ', esc_attr( $key ), esc_attr( $value ) );
 			}
+
 			return $html;
 		}
 
@@ -101,7 +102,7 @@ if ( ! class_exists( 'WKUVDESK' ) ) {
 		 * @return void
 		 */
 		public function wkuvdesk_load_plugin_textdomain() {
-			load_plugin_textdomain( 'wk-uvdesk', false, plugin_basename( dirname( WKUVDESK_PLUGIN_FILE ) ) . '/languages' ); // Plugin text domain.
+			load_plugin_textdomain( 'uvdesk', false, plugin_basename( dirname( WKUVDESK_PLUGIN_FILE ) ) . '/languages' ); // Plugin text domain.
 		}
 
 		/**
@@ -119,7 +120,7 @@ if ( ! class_exists( 'WKUVDESK' ) ) {
 		 * @return void
 		 */
 		public function __clone() {
-			wp_die( __FUNCTION__ . esc_html__( 'Cloning is forbidden.', 'wk-uvdesk' ) );
+			wp_die( __FUNCTION__ . esc_html__( 'Cloning is forbidden.', 'uvdesk' ) );
 		}
 
 		/**
@@ -128,7 +129,7 @@ if ( ! class_exists( 'WKUVDESK' ) ) {
 		 *  @return void
 		 */
 		public function __wakeup() {
-			wp_die( __FUNCTION__ . esc_html__( 'Deserializing instances of this class is forbidden.', 'wk-uvdesk' ) );
+			wp_die( __FUNCTION__ . esc_html__( 'Deserializing instances of this class is forbidden.', 'uvdesk' ) );
 		}
 	}
 }

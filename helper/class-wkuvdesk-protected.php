@@ -87,7 +87,7 @@ if ( ! class_exists( 'WKUVDESK_Protected' ) ) {
 		 *
 		 * @return string
 		 */
-		protected function get_company_domain() {
+		public function get_company_domain() {
 			return $this->company_domain;
 		}
 
@@ -98,11 +98,7 @@ if ( ! class_exists( 'WKUVDESK_Protected' ) ) {
 		 */
 		private function set_access_token() {
 			$uvdesk_access_token = get_option( 'uvdesk_access_token', '' );
-			if ( ! empty( $uvdesk_access_token ) ) {
-				$this->access_token = $uvdesk_access_token;
-			} else {
-				$this->access_token = '';
-			}
+			$this->access_token  = sanitize_text_field( $uvdesk_access_token );
 		}
 
 		/**
@@ -111,12 +107,8 @@ if ( ! class_exists( 'WKUVDESK_Protected' ) ) {
 		 * @return void
 		 */
 		private function set_client_key() {
-			$uvdesk_client_key = get_option( 'uvdesk_client_key' );
-			if ( ! empty( $uvdesk_client_key ) ) {
-				$this->client_key = $uvdesk_client_key;
-			} else {
-				$this->client_key = '';
-			}
+			$uvdesk_client_key = get_option( 'uvdesk_client_key', '' );
+			$this->client_key  = ! empty( $uvdesk_client_key ) ? $uvdesk_client_key : '';
 		}
 
 		/**
@@ -125,12 +117,8 @@ if ( ! class_exists( 'WKUVDESK_Protected' ) ) {
 		 * @return void
 		 */
 		private function set_company_domain() {
-			$uvdesk_company_domain = get_option( 'uvdesk_company_domain' );
-			if ( ! empty( $uvdesk_company_domain ) ) {
-				$this->company_domain = $uvdesk_company_domain;
-			} else {
-				$this->company_domain = '';
-			}
+			$uvdesk_company_domain = get_option( 'uvdesk_company_domain', '' );
+			$this->company_domain  = ! empty( $uvdesk_company_domain ) ? sanitize_text_field( $uvdesk_company_domain ) : '';
 		}
 
 		/**
@@ -139,12 +127,8 @@ if ( ! class_exists( 'WKUVDESK_Protected' ) ) {
 		 * @return void
 		 */
 		private function set_secret_key() {
-			$uvdesk_secret_key = get_option( 'uvdesk_secret_key' );
-			if ( ! empty( $uvdesk_secret_key ) ) {
-				$this->secret_key = $uvdesk_secret_key;
-			} else {
-				$this->secret_key = '';
-			}
+			$uvdesk_secret_key = get_option( 'uvdesk_secret_key', '' );
+			$this->secret_key  = ! empty( $uvdesk_secret_key ) ? $uvdesk_secret_key : '';
 		}
 	}
 }
