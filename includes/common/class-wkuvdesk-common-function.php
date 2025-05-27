@@ -31,7 +31,7 @@ if ( ! class_exists( 'WKUVDESK_Common_Function' ) ) {
 		 * @return void
 		 */
 		public function wkuvdesk_change_ticket_agent() {
-			if ( check_ajax_referer( 'wk-uvdesk-api-ajaxnonce', 'nonce', false ) ) {
+			if ( check_ajax_referer( 'wkuvdesk-api-ajaxnonce', 'nonce', false ) ) {
 				$ticket_ids = filter_input( INPUT_POST, 'ticket_id', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
 				$ticket_ids = explode( ',', $ticket_ids );
 				$agent      = filter_input( INPUT_POST, 'agent', FILTER_SANITIZE_NUMBER_INT );
@@ -63,7 +63,7 @@ if ( ! class_exists( 'WKUVDESK_Common_Function' ) ) {
 		 * @return void
 		 */
 		public function wkuvdesk_change_ticket_priority() {
-			if ( check_ajax_referer( 'wk-uvdesk-api-ajaxnonce', 'nonce', false ) ) {
+			if ( check_ajax_referer( 'wkuvdesk-api-ajaxnonce', 'nonce', false ) ) {
 				$ticket_ids = filter_input( INPUT_POST, 'ticket_id', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
 				$ticket_ids = explode( ',', $ticket_ids );
 				$priority   = filter_input( INPUT_POST, 'priority', FILTER_SANITIZE_NUMBER_INT );
@@ -94,7 +94,7 @@ if ( ! class_exists( 'WKUVDESK_Common_Function' ) ) {
 		 * @return void
 		 */
 		public function wkuvdesk_sort_customer_ticket_via_status() {
-			if ( check_ajax_referer( 'wk-uvdesk-api-ajaxnonce', 'nonce', false ) ) {
+			if ( check_ajax_referer( 'wkuvdesk-api-ajaxnonce', 'nonce', false ) ) {
 				$field            = filter_input( INPUT_POST, 'field', FILTER_SANITIZE_NUMBER_INT );
 				$field            = empty( $field ) ? 0 : wp_unslash( $field );
 				$current_user     = wp_get_current_user();
@@ -131,7 +131,7 @@ if ( ! class_exists( 'WKUVDESK_Common_Function' ) ) {
 		 * @return void
 		 */
 		public function wkuvdesk_sort_ticket_via_api() {
-			if ( check_ajax_referer( 'wk-uvdesk-api-ajaxnonce', 'nonce', false ) ) {
+			if ( check_ajax_referer( 'wkuvdesk-api-ajaxnonce', 'nonce', false ) ) {
 				$field        = filter_input( INPUT_POST, 'field', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
 				$field        = empty( $field ) ? '' : wp_unslash( $field );
 				$link_page    = filter_input( INPUT_POST, 'page_link', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
@@ -184,7 +184,7 @@ if ( ! class_exists( 'WKUVDESK_Common_Function' ) ) {
 		 * @return void
 		 */
 		public function wkuvdesk_get_thread_data_customer() {
-			if ( check_ajax_referer( 'wk-uvdesk-api-ajaxnonce', 'nonce', false ) ) {
+			if ( check_ajax_referer( 'wkuvdesk-api-ajaxnonce', 'nonce', false ) ) {
 				$page    = filter_input( INPUT_POST, 'page_no', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
 				$page    = explode( '-', $page );
 				$tid     = $page[0];
@@ -211,7 +211,7 @@ if ( ! class_exists( 'WKUVDESK_Common_Function' ) ) {
 		 * @return void
 		 */
 		public function wkuvdesk_delete_thread_via_api() {
-			if ( check_ajax_referer( 'wk-uvdesk-api-ajaxnonce', 'nonce', false ) ) {
+			if ( check_ajax_referer( 'wkuvdesk-api-ajaxnonce', 'nonce', false ) ) {
 				$thread_id = filter_input( INPUT_POST, 'thread-id', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
 				$tid       = filter_input( INPUT_POST, 'ticket_id', FILTER_VALIDATE_INT );
 
@@ -247,7 +247,7 @@ if ( ! class_exists( 'WKUVDESK_Common_Function' ) ) {
 		 * @return void
 		 */
 		public function wkuvdesk_toggle_the_starred() {
-			if ( check_ajax_referer( 'wk-uvdesk-api-ajaxnonce', 'nonce', false ) ) {
+			if ( check_ajax_referer( 'wkuvdesk-api-ajaxnonce', 'nonce', false ) ) {
 				$t_id          = filter_input( INPUT_POST, 'ticket_id', FILTER_VALIDATE_INT );
 				$ticket_stared = filter_input( INPUT_POST, 'stared_no', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
 
@@ -420,7 +420,7 @@ if ( ! class_exists( 'WKUVDESK_Common_Function' ) ) {
 														$attach_url   = 'https://' . esc_attr( $domain ) . '.uvdesk.com/en/api/ticket/attachment/' . esc_attr( $aid ) . '.json?access_token=' . esc_attr( $access_token );
 														?>
 														<a href="<?php echo esc_url( $attach_url ); ?>" title="<?php echo esc_attr( $anamea ); ?>" target="_blank">
-															<i class="wk-file-zip" title="<?php echo esc_attr( $anamea ); ?>" data-toggle="<?php echo esc_attr( 'tooltip' ); ?>" data-original-title="<?php echo esc_attr( $attchment_value->name ); ?>">
+															<i class="wkuvdesk-file-zip" title="<?php echo esc_attr( $anamea ); ?>" data-toggle="<?php echo esc_attr( 'tooltip' ); ?>" data-original-title="<?php echo esc_attr( $attchment_value->name ); ?>">
 															</i>
 														</a>
 														<?php
@@ -431,7 +431,7 @@ if ( ! class_exists( 'WKUVDESK_Common_Function' ) ) {
 														$attach_url   = 'https://' . esc_attr( $domain ) . '.uvdesk.com/en/api/ticket/attachment/' . esc_attr( $aid ) . '.json?access_token=' . esc_attr( $access_token );
 														?>
 														<a href="<?php echo esc_url( $attach_url ); ?>" title="<?php echo esc_attr( $anamea ); ?>" target="_blank">
-															<i class="wk-file" title="<?php echo esc_attr( $anamea ); ?>" data-toggle="<?php echo esc_attr( 'tooltip' ); ?>" data-original-title="<?php echo esc_attr( $attchment_value->name ); ?>"></i>
+															<i class="wkuvdesk-file" title="<?php echo esc_attr( $anamea ); ?>" data-toggle="<?php echo esc_attr( 'tooltip' ); ?>" data-original-title="<?php echo esc_attr( $attchment_value->name ); ?>"></i>
 														</a>
 														<?php
 													}
@@ -449,16 +449,16 @@ if ( ! class_exists( 'WKUVDESK_Common_Function' ) ) {
 					} else {
 						$thread_value = ! empty( $data_api->threads[ $i ] ) ? $data_api->threads[ $i ] : '';
 						$img_url      = ! empty( $thread_value->user->smallThumbnail ) ? esc_url( $thread_value->user->smallThumbnail ) : esc_url( WKUVDESK_PLUGIN_URL . 'assets/images/e09dabf.png' );
-						echo '<div class="wk-cards tkt-replay " data-thread-id="' . esc_attr( $thread_value->id ) . '">';
-						echo '<div class= "uv-uvdesk-replay-inline" >';
+						echo '<div class="wkuvdesk-cards tkt-replay " data-thread-id="' . esc_attr( $thread_value->id ) . '">';
+						echo '<div class= "wkuvdesk-replay-inline" >';
 						echo '<img ' . wp_kses( Includes\WKUVDESK::wkuvdesk_convert_attributes_to_html( $img_url ), $allowed_html ) . ' alt="' . esc_attr( $img_url ) . '" />';
 						?>
 						<span class="tkt-name">
 							<?php echo esc_attr( ! empty( $thread_value->user->detail->agent ) ? $thread_value->user->detail->agent : $thread_value->user->detail->customer->name ); ?>
 						</span>
 						<span class="tkt-timestamp"><?php echo esc_html( $thread_value->formatedCreatedAt ); ?>
-							<span class="wk-accord"></span>
-							<span class="wk-delete-tkt-reply"></span>
+							<span class="wkuvdesk-accord"></span>
+							<span class="wkuvdesk-delete-tkt-reply"></span>
 						</span>
 						</div>
 						<div class="tkt-message" >
@@ -492,7 +492,7 @@ if ( ! class_exists( 'WKUVDESK_Common_Function' ) ) {
 												$attach_url   = 'https://' . esc_attr( $domain ) . '.uvdesk.com/en/api/ticket/attachment/' . esc_attr( $aid ) . '.json?access_token=' . esc_attr( $access_token );
 												?>
 												<a href="<?php echo esc_url( $attach_url ); ?>" title="<?php echo esc_attr( $anamea ); ?>" target="_blank">
-													<i class="wk-file-zip" title="<?php echo esc_attr( $anamea ); ?>" data-toggle="<?php echo esc_attr( 'tooltip' ); ?>" data-original-title="<?php echo esc_attr( $attchment_value->name ); ?>"></i>
+													<i class="wkuvdesk-file-zip" title="<?php echo esc_attr( $anamea ); ?>" data-toggle="<?php echo esc_attr( 'tooltip' ); ?>" data-original-title="<?php echo esc_attr( $attchment_value->name ); ?>"></i>
 												</a>
 												<?php
 											} else {
@@ -502,7 +502,7 @@ if ( ! class_exists( 'WKUVDESK_Common_Function' ) ) {
 												$attach_url   = 'https://' . esc_attr( $domain ) . '.uvdesk.com/en/api/ticket/attachment/' . esc_attr( $aid ) . '.json?access_token=' . esc_attr( $access_token );
 												?>
 												<a href="<?php echo esc_url( $attach_url ); ?>" title="<?php echo esc_attr( $anamea ); ?>" target="_blank">
-													<i class="wk-file"  data-toggle="tooltip" title="<?php echo esc_attr( $anamea ); ?>" data-original-title="<?php echo esc_attr( $attchment_value->name ); ?>">
+													<i class="wkuvdesk-file"  data-toggle="tooltip" title="<?php echo esc_attr( $anamea ); ?>" data-original-title="<?php echo esc_attr( $attchment_value->name ); ?>">
 													</i>
 												</a>
 												<?php
@@ -563,7 +563,7 @@ if ( ! class_exists( 'WKUVDESK_Common_Function' ) ) {
 							?>
 							<tr data-toggle="tooltip" data-placement="left" title="" class="Open 1 unread" data-original-title="Open" >
 								<td class="check-col">
-									<span class="uv-uvdesk-priority-check" style="background-color:<?php echo wp_kses_post( $ticket_value->priority->color ); ?>"></span>
+									<span class="wkuvdesk-priority-check" style="background-color:<?php echo wp_kses_post( $ticket_value->priority->color ); ?>"></span>
 								</td>
 								<td class="id-col" >
 									<a href="<?php echo esc_url( site_url() . '/uvdesk/customer/ticket/view/' . $ticket_value->incrementId ); ?>">
@@ -680,15 +680,15 @@ if ( ! class_exists( 'WKUVDESK_Common_Function' ) ) {
 			$current_user = get_current_user_id();
 
 			wp_enqueue_style( 'dashicons' );
-			wp_enqueue_script( 'wk-uvdesk-front-script', WKUVDESK_PLUGIN_URL . 'assets/dist/js/wkuvdesk-frontend-script.min.js', array( 'jquery' ), WKUVDESK_SCRIPT_VERSION, true );
-			wp_enqueue_style( 'wk-uvdesk-front-style', WKUVDESK_PLUGIN_URL . 'assets/dist/css/wkuvdesk-front-style.min.css', array(), WKUVDESK_SCRIPT_VERSION );
-			wp_enqueue_script( 'wk-uvdesk-recaptcha-script', 'https://www.google.com/recaptcha/api.js', array(), WKUVDESK_SCRIPT_VERSION, true );
+			wp_enqueue_script( 'wkuvdesk-front-script', WKUVDESK_PLUGIN_URL . 'assets/dist/js/wkuvdesk-frontend-script.min.js', array( 'jquery' ), WKUVDESK_SCRIPT_VERSION, true );
+			wp_enqueue_style( 'wkuvdesk-front-style', WKUVDESK_PLUGIN_URL . 'assets/dist/css/wkuvdesk-front-style.min.css', array(), WKUVDESK_SCRIPT_VERSION );
+			wp_enqueue_script( 'wkuvdesk-recaptcha-script', 'https://www.google.com/recaptcha/api.js', array(), WKUVDESK_SCRIPT_VERSION, true );
 			wp_localize_script(
-				'wk-uvdesk-front-script',
-				'apiScript',
+				'wkuvdesk-front-script',
+				'wkuvdesk_api_script',
 				array(
 					'api_admin_ajax'    => admin_url( 'admin-ajax.php' ),
-					'api_nonce'         => wp_create_nonce( 'wk-uvdesk-api-ajaxnonce' ),
+					'api_nonce'         => wp_create_nonce( 'wkuvdesk-api-ajaxnonce' ),
 					'uvdesk_member_url' => site_url() . '/uvdesk/customer',
 					'is_admin'          => $current_user,
 					'type_error'        => esc_html__( 'Please select a query type', 'uvdesk' ),

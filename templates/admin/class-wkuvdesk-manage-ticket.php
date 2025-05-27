@@ -58,7 +58,7 @@ if ( ! class_exists( 'WKUVDESK_Manage_Ticket' ) ) {
 					$ids     = $post_id;
 					$success = Helper\WKUVDESK_Api_Handler::wkuvdesk_delete_tag_ticket( 'ticket/' . $ids . '/trash.json' );
 					if ( $success ) {
-						wp_safe_redirect( admin_url( 'admin.php?page=uvdesk_ticket_system&msg=deleted' ) );
+						wp_safe_redirect( admin_url( 'admin.php?page=wkuvdesk_ticket_system&msg=deleted' ) );
 						exit;
 					}
 				}
@@ -67,7 +67,7 @@ if ( ! class_exists( 'WKUVDESK_Manage_Ticket' ) ) {
 			if ( filter_input( INPUT_GET, 'post', FILTER_SANITIZE_FULL_SPECIAL_CHARS ) ) {
 				$ticket_id = wp_unslash( filter_input( INPUT_GET, 'post', FILTER_SANITIZE_FULL_SPECIAL_CHARS ) );
 			} else {
-				$admin_url = admin_url( 'admin.php?page=uvdesk_ticket_system' );
+				$admin_url = admin_url( 'admin.php?page=wkuvdesk_ticket_system' );
 				printf(
 					'<h2>%s <a href="%s">%s</a>.</h2>',
 					esc_html__( 'Select a ticket first from', 'uvdesk' ),
@@ -193,19 +193,12 @@ if ( ! class_exists( 'WKUVDESK_Manage_Ticket' ) ) {
 							);
 							$thread_status = json_decode( $thread_status );
 						} else {
-							echo '<div class="alert alert-success alert-fixed  ">
+							echo '<div class="wkuvdesk-alert wkuvdesk-alert-success wkuvdesk-alert-fixed  ">
 								<span>
-									<span class="uv-uvdesk-remove-file alert-msg"></span>
+									<span class="wkuvdesk-remove-file wkuvdesk-alert-msg"></span>
 									' . esc_html__( 'Please upload a valid file (PDF, DOC, DOCX, PNG, JPG, JPEG, GIF, ZIP, RAR) with maximum size of 20MB', 'uvdesk' ) . '
 								</span>
 							</div>';
-							?>
-							<script>
-							setTimeout(function() {
-								jQuery(".alert-fixed").fadeOut()
-							}, 4000);
-							</script>
-							<?php
 						}
 					}
 					?>
@@ -248,27 +241,27 @@ if ( ! class_exists( 'WKUVDESK_Manage_Ticket' ) ) {
 							?>
 							</h1>
 							<input type='hidden' value="<?php echo isset( $ticket_details->ticket->id ) ? esc_attr( $ticket_details->ticket->id ) : ''; ?>" class="uv-ticket-id">
-							<a href = "<?php echo esc_url( admin_url( 'admin.php?page=uvdesk_ticket_system' ) ); ?>" class="button button-primary back-to-list"><?php esc_html_e( 'All tickets', 'uvdesk' ); ?></a>
+							<a href = "<?php echo esc_url( admin_url( 'admin.php?page=wkuvdesk_ticket_system' ) ); ?>" class="button button-primary back-to-list"><?php esc_html_e( 'All tickets', 'uvdesk' ); ?></a>
 						</header>
-						<div class="uvuvdesk-pre-loader">
-							<img class="uv-uvdesk-ajax-loader-img" <?php echo wp_kses_post( Includes\WKUVDESK::wkuvdesk_convert_attributes_to_html( array() ) ); ?> alt="<?php esc_attr_e( 'Loading...', 'uvdesk' ); ?>" />
+						<div class="wkuvdesk-pre-loader">
+							<img class="wkuvdesk-ajax-loader-img" <?php echo wp_kses_post( Includes\WKUVDESK::wkuvdesk_convert_attributes_to_html( array() ) ); ?> alt="<?php esc_attr_e( 'Loading...', 'uvdesk' ); ?>" />
 						</div>
 					</div>
-					<div class="wk-main-wrapper" >
+					<div class="wkuvdesk-main-wrapper" >
 						<div class="uv-tk-manage-wrapper">
-							<div class="wk-cards tkt-intro">
+							<div class="wkuvdesk-cards tkt-intro">
 								<h2>
 									<?php
 									$select = $ticket_details->ticket->isStarred ? esc_attr( 'stared' ) : '';
 									$str_no = $ticket_details->ticket->isStarred ? 1 : 0;
-									echo( '<div style="display: inline-block;vertical-align: text-bottom;"><input type="radio" style="opacity: 0;" ><span class="wk-starred-ico ' . ( isset( $select ) ? esc_attr( $select ) : '' ) . '" data-id="' . ( isset( $ticket_details->ticket->id ) ? esc_attr( $ticket_details->ticket->id ) : '' ) . '" data-star-val="' . ( isset( $str_no ) ? esc_attr( $str_no ) : '' ) . '"></span></div>' );
+									echo( '<div style="display: inline-block;vertical-align: text-bottom;"><input type="radio" style="opacity: 0;" ><span class="wkuvdesk-starred-ico ' . ( isset( $select ) ? esc_attr( $select ) : '' ) . '" data-id="' . ( isset( $ticket_details->ticket->id ) ? esc_attr( $ticket_details->ticket->id ) : '' ) . '" data-star-val="' . ( isset( $str_no ) ? esc_attr( $str_no ) : '' ) . '"></span></div>' );
 									?>
 									<?php echo isset( $ticket_details->ticket->subject ) ? esc_attr( $ticket_details->ticket->subject ) : ''; ?>
 								<h2>
 								<p>
-									<span class="wk-space"><span class="wk-highlight"><?php esc_html_e( 'Created on -', 'uvdesk' ); ?> </span><?php echo esc_html( $ticket_details->ticket->formatedCreatedAt ); ?></span>
-									<span class="wk-space"><span class="wk-highlight"><?php esc_html_e( 'Agent - ', 'uvdesk' ); ?></span>
-									<select class="wk-sel-agent" data-id="<?php echo isset( $ticket_details->ticket->id ) ? esc_attr( $ticket_details->ticket->id ) : ''; ?>">
+									<span class="wkuvdesk-space"><span class="wkuvdesk-highlight"><?php esc_html_e( 'Created on -', 'uvdesk' ); ?> </span><?php echo esc_html( $ticket_details->ticket->formatedCreatedAt ); ?></span>
+									<span class="wkuvdesk-space"><span class="wkuvdesk-highlight"><?php esc_html_e( 'Agent - ', 'uvdesk' ); ?></span>
+									<select class="wkuvdesk-agent" data-id="<?php echo isset( $ticket_details->ticket->id ) ? esc_attr( $ticket_details->ticket->id ) : ''; ?>">
 										<option value=""><?php esc_html_e( 'Add agent', 'uvdesk' ); ?></option>
 										<?php
 										foreach ( $data_api_members as $key => $value ) {
@@ -278,8 +271,8 @@ if ( ! class_exists( 'WKUVDESK_Manage_Ticket' ) ) {
 										?>
 									</select>
 									</span>
-									<span class="wk-space"><span class="wk-highlight"><?php esc_html_e( 'Priority -', 'uvdesk' ); ?> </span>
-									<select id="wk-sel-priority">
+									<span class="wkuvdesk-space"><span class="wkuvdesk-highlight"><?php esc_html_e( 'Priority -', 'uvdesk' ); ?> </span>
+									<select id="wkuvdesk-sel-priority">
 										<option value=""><?php esc_html_e( 'Add priority', 'uvdesk' ); ?></option>
 										<?php
 										$priorities = array(
@@ -296,8 +289,8 @@ if ( ! class_exists( 'WKUVDESK_Manage_Ticket' ) ) {
 									</select>
 								</p>
 							</div>
-						<div class="wk-cards tkt-replay">
-							<div class= "uv-uvdesk-replay-inline">
+						<div class="wkuvdesk-cards tkt-replay">
+							<div class= "wkuvdesk-replay-inline">
 							<?php
 							$thumbnail = isset( $ticket_details->ticket->customer->smallThumbnail ) && ! empty( $ticket_details->ticket->customer->smallThumbnail )
 								? $ticket_details->ticket->customersmallThumbnail ?? $ticket_details->ticket->customer->profileImage
@@ -318,7 +311,7 @@ if ( ! class_exists( 'WKUVDESK_Manage_Ticket' ) ) {
 								<?php
 								echo isset( $ticket_details->ticket->formatedCreatedAt ) ? esc_html( $ticket_details->ticket->formatedCreatedAt ) : '';
 								?>
-								<span class="wk-accord"></span>
+								<span class="wkuvdesk-accord"></span>
 							</span>
 						</div>
 						<div class="tkt-message" >
@@ -351,14 +344,14 @@ if ( ! class_exists( 'WKUVDESK_Manage_Ticket' ) ) {
 										$attach_url = 'https://' . esc_attr( $domain ) . '.uvdesk.com/en/api/ticket/attachment/' . esc_attr( $aid ) . '.json?access_token=' . esc_attr( $access_token );
 										?>
 												<a href="<?php echo esc_url( $attach_url ); ?>" title="<?php echo esc_attr( $anamea ); ?>" target="_blank">
-													<i class="wk-file-zip" title="" data-toggle="<?php echo esc_attr( 'tooltip' ); ?>"  data-original-title="<?php echo esc_attr( $attchment_value->name ); ?>"></i>
+													<i class="wkuvdesk-file-zip" title="" data-toggle="<?php echo esc_attr( 'tooltip' ); ?>"  data-original-title="<?php echo esc_attr( $attchment_value->name ); ?>"></i>
 												</a>
 																	<?php
 									} else {
 										$attach_url = 'https://' . esc_attr( $domain ) . '.uvdesk.com/en/api/ticket/attachment/' . esc_attr( $aid ) . '.json?access_token=' . esc_attr( $access_token );
 										?>
 												<a href="<?php echo esc_url( $attach_url ); ?>" target="_blank" title="<?php echo esc_attr( $anamea ); ?>">
-													<i class="wk-file" title="" data-toggle="<?php echo esc_attr( 'tooltip' ); ?>" data-original-title="<?php echo esc_attr( $attchment_value->name ); ?>"></i>
+													<i class="wkuvdesk-file" title="" data-toggle="<?php echo esc_attr( 'tooltip' ); ?>" data-original-title="<?php echo esc_attr( $attchment_value->name ); ?>"></i>
 												</a>
 																	<?php
 									}
@@ -378,15 +371,15 @@ if ( ! class_exists( 'WKUVDESK_Manage_Ticket' ) ) {
 						<div style="position:relative;" id="ajax-load-page">
 							<span class="pagination-space"  data-page="<?php echo esc_attr( $ticket_details->ticket->id . '-' . $ticket_thread->pagination->current ); ?>"><?php echo esc_html( $tot_post - $last_count ); ?></span>
 						</div>
-						<div id="uv-desk-content-here-aj"></div><hr>
+						<div id="wkuvdesk-content-here-aj"></div><hr>
 							<?php
 						}
 						if ( isset( $ticket_thread->threads ) ) :
 							for ( $i = count( $ticket_thread->threads ) - 1; $i >= 0; $i-- ) {
 								$thread_value = ! empty( $ticket_thread->threads[ $i ] ) ? $ticket_thread->threads[ $i ] : '';
 								?>
-							<div class="wk-cards tkt-replay" data-thread-id="<?php echo esc_attr( $thread_value->id ); ?>">
-								<div class= "uv-uvdesk-replay-inline">
+							<div class="wkuvdesk-cards tkt-replay" data-thread-id="<?php echo esc_attr( $thread_value->id ); ?>">
+								<div class= "wkuvdesk-replay-inline">
 								<?php
 									$thumbnail = isset( $thread_value->user->smallThumbnail ) && ! empty( $thread_value->user->smallThumbnail )
 									? $thread_value->user->smallThumbnail
@@ -402,8 +395,8 @@ if ( ! class_exists( 'WKUVDESK_Manage_Ticket' ) ) {
 									?>
 								</span>
 								<span class="tkt-timestamp"><?php echo esc_html( $thread_value->formatedCreatedAt ); ?>
-									<span class="wk-accord"></span>
-									<span class="wk-delete-tkt-reply"></span>
+									<span class="wkuvdesk-accord"></span>
+									<span class="wkuvdesk-delete-tkt-reply"></span>
 								</span>
 								</div>
 								<div class="tkt-message" >
@@ -435,7 +428,7 @@ if ( ! class_exists( 'WKUVDESK_Manage_Ticket' ) ) {
 																$attach_url = 'https://' . esc_attr( $domain ) . '.uvdesk.com/en/api/ticket/attachment/' . esc_attr( $aid ) . '.json?access_token=' . esc_attr( $access_token );
 																?>
 															<a href="<?php echo esc_url( $attach_url ); ?>" title="<?php echo esc_attr( $anamea ); ?>" target="_blank">
-																<i class="wk-file-zip" title="" data-toggle="<?php echo esc_attr( 'tooltip' ); ?>" data-original-title="<?php echo esc_attr( $attchment_value->name ); ?>">
+																<i class="wkuvdesk-file-zip" title="" data-toggle="<?php echo esc_attr( 'tooltip' ); ?>" data-original-title="<?php echo esc_attr( $attchment_value->name ); ?>">
 																</i>
 															</a>
 																<?php
@@ -443,7 +436,7 @@ if ( ! class_exists( 'WKUVDESK_Manage_Ticket' ) ) {
 																$attach_url = 'https://' . esc_attr( $domain ) . '.uvdesk.com/en/api/ticket/attachment/' . esc_attr( $aid ) . '.json?access_token=' . esc_attr( $access_token );
 																?>
 																<a href="<?php echo esc_url( $attach_url ); ?>" title="<?php echo esc_attr( $anamea ); ?>" target="_blank">
-																	<i class="wk-file" title="" data-toggle="<?php echo esc_attr( 'tooltip' ); ?>" data-original-title="<?php echo esc_attr( $attchment_value->name ); ?>"></i>
+																	<i class="wkuvdesk-file" title="" data-toggle="<?php echo esc_attr( 'tooltip' ); ?>" data-original-title="<?php echo esc_attr( $attchment_value->name ); ?>"></i>
 																</a>
 																<?php
 															}
@@ -459,7 +452,7 @@ if ( ! class_exists( 'WKUVDESK_Manage_Ticket' ) ) {
 						endif;
 						?>
 				<div class="tab-block form-div">
-					<div class= "uv-uvdesk-replay-inline">
+					<div class= "wkuvdesk-replay-inline">
 						<?php
 						$thumbnail = isset( $thread_value->user->smallThumbnail ) && ! empty( $thread_value->user->smallThumbnail )
 							? $thread_value->user->smallThumbnail
@@ -505,13 +498,13 @@ if ( ! class_exists( 'WKUVDESK_Manage_Ticket' ) ) {
 
 									wp_editor( esc_textarea( '' ), esc_attr( 'product_desc' ), $settings );
 									?>
-									<div class="form-group wk-uvdesk-attachments">
+									<div class="form-group wkuvdesk-attachments">
 										<div class="labelWidget">
-											<input id="uv-uvdesk-attachments" class="fileHide" type="file" enableremoveoption="enableRemoveOption" decoratecss="attach-file" decoratefile="decorateFile" infolabeltext="<?php esc_attr_e( '+ Attach File', 'uvdesk' ); ?>" infolabel="right" name="attachments[]">
+											<input id="wkuvdesk-attachments" class="fileHide" type="file" enableremoveoption="enableRemoveOption" decoratecss="attach-file" decoratefile="decorateFile" infolabeltext="<?php esc_attr_e( '+ Attach File', 'uvdesk' ); ?>" infolabel="right" name="attachments[]">
 											<label class="attach-file pointer"></label>
-											<i class="uv-uvdesk-remove-file" id="remove-att"></i>
+											<i class="wkuvdesk-remove-file" id="remove-att"></i>
 										</div>
-										<span id="addFile" class="label-right pointer"><?php esc_html_e( 'Attach File', 'uvdesk' ); ?></span>
+										<span id="wkuvdesk-addFile" class="label-right pointer"><?php esc_html_e( 'Attach File', 'uvdesk' ); ?></span>
 									</div>
 									<div class="col-sm-12 dropup">
 										<div class=" reply-status-dropup">
@@ -526,7 +519,7 @@ if ( ! class_exists( 'WKUVDESK_Manage_Ticket' ) ) {
 				</div>
 			</div>
 			<div class="uv-tk-manage-sidebar">
-				<div class="wk-cards tkt-replay" style="margin-left: 0;">
+				<div class="wkuvdesk-cards tkt-replay" style="margin-left: 0;">
 					<h2><?php esc_html_e( 'Customer', 'uvdesk' ); ?></h2>
 						<?php
 						$thumbnail = isset( $ticket_details->ticket->customer->detail->customer->smallThumbnail ) && ! empty( $ticket_details->ticket->customer->detail->customer->smallThumbnail )
@@ -555,7 +548,7 @@ if ( ! class_exists( 'WKUVDESK_Manage_Ticket' ) ) {
 						?>
 					</p>
 				</div>
-				<div class="wk-cards tkt-replay" style="margin-left: 0;">
+				<div class="wkuvdesk-cards tkt-replay" style="margin-left: 0;">
 						<?php
 						if ( isset( $ticket_details->ticket->customer->id ) ) {
 							$c_email         = $ticket_details->ticket->customer->email;
@@ -575,7 +568,7 @@ if ( ! class_exists( 'WKUVDESK_Manage_Ticket' ) ) {
 						if ( isset( $data_assign_api->tickets ) && is_array( $data_assign_api->tickets ) ) {
 							foreach ( $data_assign_api->tickets as $tkt_detail ) {
 								?>
-						<a style="text-decoration: none" href="<?php echo esc_url( '?page=uvdesk_ticket_system&action=view&post=' . esc_attr( $tkt_detail->incrementId ) ); ?>">
+						<a style="text-decoration: none" href="<?php echo esc_url( '?page=wkuvdesk_ticket_system&action=view&post=' . esc_attr( $tkt_detail->incrementId ) ); ?>">
 							<p><?php echo esc_html( $count ); ?>.
 								<span style="color:#000"><?php echo esc_html( '#' . $tkt_detail->id ); ?></span>
 								<span> <?php echo esc_html( $tkt_detail->subject ); ?></span>
@@ -583,7 +576,7 @@ if ( ! class_exists( 'WKUVDESK_Manage_Ticket' ) ) {
 						</a>
 								<?php
 								if ( $count > 2 ) {
-									$cust_url = esc_url( admin_url( 'admin.php?page=uvdesk_ticket_system&custmr-action=customer-tkt&cid=' ) . $ticket_details->ticket->customer->id );
+									$cust_url = esc_url( admin_url( 'admin.php?page=wkuvdesk_ticket_system&custmr-action=customer-tkt&cid=' ) . $ticket_details->ticket->customer->id );
 
 									echo "<a href='" . esc_url( $cust_url ) . "' ><h4>" . esc_html__( 'View All', 'uvdesk' ) . '</h4></a>';
 									break;

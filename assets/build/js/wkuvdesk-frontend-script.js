@@ -4,7 +4,7 @@ $uv=jQuery.noConflict();
 
 	$uv(document).ready(function(event){
         /**Filter view */
-		$uv(".uv-uvdesk-filter-view").on("click",function(evt){
+		$uv(".wkuvdesk-filter-view").on("click",function(evt){
 			elem = $uv(evt.target);
 			field = elem.data('value');
 			var order = elem.attr('data-order');
@@ -14,15 +14,15 @@ $uv=jQuery.noConflict();
 			if(field){
 				$uv.ajax({
 			      type: 'POST',
-			      url: apiScript.api_admin_ajax,
-			      data: { "action": "sort_ticket_via_api", "nonce":apiScript.api_nonce, "field":field, "order":order, 'is_admin':false, 'page_link':page_link },
+			      url: wkuvdesk_api_script.api_admin_ajax,
+			      data: { "action": "sort_ticket_via_api", "nonce":wkuvdesk_api_script.api_nonce, "field":field, "order":order, 'is_admin':false, 'page_link':page_link },
 			      beforeSend: function() {
-				     $uv(".uvuvdesk-pre-loader").show();
+				     $uv(".wkuvdesk-pre-loader").show();
 				   },
 				   success: function(response) {
 				      	if(response.success==true){
-				      		$uv(".uv-uvdesk-customer-ticket-section").empty();
-				      		$uv(".uv-uvdesk-customer-ticket-section").append(response.data);
+				      		$uv(".wkuvdesk-customer-ticket-section").empty();
+				      		$uv(".wkuvdesk-customer-ticket-section").append(response.data);
 									if( order == 'asc' ){
 										// elem.data('order','desc');
 										elem.attr('data-order', 'desc')
@@ -30,13 +30,11 @@ $uv=jQuery.noConflict();
 										// elem.data('order','asc');
 										elem.attr('data-order', 'asc')
 									}
-									$uv('.uv-uvdesk-filter-view').css('display','none');
-									$uv('.uv-uvdesk-down-up-arrow').removeClass('down');
-				      	}
-				      	else{
-				      		alert(response.data);
-				      	}
-				       	$uv(".uvuvdesk-pre-loader").hide();
+									$uv('.wkuvdesk-filter-view').css('display','none');
+									$uv('.wkuvdesk-down-up-arrow').removeClass('down');
+                            }
+
+				       	$uv(".wkuvdesk-pre-loader").hide();
 				     }
 			    });
 			}
@@ -45,32 +43,28 @@ $uv=jQuery.noConflict();
 		});
 
         /** Tab filter */
-		$uv("#uv-uvdesk-tab-id-filter").on("click",function(evt){
+		$uv("#wkuvdesk-tab-id-filter").on("click",function(evt){
             selected = $uv(evt.target).data('value');
 
 			if(selected){
 				$uv.ajax({
 			      type: 'POST',
-			      url: apiScript.api_admin_ajax,
-			      data: {"action": "sort_customer_ticket_via_status","nonce":apiScript.api_nonce,"field":parseInt(selected)},
+			      url: wkuvdesk_api_script.api_admin_ajax,
+			      data: {"action": "sort_customer_ticket_via_status","nonce":wkuvdesk_api_script.api_nonce,"field":parseInt(selected)},
 			      beforeSend: function(){
-				     $uv(".uvuvdesk-pre-loader").show();
+				     $uv(".wkuvdesk-pre-loader").show();
 				   },
 				   success: function(response)
 				    {
 				      	if(response.success==true){
-									$uv('#uv-uvdesk-tab-id-filter ul li').removeClass('tab-active');
-				      		$uv(".uv-uvdesk-customer-ticket-section").empty();
-									$uv(evt.target).addClass('tab-active');
-				      		$uv(".uv-uvdesk-customer-ticket-section").append(response.data);
+							$uv('#wkuvdesk-tab-id-filter ul li').removeClass('tab-active');
+				      		$uv(".wkuvdesk-customer-ticket-section").empty();
+							$uv(evt.target).addClass('tab-active');
+				      		$uv(".wkuvdesk-customer-ticket-section").append(response.data);
 
 				      	}
-				      	else{
 
-				      		alert(response.data);
-
-				      	}
-				       	$uv(".uvuvdesk-pre-loader").hide();
+				       	$uv(".wkuvdesk-pre-loader").hide();
 				     }
 			    });
 			}
@@ -84,22 +78,18 @@ $uv=jQuery.noConflict();
 			if(page){
 				$uv.ajax({
 			      type: 'POST',
-			      url: apiScript.api_admin_ajax,
-			      data: {"action": "get_thread_data_customer","nonce":apiScript.api_nonce,"page_no":page},
+			      url: wkuvdesk_api_script.api_admin_ajax,
+			      data: {"action": "get_thread_data_customer","nonce":wkuvdesk_api_script.api_nonce,"page_no":page},
 			      beforeSend: function(){
-				     $uv(".uvuvdesk-pre-loader").show();
+				     $uv(".wkuvdesk-pre-loader").show();
 				   },
                     success: function (response) {
 				      	if(response.success==true){
 							$uv("#ajax-load-page").remove();
-							$uv(document).find('#uv-desk-content-here-aj').prepend(response.data);
+							$uv(document).find('#wkuvdesk-content-here-aj').prepend(response.data);
 				      	}
-				      	else if (response.data) {
-				      		alert(response.data);
-				      	} else {
-                            // console('Something went wrong. Please try again.');
-                        }
-				       	$uv(".uvuvdesk-pre-loader").hide();
+
+				       	$uv(".wkuvdesk-pre-loader").hide();
 				     }
 			    });
 			}
@@ -108,22 +98,22 @@ $uv=jQuery.noConflict();
 		});
 
         /**Toggable the ticket**/
-		$uv(".uv-star-ticket").on("click",function(e){
+		$uv(".wkuvdesk-star-ticket").on("click",function(e){
 			tid=$uv(this).data('id');
 			strno =$uv(this).data('star-val');
             str_no = strno === 1 ? 0 : 1;
             if (tid) {
 				$uv.ajax({
 				      type: 'POST',
-				      url: apiScript.api_admin_ajax,
-				      data: {"action": "toggle_the_starred","nonce":apiScript.api_nonce,"ticket_id":tid,"stared_no":str_no},
+				      url: wkuvdesk_api_script.api_admin_ajax,
+				      data: {"action": "toggle_the_starred","nonce":wkuvdesk_api_script.api_nonce,"ticket_id":tid,"stared_no":str_no},
 				      beforeSend: function(){
-					     $uv(".uvuvdesk-pre-loader").show();
+					     $uv(".wkuvdesk-pre-loader").show();
 					   },
 					   success: function(response) {
 					    if(response.success == true){
 							location.reload();
-							$uv(".uvuvdesk-pre-loader").hide();
+							$uv(".wkuvdesk-pre-loader").hide();
    						}
 				      }
 				});
@@ -133,31 +123,31 @@ $uv=jQuery.noConflict();
         var fileuploader = $uv('.labelWidget').clone();
 		var maxAppends = 2;
 		var currentAppends = 0;
-		$uv('#addFile').on('click', function () {
+		$uv('#wkuvdesk-addFile').on('click', function () {
 			if (currentAppends < maxAppends) {
 				$uv(this).before(fileuploader.clone());
 				currentAppends++;
 			}
 		});
-		$uv(document).on('change', '#uv-uvdesk-attachments', function () {
+		$uv(document).on('change', '#wkuvdesk-attachments', function () {
     	    $uv(this).siblings('.attach-file').addClass('close');
 		});
 
-		$uv( document ).on('click','.uv-uvdesk-remove-file',function(){
+		$uv( document ).on('click','.wkuvdesk-remove-file',function(){
 			$uv(this).closest('div').remove();
 		});
 
-		$uv(".uv-uvdesk-filter-left").on("click",function(e){
-			if( $uv('.uv-uvdesk-filter-view').css('display').toLowerCase() == 'block') {
-				$uv('.uv-uvdesk-filter-view').css('display','none');
-				$uv('.uv-uvdesk-down-up-arrow').removeClass('down');
+		$uv(".wkuvdesk-filter-left").on("click",function(e){
+			if( $uv('.wkuvdesk-filter-view').css('display').toLowerCase() == 'block') {
+				$uv('.wkuvdesk-filter-view').css('display','none');
+				$uv('.wkuvdesk-down-up-arrow').removeClass('down');
 			}else {
-				$uv('.uv-uvdesk-filter-view').css('display','block');
-				$uv('.uv-uvdesk-down-up-arrow').addClass('down');
+				$uv('.wkuvdesk-filter-view').css('display','block');
+				$uv('.wkuvdesk-down-up-arrow').addClass('down');
 			}
         })
 
-        $uv(".wk-sel-agent").on("change",function(evt){
+        $uv(".wkuvdesk-agent").on("change",function(evt){
 			agent=$uv(this).val();
 			ticket_checked=[];
 			ticket_checked=$uv(this).data('id');
@@ -166,19 +156,17 @@ $uv=jQuery.noConflict();
             if (agent && ticket_checked) {
 				$uv.ajax({
 			      type: 'POST',
-			      url: apiScript.api_admin_ajax,
-			      data: {"action": "change_ticket_agent","nonce":apiScript.api_nonce,"agent":agent,"ticket_id":ticket_checked},
+			      url: wkuvdesk_api_script.api_admin_ajax,
+			      data: {"action": "change_ticket_agent","nonce":wkuvdesk_api_script.api_nonce,"agent":agent,"ticket_id":ticket_checked},
 			      beforeSend: function(){
-				     $uv(".uvuvdesk-pre-loader").show();
+				     $uv(".wkuvdesk-pre-loader").show();
 				   },
 				   success: function(response) {
 				      	if(response.success==true){
 				      		location.reload();
 				      	}
-				      	else{
-				      		alert(response.data);
-				      	}
-				       	$uv(".uvuvdesk-pre-loader").hide();
+
+				       	$uv(".wkuvdesk-pre-loader").hide();
 				     }
 			    });
 			}
@@ -190,39 +178,45 @@ $uv=jQuery.noConflict();
 
 })(jQuery);
 
-jQuery(document).ready(function($) {
-	$('#wk-uvdesk-create-ticket-form').on('submit', function(e) {
+jQuery(document).ready(function ($) {
+    setTimeout(
+        function() {
+            $( '.wkuvdesk-alert-fixed' ).fadeOut();
+        },
+        4000
+    );
+	$('#wkuvdesk-create-ticket-form').on('submit', function(e) {
 		var isValid = true;
 		$('.error-message').text('').css('color', 'red');
 
 		if (!$('#type').val()) {
-			$('#type-error').text(apiScript.type_error);
+			$('#type-error').text(wkuvdesk_api_script.type_error);
 			isValid = false;
 		}
 
 		if (!$('#subject').val()) {
-			$('#subject-error').text(apiScript.subject_error);
+			$('#subject-error').text(wkuvdesk_api_script.subject_error);
 			isValid = false;
 		}
 
 		if (!$('#reply').val()) {
-			$('#reply-error').text(apiScript.reply_error);
+			$('#reply-error').text(wkuvdesk_api_script.reply_error);
 			isValid = false;
 		}
 
-		var fileInput = $('#uv-uvdesk-attachments');
+		var fileInput = $('#wkuvdesk-attachments');
 		if (fileInput[0].files.length > 0) {
 			var file = fileInput[0].files[0];
 			var allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'image/png', 'image/jpeg', 'image/gif', 'application/zip', 'application/x-rar-compressed'];
 			var maxSize = 20 * 1024 * 1024; // 20MB
 
 			if (!allowedTypes.includes(file.type)) {
-				$('#file-error').text(apiScript.file_type_error);
+				$('#file-error').text(wkuvdesk_api_script.file_type_error);
 				isValid = false;
 			}
 
 			if (file.size > maxSize) {
-				$('#file-error').text(apiScript.file_size_error);
+				$('#file-error').text(wkuvdesk_api_script.file_size_error);
 				isValid = false;
 			}
 		}

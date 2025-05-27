@@ -16,7 +16,7 @@ Uvdesk is an omnichannel helpdesk designed to deliver swift and efficient custom
 
 Uvdesk is a omni channel helpdesk for providing quick assistance to customers through diverse horizontal mediums. It needs only quick sign up to be yours for delivering fantastic customer support for your channel
 
-Numerious Apps Integrations - [https://support.uvdesk.com/en/folder/184](https://support.uvdesk.com/en/folder/184)
+Numerous Apps Integrations - [https://support.uvdesk.com/en/folder/184](https://support.uvdesk.com/en/folder/184)
 
 Automated Systems - [https://support.uvdesk.com/en/folder/175](https://support.uvdesk.com/en/folder/175)
 
@@ -99,21 +99,33 @@ UVdesk Free Helpdesk is open-source software and is made to be extended. To redu
 
 == External Services ==
 
-This plugin uses Google reCAPTCHA to protect forms from spam and abuse by ensuring that form submissions are made by real users.
-It sends the following data to Google when the form containing reCAPTCHA is loaded or submitted:
+**Google reCAPTCHA**
+This plugin uses Google's reCAPTCHA service to:
+- Protect forms from spam submissions
+- Verify human interaction with forms
 
-User’s IP address
-Browser and device information
-The content and context of the current page (e.g., page URL)
-User interaction data (mouse movements, clicks, etc.)
+Service provider: Google LLC
+- [reCAPTCHA Terms](https://policies.google.com/terms)
+- [Google Privacy Policy](https://policies.google.com/privacy)
 
-This data is used by Google to determine whether the user is a human or a bot.
-The service is provided by Google LLC.
+**Webkul Services Integration**
+This plugin includes:
+1. Extension Discovery Service (wk.ext.js)
+   - Displays available Webkul extensions within admin panel
+   - Shows compatible addons for your wordpress/woocommerce system
 
-Google reCAPTCHA Terms of Service
-Google Privacy Policy
+2. Support Portal Integration (wksas.bundle.js)
+   - Shows service status notifications
+   - Displays maintenance updates
+   - Links to official documentation
 
-This integration is necessary to reduce spam and automated abuse on your website.
+These Webkul services:
+- Operate in read-only mode
+- Do not collect user/website data
+- Only display information from Webkul servers
+
+Service provider: Webkul Software Pvt Ltd
+- [Webkul Privacy Policy](https://webkul.com/privacy-policy/)
 
 == Screenshots ==
 
@@ -159,7 +171,7 @@ This will include if in case the Symfony api is updated for uvdesk app so in tha
 
 == Changelog ==
 
-= 2.1.0 - 2025-05-23 =
+= 2.1.0 - 2025-05-27 =
 
 * Added: Page selection for booking widget display, activation functions, domain validation, and translations.
 * Updated: Admin panel, file structure to use singleton pattern.

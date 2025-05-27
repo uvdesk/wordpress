@@ -196,17 +196,142 @@ class WKUVDESK_Admin_Ticket extends \WP_List_Table {
 	 */
 	private function display_search_box() {
 		$search_value = filter_input( INPUT_GET, 's', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
+		$msg          = filter_input( INPUT_GET, 'msg', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
+		if ( 'deleted' === $msg ) {
+			echo '<div class="notice notice-success is-dismissible"><p>' . esc_html__( 'Ticket(s) deleted successfully.', 'uvdesk' ) . '</p></div>';
+		}
+
+		$priority = filter_input( INPUT_POST, 'check-priority', FILTER_SANITIZE_NUMBER_INT );
+		$priority = $priority ? $priority : '';
+		$agent    = filter_input( INPUT_POST, 'fil-agent', FILTER_SANITIZE_NUMBER_INT );
+		$agent    = $agent ? $agent : '';
 		?>
-		<p class="search-box">
-			<label class="screen-reader-text" for="search-box-id"><?php esc_html_e( 'Search', 'uvdesk' ); ?>:</label>
-			<input type="search"
-				id="search-box-id"
-				name="s"
-				value="<?php echo esc_attr( $search_value ); ?>"
-				placeholder="<?php esc_attr_e( 'Search by subject...', 'uvdesk' ); ?>"
-			/>
-			<?php submit_button( esc_html__( 'Search', 'uvdesk' ), '', '', false, array( 'id' => 'search-submit' ) ); ?>
-		</p>
+		<div class=''>
+			<form action="" method="post">
+				<div class="wkuvdesk-filter-class">
+					<h3><?php esc_html_e( 'Search Filters', 'uvdesk' ); ?></h3>
+					<select name="check-status" class="wkuvdesk-ewc-filter-cat">
+						<option value=""><?php esc_html_e( 'Filter by Status', 'uvdesk' ); ?></option>
+						<?php
+						$stat = filter_input( INPUT_POST, 'check-status', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
+						$stat = $stat ? $stat : 'all';
+
+						$statuses = array(
+							1 => esc_html__( 'Open', 'uvdesk' ),
+							2 => esc_html__( 'Pending', 'uvdesk' ),
+							3 => esc_html__( 'Resolved', 'uvdesk' ),
+							4 => esc_html__( 'Closed', 'uvdesk' ),
+							5 => esc_html__( 'Spam', 'uvdesk' ),
+							6 => esc_html__( 'Answered', 'uvdesk' ),
+						);
+						foreach ( $statuses as $key => $label ) {
+							$selected = ( $stat === $key ) ? 'selected' : '';
+							echo '<option value="' . esc_attr( $key ) . '" ' . esc_attr( $selected ) . '>' . esc_html( $label ) . '</option>';
+						}
+						?>
+					</select>
+					<select name="check-priority" class="wkuvdesk-ewc-filter-cat">
+						<option value=""><?php esc_html_e( 'Filter by Priority', 'uvdesk' ); ?></option>
+						<?php
+						$priorities = array(
+							1 => esc_html__( 'Low', 'uvdesk' ),
+							2 => esc_html__( 'Medium', 'uvdesk' ),
+							3 => esc_html__( 'High', 'uvdesk' ),
+							4 => esc_html__( 'Urgent', 'uvdesk' ),
+						);
+						foreach ( $priorities as $key => $label ) {
+							$selected = ( $priority === $key ) ? 'selected' : '';
+							echo '<option value="' . esc_attr( $key ) . '" ' . esc_attr( $selected ) . '>' . esc_html( $label ) . '</option>';
+						}
+						?>
+					</select>
+					<?php
+					$assign_agent  = "<select class='filter-agent' name='fil-agent'>";
+					$assign_agent .= "<option value=''>" . esc_html__( 'Filter Agent', 'uvdesk' ) . '</option>';
+					if ( isset( $this->data_api_members ) ) {
+						foreach ( $this->data_api_members as $value ) {
+							$selected      = ( isset( $agent ) && isset( $value->id ) && $agent === $value->id ) ? 'selected' : '';
+							$assign_agent .= sprintf( '<option value="%s" %s>%s</option>', isset( $value->id ) ? esc_attr( $value->id ) : '', isset( $value->id ) ? $selected : '', isset( $value->name ) ? esc_html( $value->name ) : '' );
+						}
+					}
+					$assign_agent .= '</select>';
+					echo wp_kses(
+						$assign_agent,
+						array(
+							'select' => array(
+								'name'  => true,
+								'class' => true,
+							),
+							'option' => array(
+								'value'    => true,
+								'selected' => true,
+							),
+						)
+					);
+					?>
+					<?php wp_nonce_field( 'wk_uvdesk_ticket_filter_action', 'wk_uvdesk_ticket_filter_nonce' ); ?>
+					<input type="submit" class="button button-primary" name="filter-submit" value="<?php esc_attr_e( 'Filter', 'uvdesk' ); ?>">
+					<!-- Add the Clear Filters button -->
+					<?php if ( filter_input( INPUT_GET, 'check-status', FILTER_SANITIZE_FULL_SPECIAL_CHARS ) || filter_input( INPUT_GET, 'check-priority', FILTER_SANITIZE_FULL_SPECIAL_CHARS ) || filter_input( INPUT_GET, 'fil-agent', FILTER_SANITIZE_FULL_SPECIAL_CHARS ) ) : ?>
+					<input type="button" class="button button-secondary" id="clear-filters" value="<?php esc_attr_e( 'Clear Filters', 'uvdesk' ); ?>">
+					<?php endif; ?>
+				</div>
+				<div class="wkuvdsk-list space-between">
+					<div class="wkuvdesk-filter-class action-class">
+						<h2><?php esc_html_e( 'Bulk Filters', 'uvdesk' ); ?></h2>
+						<select name="change-status" class="wkuvdesk-ewc-filter-cat">
+							<option value=""><?php esc_html_e( 'Change Status', 'uvdesk' ); ?></option>
+							<?php
+							foreach ( $statuses as $key => $label ) {
+								echo '<option value="' . esc_attr( $key ) . '">' . esc_html( $label ) . '</option>';
+							}
+							?>
+						</select>
+						<select name="change-priority" class="wkuvdesk-ewc-filter-cat">
+							<option value=""><?php esc_html_e( 'Change Priority', 'uvdesk' ); ?></option>
+							<?php
+							foreach ( $priorities as $key => $label ) {
+								echo '<option value="' . esc_attr( $key ) . '">' . esc_html( $label ) . '</option>';
+							}
+							?>
+						</select>
+						<?php
+						$assign_agent  = "<select class='change-agent' name='change-agent'>";
+						$assign_agent .= "<option value=''>" . esc_html__( 'Assign Agent', 'uvdesk' ) . '</option>';
+						if ( isset( $this->data_api_members ) && is_array( $this->data_api_members ) ) {
+							foreach ( $this->data_api_members as $value ) {
+								$assign_agent .= '<option value="' . esc_attr( $value->id ) . '">' . esc_html( $value->name ) . '</option>';
+							}
+						}
+						$assign_agent .= '</select>';
+						echo wp_kses(
+							$assign_agent,
+							array(
+								'select' => array(
+									'name'  => true,
+									'class' => true,
+								),
+								'option' => array( 'value' => true ),
+							)
+						);
+						?>
+						<input type="submit" class="button button-primary" name="apply-submit" value="<?php esc_attr_e( 'Apply', 'uvdesk' ); ?>">
+					</div>
+					<div>
+						<p class="search-box">
+							<label class="screen-reader-text" for="search-box-id"><?php esc_html_e( 'Search', 'uvdesk' ); ?>:</label>
+							<input type="search"
+								id="search-box-id"
+								name="s"
+								value="<?php echo esc_attr( $search_value ); ?>"
+								placeholder="<?php esc_attr_e( 'Search by subject...', 'uvdesk' ); ?>"
+							/>
+							<?php submit_button( esc_html__( 'Search', 'uvdesk' ), '', '', false, array( 'id' => 'search-submit' ) ); ?>
+						</p>
+					</div>
+				</div>
+			</form>
+		</div>
 		<?php
 	}
 
@@ -437,7 +562,7 @@ class WKUVDESK_Admin_Ticket extends \WP_List_Table {
 	public function column_status( $item ) {
 		$status = isset( $item->status->name ) ? $item->status->name : '';
 		$class  = strtolower( str_replace( ' ', '-', $status ) );
-		return sprintf( '<span class="wk-status %s">%s</span>', esc_attr( $class ), esc_html( $status ) );
+		return sprintf( '<span class="wkuvdesk-status %s">%s</span>', esc_attr( $class ), esc_html( $status ) );
 	}
 
 	/**
@@ -481,7 +606,7 @@ class WKUVDESK_Admin_Ticket extends \WP_List_Table {
 	 * @return mixed
 	 */
 	public function column_agent_name( $item ) {
-		$assign_agent  = '<select class="wk-sel-agent" data-id="' . esc_attr( isset( $item->id ) ? $item->id : '' ) . '">';
+		$assign_agent  = '<select class="wkuvdesk-agent" data-id="' . esc_attr( isset( $item->id ) ? $item->id : '' ) . '">';
 		$assign_agent .= '<option value="">' . esc_html__( 'Add agent', 'uvdesk' ) . '</option>';
 
 		foreach ( $this->data_api_members as $value ) {
@@ -514,7 +639,7 @@ class WKUVDESK_Admin_Ticket extends \WP_List_Table {
 				esc_url(
 					add_query_arg(
 						array(
-							'page'   => 'uvdesk_ticket_system',
+							'page'   => 'wkuvdesk_ticket_system',
 							'action' => 'view',
 							'post'   => isset( $item->incrementId ) ? $item->incrementId : '',
 						),
@@ -523,11 +648,11 @@ class WKUVDESK_Admin_Ticket extends \WP_List_Table {
 				)
 			),
 			'delete' => sprintf(
-				'<a href="%s" class="wk-delete-tkt-reply" data-id="' . ( isset( $item->id ) ? $item->id : '' ) . '" data-thread-id="' . ( isset( $item->thread_id ) ? $item->thread_id : '' ) . '">' . esc_html__( 'Delete', 'uvdesk' ) . '</a>',
+				'<a href="%s" class="wkuvdesk-delete-tkt-reply" data-id="' . ( isset( $item->id ) ? $item->id : '' ) . '" data-thread-id="' . ( isset( $item->thread_id ) ? $item->thread_id : '' ) . '">' . esc_html__( 'Delete', 'uvdesk' ) . '</a>',
 				esc_url(
 					add_query_arg(
 						array(
-							'page'   => 'uvdesk_ticket_system',
+							'page'   => 'wkuvdesk_ticket_system',
 							'action' => 'delete',
 							'post'   => isset( $item->id ) ? $item->id : '',
 						),
@@ -557,6 +682,7 @@ class WKUVDESK_Admin_Ticket extends \WP_List_Table {
 	 * Get hidden columns for the screen.
 	 *
 	 * @param string $screen_id Screen ID.
+	 *
 	 * @return array
 	 */
 	public function get_hidden_columns( $screen_id ) {
@@ -574,11 +700,12 @@ class WKUVDESK_Admin_Ticket extends \WP_List_Table {
 	 * Checkbox column.
 	 *
 	 * @param object $item Current item.
+	 *
 	 * @return string
 	 */
 	public function column_cb( $item ) {
 		return sprintf(
-			'<input type="checkbox" class="wk-check-tkt" id="post_%1$s" name="post[]" value="%2$s" />',
+			'<input type="checkbox" class="wkuvdesk-check-tkt" id="post_%1$s" name="post[]" value="%2$s" />',
 			esc_attr( $item->incrementId ?? '' ),
 			esc_attr( $item->id ?? '' )
 		);
@@ -588,6 +715,7 @@ class WKUVDESK_Admin_Ticket extends \WP_List_Table {
 	 * Starred column.
 	 *
 	 * @param object $item Current item.
+	 *
 	 * @return string
 	 */
 	public function column_starred( $item ) {
@@ -598,8 +726,8 @@ class WKUVDESK_Admin_Ticket extends \WP_List_Table {
 		return sprintf(
 			'<div>
 				<input type="radio" style="opacity: 0;">
-				<span class="uv-uvdesk-priority-check" style="background-color: %1$s"></span>
-				<span class="wk-starred-ico %2$s" data-id="%3$s" data-star-val="%4$s"></span>
+				<span class="wkuvdesk-priority-check" style="background-color: %1$s"></span>
+				<span class="wkuvdesk-starred-ico %2$s" data-id="%3$s" data-star-val="%4$s"></span>
 			</div>',
 			esc_attr( $item->priority->color ?? '' ),
 			esc_attr( $select ),
@@ -616,6 +744,7 @@ class WKUVDESK_Admin_Ticket extends \WP_List_Table {
 	 * @param string $name Dropdown name.
 	 * @param string $css_class CSS class.
 	 * @param string $placeholder Placeholder text.
+	 *
 	 * @return string
 	 */
 	public function render_agent_dropdown( $agents, $selected_agent = '', $name = '', $css_class = '', $placeholder = '' ) {
@@ -645,7 +774,7 @@ class WKUVDESK_Admin_Ticket extends \WP_List_Table {
 // Initialize the ticket object.
 $ticket_obj = new WKUVDESK_Admin_Ticket();
 ?>
-	<header style="display:inline-block">
+	<header class="wkuvdesk-header">
 		<h1 style="display:inline-block"><?php esc_html_e( 'Uvdesk Tickets List', 'uvdesk' ); ?></h1>
 		<?php
 		$data_api = Helper\WKUVDESK_Api_Handler::wkuvdesk_get_customer_data_api( 'tickets.json', array() );
@@ -656,138 +785,14 @@ $ticket_obj = new WKUVDESK_Admin_Ticket();
 
 		$customer_action = filter_input( INPUT_GET, 'custmr-action', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
 		if ( 'customer-tkt' === $customer_action ) {
-			echo '<a href="' . esc_url( admin_url( 'admin.php?page=uvdesk_ticket_system' ) ) . '" class="button button-primary wkuvdesk-back-to-list">' . esc_html__( 'All tickets', 'uvdesk' ) . '</a>';
+			echo '<a href="' . esc_url( admin_url( 'admin.php?page=wkuvdesk_ticket_system' ) ) . '" class="button button-primary wkuvdesk-back-to-list">' . esc_html__( 'All tickets', 'uvdesk' ) . '</a>';
 		}
 		?>
 	</header>
-	<div class="wk-uvdesk-container">
-		<?php
-		$msg = filter_input( INPUT_GET, 'msg', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
-		if ( 'deleted' === $msg ) {
-			echo '<div class="notice notice-success is-dismissible"><p>' . esc_html__( 'Ticket(s) deleted successfully.', 'uvdesk' ) . '</p></div>';
-		}
-		?>
-		<div>
-			<?php
-			$stat     = filter_input( INPUT_POST, 'check-status', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
-			$stat     = $stat ? $stat : 'all';
-			$priority = filter_input( INPUT_POST, 'check-priority', FILTER_SANITIZE_NUMBER_INT );
-			$priority = $priority ? $priority : '';
-			$agent    = filter_input( INPUT_POST, 'fil-agent', FILTER_SANITIZE_NUMBER_INT );
-			$agent    = $agent ? $agent : '';
-			?>
-			<form action="" method="POST">
-				<div class='wkuvdsk-list'>
-					<h2><?php esc_html_e( 'Search Filters', 'uvdesk' ); ?></h2>
-					<div class="wk-uvdesk-filter-class">
-					<!-- Existing filter dropdowns -->
-						<select name="check-status" class="uv-uvdesk-ewc-filter-cat">
-							<option value=""><?php esc_html_e( 'Filter by Status', 'uvdesk' ); ?></option>
-							<?php
-							$statuses = array(
-								1 => esc_html__( 'Open', 'uvdesk' ),
-								2 => esc_html__( 'Pending', 'uvdesk' ),
-								3 => esc_html__( 'Resolved', 'uvdesk' ),
-								4 => esc_html__( 'Closed', 'uvdesk' ),
-								5 => esc_html__( 'Spam', 'uvdesk' ),
-								6 => esc_html__( 'Answered', 'uvdesk' ),
-							);
-							foreach ( $statuses as $key => $label ) {
-								$selected = ( $stat === $key ) ? 'selected' : '';
-								echo '<option value="' . esc_attr( $key ) . '" ' . esc_attr( $selected ) . '>' . esc_html( $label ) . '</option>';
-							}
-							?>
-						</select>
-						<select name="check-priority" class="uv-uvdesk-ewc-filter-cat">
-							<option value=""><?php esc_html_e( 'Filter by Priority', 'uvdesk' ); ?></option>
-							<?php
-							$priorities = array(
-								1 => esc_html__( 'Low', 'uvdesk' ),
-								2 => esc_html__( 'Medium', 'uvdesk' ),
-								3 => esc_html__( 'High', 'uvdesk' ),
-								4 => esc_html__( 'Urgent', 'uvdesk' ),
-							);
-							foreach ( $priorities as $key => $label ) {
-								$selected = ( $priority === $key ) ? 'selected' : '';
-								echo '<option value="' . esc_attr( $key ) . '" ' . esc_attr( $selected ) . '>' . esc_html( $label ) . '</option>';
-							}
-							?>
-						</select>
-						<?php
-						$assign_agent  = "<select class='filter-agent' name='fil-agent'>";
-						$assign_agent .= "<option value=''>" . esc_html__( 'Filter Agent', 'uvdesk' ) . '</option>';
-						if ( isset( $ticket_obj->data_api_members ) ) {
-							foreach ( $ticket_obj->data_api_members as $value ) {
-								$selected      = ( isset( $agent ) && isset( $value->id ) && $agent === $value->id ) ? 'selected' : '';
-								$assign_agent .= sprintf( '<option value="%s" %s>%s</option>', isset( $value->id ) ? esc_attr( $value->id ) : '', isset( $value->id ) ? $selected : '', isset( $value->name ) ? esc_html( $value->name ) : '' );
-							}
-						}
-						$assign_agent .= '</select>';
-						echo wp_kses(
-							$assign_agent,
-							array(
-								'select' => array(
-									'name'  => true,
-									'class' => true,
-								),
-								'option' => array(
-									'value'    => true,
-									'selected' => true,
-								),
-							)
-						);
-						?>
-						<?php wp_nonce_field( 'wk_uvdesk_ticket_filter_action', 'wk_uvdesk_ticket_filter_nonce' ); ?>
-						<input type="submit" class="button button-primary" name="filter-submit" value="<?php esc_attr_e( 'Filter', 'uvdesk' ); ?>">
-						<!-- Add the Clear Filters button -->
-						<?php if ( filter_input( INPUT_GET, 'check-status', FILTER_SANITIZE_FULL_SPECIAL_CHARS ) || filter_input( INPUT_GET, 'check-priority', FILTER_SANITIZE_FULL_SPECIAL_CHARS ) || filter_input( INPUT_GET, 'fil-agent', FILTER_SANITIZE_FULL_SPECIAL_CHARS ) ) : ?>
-						<input type="button" class="button button-secondary" id="clear-filters" value="<?php esc_attr_e( 'Clear Filters', 'uvdesk' ); ?>">
-						<?php endif; ?>
-					</div>
-					<div class="wk-uvdesk-filter-class action-class">
-						<h2><?php esc_html_e( 'Bulk Filters', 'uvdesk' ); ?></h2>
-						<select name="change-status" class="uv-uvdesk-ewc-filter-cat">
-							<option value=""><?php esc_html_e( 'Change Status', 'uvdesk' ); ?></option>
-							<?php
-							foreach ( $statuses as $key => $label ) {
-								echo '<option value="' . esc_attr( $key ) . '">' . esc_html( $label ) . '</option>';
-							}
-							?>
-						</select>
-						<select name="change-priority" class="uv-uvdesk-ewc-filter-cat">
-							<option value=""><?php esc_html_e( 'Change Priority', 'uvdesk' ); ?></option>
-							<?php
-							foreach ( $priorities as $key => $label ) {
-								echo '<option value="' . esc_attr( $key ) . '">' . esc_html( $label ) . '</option>';
-							}
-							?>
-						</select>
-						<?php
-						$assign_agent  = "<select class='change-agent' name='change-agent'>";
-						$assign_agent .= "<option value=''>" . esc_html__( 'Assign Agent', 'uvdesk' ) . '</option>';
-						if ( isset( $ticket_obj->data_api_members ) && is_array( $ticket_obj->data_api_members ) ) {
-							foreach ( $ticket_obj->data_api_members as $value ) {
-								$assign_agent .= '<option value="' . esc_attr( $value->id ) . '">' . esc_html( $value->name ) . '</option>';
-							}
-						}
-						$assign_agent .= '</select>';
-						echo wp_kses(
-							$assign_agent,
-							array(
-								'select' => array(
-									'name'  => true,
-									'class' => true,
-								),
-								'option' => array( 'value' => true ),
-							)
-						);
-						?>
-						<input type="submit" class="button button-primary" name="apply-submit" value="<?php esc_attr_e( 'Apply', 'uvdesk' ); ?>">
-					</div>
-				</div>
-			</div>
+	<div class="wkuvdesk-container">
+		<form action="" method="post">
 			<div class="wrap">
-				<div class="uvuvdesk-pre-loader">
+				<div class="wkuvdesk-pre-loader">
 					<img alt="<?php esc_attr_e( 'Loading ...', 'uvdesk' ); ?>" />
 				</div>
 				<form id="tickets" method="get">

@@ -100,9 +100,9 @@ if ( ! class_exists( 'WKUVDESK_Customer_Create_Ticket' ) ) {
 										$ticket_status = Helper\WKUVDESK_Api_Handler::wkuvdesk_create_new_ticket( $post_data );
 										$ticket_status = json_decode( $ticket_status );
 										if ( isset( $ticket_status->message ) ) {
-											echo '<div class="alert alert-success alert-fixed">
+											echo '<div class="wkuvdesk-alert wkuvdesk-alert-success wkuvdesk-alert-fixed">
 										<span>
-										<span class="uv-uvdesk-remove-file alert-msg"></span>
+										<span class="wkuvdesk-remove-file wkuvdesk-alert-msg"></span>
 										' . esc_html( $ticket_status->message ) . '
 										</span>
 										</div>';
@@ -132,40 +132,26 @@ if ( ! class_exists( 'WKUVDESK_Customer_Create_Ticket' ) ) {
 											}
 
 											if ( isset( $ticket_status->success ) && ( 200 === $ticket_status->success ) ) {
-												echo '<div class="alert alert-success alert-fixed">
+												echo '<div class="wkuvdesk-alert wkuvdesk-alert-success wkuvdesk-alert-fixed">
 												<span>
-												<span class="uv-uvdesk-remove-file alert-msg"></span>
+												<span class="wkuvdesk-remove-file wkuvdesk-alert-msg"></span>
 												' . esc_html( $ticket_status->message ) . '
 												</span>
 												</div>';
-												?>
-												<script>
-												setTimeout(function() {
-													jQuery(".alert-fixed").fadeOut()
-												}, 4000);
-												</script>
-												<?php
 											} elseif ( isset( $ticket_status->error ) && ( 404 === $ticket_status->error || 500 === $ticket_status->error ) ) {
 												$error[] = $ticket_status->message;
 											}
 										} else {
-											echo '<div class="alert alert-success alert-fixed  ">
+											echo '<div class="wkuvdesk-alert wkuvdesk-alert-success wkuvdesk-alert-fixed  ">
 													<span>
-															<span class="uv-uvdesk-remove-file alert-msg"></span>
+															<span class="wkuvdesk-remove-file wkuvdesk-alert-msg"></span>
 															' . esc_html__( 'Please upload a valid file (PDF, DOC, DOCX, PNG, JPG, JPEG, GIF, ZIP, RAR) with maximum size of 20MB', 'uvdesk' ) .
 													'</span>
 											</div>';
-											?>
-											<script>
-											setTimeout(function() {
-													jQuery(".alert-fixed").fadeOut()
-											}, 4000);
-											</script>
-											<?php
 										}
 									}
 								} else {
-									echo '<div class="text-center uv-notify"><span class="alert alert-danger">' . esc_html__( 'There is some issue with user permission try again.', 'uvdesk' ) . '</span><div>';
+									echo '<div class="text-center uv-notify"><span class="wkuvdesk-alert wkuvdesk-alert-danger">' . esc_html__( 'There is some issue with user permission try again.', 'uvdesk' ) . '</span><div>';
 								}
 							} else {
 								$error[] = esc_html__( 'Some fields are empty.', 'uvdesk' );
@@ -174,16 +160,16 @@ if ( ! class_exists( 'WKUVDESK_Customer_Create_Ticket' ) ) {
 					}
 				}
 			} else {
-				echo '<h1 class="wk-uvdesk-pass-error">' . esc_html__( 'Please Enter a valid Access Token', 'uvdesk' ) . '</h1>';
+				echo '<h1 class="wkuvdesk-pass-error">' . esc_html__( 'Please Enter a valid Access Token', 'uvdesk' ) . '</h1>';
 			}
 			?>
 			<div class="main-body">
 				<div class="container">
 					<div class="title-uvdesk">
 							<h2><?php esc_html_e( 'Create a Ticket', 'uvdesk' ); ?></h2>
-							<a class="wk-uvdesk-to-home" href="<?php echo esc_url( site_url() . '/uvdesk/customer/' ); ?>"> <?php esc_html_e( 'Back', 'uvdesk' ); ?></a>
+							<a class="wkuvdesk-to-home" href="<?php echo esc_url( site_url() . '/uvdesk/customer/' ); ?>"> <?php esc_html_e( 'Back', 'uvdesk' ); ?></a>
 					</div>
-					<form name="" method="post" action="" enctype="multipart/form-data" novalidate="false" id="wk-uvdesk-create-ticket-form">
+					<form name="" method="post" action="" enctype="multipart/form-data" novalidate="false" id="wkuvdesk-create-ticket-form">
 						<?php wp_nonce_field( 'uvdesk_create_ticket_nonce_action', 'uvdesk_create_ticket_nonce' ); ?>
 						<div class="form-group ">
 							<label for="type"><?php esc_html_e( 'Type', 'uvdesk' ); ?></label>
@@ -200,17 +186,17 @@ if ( ! class_exists( 'WKUVDESK_Customer_Create_Ticket' ) ) {
 						</div>
 						<div class="form-group ">
 							<label for="reply"><?php esc_html_e( 'Message', 'uvdesk' ); ?></label>
-							<textarea class="wk-uvdesk-reply" id="reply" name="reply" required placeholder="<?php esc_attr_e( 'Brief Description about your query', 'uvdesk' ); ?>" data-iconlibrary="<?php esc_attr( 'fa' ); ?>" data-height="<?php esc_attr( '250' ); ?>" class="form-control"></textarea>
+							<textarea class="wkuvdesk-reply" id="reply" name="reply" required placeholder="<?php esc_attr_e( 'Brief Description about your query', 'uvdesk' ); ?>" data-iconlibrary="<?php esc_attr( 'fa' ); ?>" data-height="<?php esc_attr( '250' ); ?>" class="form-control"></textarea>
 							<span class="error-message" id="reply-error"></span>
 						</div>
 						<div class="form-group">
-							<div class="form-group wk-uvdesk-attachments">
+							<div class="form-group wkuvdesk-attachments">
 									<div class="labelWidget">
-										<input id="uv-uvdesk-attachments" class="fileHide" type="file" enableremoveoption="enableRemoveOption" decoratecss="<?php echo esc_attr( 'attach-file' ); ?>" decoratefile="<?php echo esc_attr( 'decorateFile' ); ?>" infolabeltext="<?php esc_attr_e( '+ Attach File', 'uvdesk' ); ?>" infolabel="right" name="attachments[]" onchange="document.getElementById('file-name').textContent = this.files[0].name">
+										<input id="wkuvdesk-attachments" class="fileHide" type="file" enableremoveoption="enableRemoveOption" decoratecss="<?php echo esc_attr( 'attach-file' ); ?>" decoratefile="<?php echo esc_attr( 'decorateFile' ); ?>" infolabeltext="<?php esc_attr_e( '+ Attach File', 'uvdesk' ); ?>" infolabel="right" name="attachments[]" onchange="document.getElementById('file-name').textContent = this.files[0].name">
 										<label class="attach-file pointer"></label>
-										<i class="uv-uvdesk-remove-file" id="remove-att"></i>
+										<i class="wkuvdesk-remove-file" id="remove-att"></i>
 									</div>
-									<span id="addFile" class="label-right pointer"><?php esc_html_e( 'Attach File', 'uvdesk' ); ?></span>
+									<span id="wkuvdesk-addFile" class="label-right pointer"><?php esc_html_e( 'Attach File', 'uvdesk' ); ?></span>
 									<span id="file-name"></span>
 									<span class="error-message" id="file-error"></span>
 							</div>
@@ -224,7 +210,7 @@ if ( ! class_exists( 'WKUVDESK_Customer_Create_Ticket' ) ) {
 							<?php
 							if ( ! empty( $error ) ) {
 								?>
-									<div class="uv-uvdesk-captcha-error">
+									<div class="wkuvdesk-captcha-error">
 												<?php
 												foreach ( $error as $err_mes ) {
 													echo wp_kses_post( $err_mes . '<br>' );
@@ -234,7 +220,7 @@ if ( ! class_exists( 'WKUVDESK_Customer_Create_Ticket' ) ) {
 								<?php
 							}
 							?>
-							<button type="submit" id="submit1" name="submit1" class="wk-uvdesk-btn-create-tkt"><?php esc_html_e( 'Create Ticket', 'uvdesk' ); ?></button>
+							<button type="submit" id="submit1" name="submit1" class="wkuvdesk-btn-create-tkt"><?php esc_html_e( 'Create Ticket', 'uvdesk' ); ?></button>
 					</form>
 				</div>
 			</div>

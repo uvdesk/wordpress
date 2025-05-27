@@ -54,7 +54,7 @@ if ( ! class_exists( 'WKUVDESK_Register' ) ) {
 			$uv         = new Helper\WKUVDESK_Protected();
 			$client_key = $uv->get_client_key();
 			?>
-			<div class="wk-uvdesk-signup-form">
+			<div class="wkuvdesk-signup-form">
 				<h1><?php esc_html_e( 'Sign Up', 'uvdesk' ); ?></h1>
 				<form method="POST" action="">
 					<?php wp_nonce_field( 'uvdesk_nonce', 'uvdesk_nonce' ); ?>
@@ -112,7 +112,7 @@ if ( ! class_exists( 'WKUVDESK_Register' ) ) {
 				$remote_addr = '';
 
 				if ( empty( $captcha ) ) {
-					echo '<span class="wk-uvdesk-pass-error">' . esc_html__( 'Please check the captcha form.', 'uvdesk' ) . '</span>';
+					echo '<span class="wkuvdesk-pass-error">' . esc_html__( 'Please check the captcha form.', 'uvdesk' ) . '</span>';
 					return;
 				}
 
@@ -124,7 +124,7 @@ if ( ! class_exists( 'WKUVDESK_Register' ) ) {
 				$response_data = json_decode( wp_remote_retrieve_body( $response ) );
 
 				if ( ! $response_data->success ) {
-					echo '<span class="wk-uvdesk-pass-error">' . esc_html__( 'Captcha error', 'uvdesk' ) . '</span>';
+					echo '<span class="wkuvdesk-pass-error">' . esc_html__( 'Captcha error', 'uvdesk' ) . '</span>';
 					return;
 				}
 
@@ -134,12 +134,12 @@ if ( ! class_exists( 'WKUVDESK_Register' ) ) {
 				$user_pass  = filter_input( INPUT_POST, 'user_pass', FILTER_SANITIZE_FULL_SPECIAL_CHARS ) ? sanitize_text_field( wp_unslash( filter_input( INPUT_POST, 'user_pass', FILTER_SANITIZE_FULL_SPECIAL_CHARS ) ) ) : '';
 
 				if ( empty( $user_name ) || empty( $user_email ) || ! is_email( $user_email ) || empty( $user_pass ) || strlen( $user_pass ) <= 8 ) {
-					echo '<span class="wk-uvdesk-pass-error">' . esc_html__( 'All fields are required and password must be at least 8 characters.', 'uvdesk' ) . '</span>';
+					echo '<span class="wkuvdesk-pass-error">' . esc_html__( 'All fields are required and password must be at least 8 characters.', 'uvdesk' ) . '</span>';
 					return;
 				}
 
 				if ( email_exists( $user_email ) ) {
-					echo '<span class="wk-uvdesk-pass-error">' . esc_html__( 'Email already exists.', 'uvdesk' ) . '</span>';
+					echo '<span class="wkuvdesk-pass-error">' . esc_html__( 'Email already exists.', 'uvdesk' ) . '</span>';
 					return;
 				}
 
@@ -154,7 +154,7 @@ if ( ! class_exists( 'WKUVDESK_Register' ) ) {
 
 				if ( ! is_wp_error( $new_user_id ) ) {
 					update_user_meta( $new_user_id, 'first_name', $user_name );
-					echo '<span class="wk-uvdesk-pass-succ">' . esc_html__( 'Registration user account created', 'uvdesk' ) . '</span>';
+					echo '<span class="wkuvdesk-pass-succ">' . esc_html__( 'Registration user account created', 'uvdesk' ) . '</span>';
 
 					$user = get_user_by( 'id', $new_user_id );
 					wp_set_current_user( $new_user_id, $user->user_login );
@@ -164,7 +164,7 @@ if ( ! class_exists( 'WKUVDESK_Register' ) ) {
 					wp_safe_redirect( site_url() . '/uvdesk/customer' );
 					exit;
 				} else {
-					echo '<span class="wk-uvdesk-pass-error">' . esc_html__( 'Registration failed. Please try again.', 'uvdesk' ) . '</span>';
+					echo '<span class="wkuvdesk-pass-error">' . esc_html__( 'Registration failed. Please try again.', 'uvdesk' ) . '</span>';
 				}
 			}
 		}

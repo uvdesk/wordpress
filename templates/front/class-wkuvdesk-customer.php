@@ -87,24 +87,24 @@ if ( ! class_exists( 'WKUVDESK_Customer' ) ) {
 				} else {
 					// Display the tickets.
 					?>
-			<div class="uv-uvdesk-block-container">
+			<div class="wkuvdesk-block-container">
 					<div class="customer-ticket-wrapper">
-						<a href="<?php echo esc_url( site_url() . '/uvdesk/customer/create-ticket' ); ?>" class="wk-uvdesk-create-ticket "><i class="fa fa-plus"></i> <?php esc_html_e( 'Create Ticket', 'uvdesk' ); ?></a>
+						<a href="<?php echo esc_url( site_url() . '/uvdesk/customer/create-ticket' ); ?>" class="wkuvdesk-create-ticket "><i class="fa fa-plus"></i> <?php esc_html_e( 'Create Ticket', 'uvdesk' ); ?></a>
 						<input type="hidden" value="<?php echo esc_attr( get_pagenum_link( 99999 ) ); ?>" id="page_link"/>
-							<div class="uv-uvdesk-filter-left">
+							<div class="wkuvdesk-filter-left">
 								<div>
-									<label id="filter-sel"><?php esc_html_e( 'Sort By - ', 'uvdesk' ); ?><span class="selected-option"><?php esc_html_e( 'Ticket Id', 'uvdesk' ); ?></span></label><span class="uv-uvdesk-down-up-arrow"></span>
-									<div class="uv-uvdesk-filter-view">
+									<label id="filter-sel"><?php esc_html_e( 'Sort By - ', 'uvdesk' ); ?><span class="selected-option"><?php esc_html_e( 'Ticket Id', 'uvdesk' ); ?></span></label><span class="wkuvdesk-down-up-arrow"></span>
+									<div class="wkuvdesk-filter-view">
 										<li data-value="t.id" data-order="desc" class="filter-by-id"><?php esc_html_e( 'Ticket Id', 'uvdesk' ); ?></li>
 										<li data-value="name" data-order="<?php echo esc_attr( 'desc' ); ?>" class="filter-by-agent"><?php esc_html_e( 'Agent Name', 'uvdesk' ); ?></li>
 									</div>
 								</div>
 							</div>
-							<div class="uvuvdesk-pre-loader">
-								<img class="uv-uvdesk-ajax-loader-img" <?php echo wp_kses_post( Includes\WKUVDESK::wkuvdesk_convert_attributes_to_html( array() ) ); ?>  alt="<?php esc_attr_e( 'Loading...', 'uvdesk' ); ?>" />
+							<div class="wkuvdesk-pre-loader">
+								<img class="wkuvdesk-ajax-loader-img" <?php echo wp_kses_post( Includes\WKUVDESK::wkuvdesk_convert_attributes_to_html( array() ) ); ?>  alt="<?php esc_attr_e( 'Loading...', 'uvdesk' ); ?>" />
 							</div>
 					</div>
-					<div class="tab-listing" id="uv-uvdesk-tab-id-filter">
+					<div class="tab-listing" id="wkuvdesk-tab-id-filter">
 						<ul>
 							<li data-value="1" class="tab-active"><?php esc_html_e( 'Open', 'uvdesk' ); ?> </li>
 							<li name="hi" data-value="2"><?php esc_html_e( 'Pending', 'uvdesk' ); ?></li>
@@ -118,7 +118,7 @@ if ( ! class_exists( 'WKUVDESK_Customer' ) ) {
 							<input class="search-bar" type='text' id="search-key" name='search' value="<?php echo esc_attr( $ser_txt ); ?>" placeholder="<?php esc_attr_e( 'Search', 'uvdesk' ); ?>" />
 						</form>
 					</div>
-					<div class="uv-uvdesk-customer-ticket-section">
+					<div class="wkuvdesk-customer-ticket-section">
 						<div class="tabs-table">
 						<div class="table-container" id="ticket-table">
 							<table class="table">
@@ -137,7 +137,7 @@ if ( ! class_exists( 'WKUVDESK_Customer' ) ) {
 										?>
 										<tr data-toggle="tooltip" data-placement="<?php echo esc_attr( 'left' ); ?>" title="" class="Open 1 unread" data-original-title="<?php echo esc_attr( 'Open' ); ?>" >
 												<td class="check-col">
-													<span class="uv-uvdesk-priority-check" style="<?php echo esc_attr( 'background-color:' . $ticket_value->priority->color ); ?>"></span>
+													<span class="wkuvdesk-priority-check" style="<?php echo esc_attr( 'background-color:' . $ticket_value->priority->color ); ?>"></span>
 												</td>
 												<td class="id-col" >
 													<a href="<?php echo esc_url( site_url() . '/uvdesk/customer/ticket/view/' . $ticket_value->incrementId ); ?>">

@@ -78,7 +78,7 @@ if ( ! class_exists( 'WKUVDESK' ) ) {
 				$spinner_url = admin_url( 'images/spinner-2x.gif' );
 				$attributes  = array(
 					'src'   => $spinner_url,
-					'class' => 'uv-uvdesk-ajax-loader-img',
+					'class' => 'wkuvdesk-ajax-loader-img',
 					'alt'   => esc_html__( 'Loading...', 'uvdesk' ),
 				);
 			} else {

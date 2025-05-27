@@ -110,11 +110,11 @@ if ( ! class_exists( 'WKUVDESK_Front_Function' ) ) {
 					'remember'       => true,
 				);
 
-				$output = '<div class="wk-uvdesk-login-form">';
+				$output = '<div class="wkuvdesk-login-form">';
 
 				$output .= '<h1>' . esc_html__( 'Member Login', 'uvdesk' ) . '</h1>';
 				if ( 'failed' === filter_input( INPUT_GET, 'login', FILTER_SANITIZE_FULL_SPECIAL_CHARS ) ) {
-					$output .= '<div class="text-center wk-uvdesk-pass-error"><span>' . esc_html__( 'Invalid details- please enter valid details.', 'uvdesk' ) . '</span></div>';
+					$output .= '<div class="text-center wkuvdesk-pass-error"><span>' . esc_html__( 'Invalid details- please enter valid details.', 'uvdesk' ) . '</span></div>';
 				}
 				$output .= '<div class="head"><img ' . wp_kses_post( Includes\WKUVDESK::wkuvdesk_convert_attributes_to_html( WKUVDESK_PLUGIN_URL . 'assets/images/user.png' ) ) . '" alt="' . esc_attr__( 'User', 'uvdesk' ) . '"/></div>';
 				ob_start();
@@ -194,7 +194,7 @@ if ( ! class_exists( 'WKUVDESK_Front_Function' ) ) {
 				echo wp_kses( $output, $allowed_html );
 			} else {
 				$user_id = get_current_user_id();
-				$url     = ( 1 === $user_id ) ? admin_url( 'admin.php?page=uvdesk_ticket_system' ) : home_url( '/uvdesk/customer' );
+				$url     = ( 1 === $user_id ) ? admin_url( 'admin.php?page=wkuvdesk_ticket_system' ) : home_url( '/uvdesk/customer' );
 
 				wp_safe_redirect( esc_url( $url ) );
 				exit;
@@ -225,14 +225,14 @@ if ( ! class_exists( 'WKUVDESK_Front_Function' ) ) {
 			$main_page = ! empty( $wp_query->get( 'main_page' ) ) ? $wp_query->get( 'main_page' ) : $wp_query->get( 'name' );
 
 			if ( is_page( 'uvdesk' ) && 'login' === $main_page && is_user_logged_in() ) {
-				$url = ( 1 === get_current_user_id() ) ? admin_url( 'admin.php?page=uvdesk_ticket_system' ) : home_url( '/uvdesk/customer' );
+				$url = ( 1 === get_current_user_id() ) ? admin_url( 'admin.php?page=wkuvdesk_ticket_system' ) : home_url( '/uvdesk/customer' );
 				wp_safe_redirect( esc_url( $url ) );
 				exit();
 			}
 
 			if ( is_page( 'uvdesk' ) && 'customer' === $main_page && is_user_logged_in() ) {
 				if ( 1 === get_current_user_id() ) {
-					wp_safe_redirect( esc_url( admin_url( 'admin.php?page=uvdesk_ticket_system' ) ) );
+					wp_safe_redirect( esc_url( admin_url( 'admin.php?page=wkuvdesk_ticket_system' ) ) );
 					exit();
 				}
 			} elseif ( is_page( 'uvdesk' ) && 'admin' === $main_page && is_user_logged_in() ) {
@@ -274,6 +274,7 @@ if ( ! class_exists( 'WKUVDESK_Front_Function' ) ) {
 			$uvdesk_access_token = get_option( 'uvdesk_access_token', '' );
 			$company_domain      = get_option( 'uvdesk_company_domain', '' );
 			$error               = array();
+			$value_css           = '';
 
 			if ( ! empty( $uvdesk_access_token ) && ! empty( $company_domain ) ) {
 				if ( null !== filter_input( INPUT_POST, 'submit1', FILTER_SANITIZE_FULL_SPECIAL_CHARS ) && filter_input( INPUT_POST, 'submit1', FILTER_SANITIZE_FULL_SPECIAL_CHARS ) ) {
@@ -285,11 +286,7 @@ if ( ! class_exists( 'WKUVDESK_Front_Function' ) ) {
 					$response_body = wp_remote_retrieve_body( $response );
 					$response_data = json_decode( $response_body );
 					if ( false === $response_data->success ) {
-						?>
-						<script>
-						jQuery(".uv-uvdesk-captcha-error").css('display','block');
-						</script>
-						<?php
+						$value_css = 'style="display:block"';
 					}
 
 					if ( null !== filter_input( INPUT_POST, 'uvdesk_create_ticket_nonce', FILTER_SANITIZE_FULL_SPECIAL_CHARS ) ) {
@@ -313,15 +310,8 @@ if ( ! class_exists( 'WKUVDESK_Front_Function' ) ) {
 										$ticket_status = Helper\WKUVDESK_Api_Handler::wkuvdesk_create_new_ticket( $_post_data );
 										$ticket_status = json_decode( $ticket_status );
 										if ( isset( $ticket_status->message ) ) {
-											echo '<div class="alert alert-success alert-fixed alert-load">
-										<span>	<span class="uv-uvdesk-remove-file alert-msg"></span>' . esc_attr( $ticket_status->message ) . '</span></div>';
-											?>
-										<script>
-										setTimeout(function() {
-											jQuery(".alert-fixed").fadeOut()
-										}, 4000);
-										</script>
-											<?php
+											echo '<div class="wkuvdesk-alert wkuvdesk-alert-success wkuvdesk-alert-fixed wkuvdesk-alert-load">
+										<span>	<span class="wkuvdesk-remove-file wkuvdesk-alert-msg"></span>' . esc_attr( $ticket_status->message ) . '</span></div>';
 										} elseif ( isset( $ticket_status->error ) ) {
 												$error[] .= $ticket_status->error;
 										}
@@ -343,43 +333,28 @@ if ( ! class_exists( 'WKUVDESK_Front_Function' ) ) {
 
 												$ticket_status = json_decode( $ticket_status );
 												if ( isset( $ticket_status->success ) && ( 200 === $ticket_status->success ) ) {
-													echo '<div class="alert alert-success alert-fixed alert-load">
+													echo '<div class="wkuvdesk-alert wkuvdesk-alert-success wkuvdesk-alert-fixed wkuvdesk-alert-load">
 												<span>
-												<span class="uv-uvdesk-remove-file alert-msg"></span>
+												<span class="wkuvdesk-remove-file wkuvdesk-alert-msg"></span>
 												' . esc_html( $ticket_status->message ) . '
 												</span>
 												</div>';
-													?>
-												<script>
-												setTimeout(function() {
-													jQuery(".alert-fixed").fadeOut()
-												}, 4000);
-												</script>
-													<?php
 												} elseif ( isset( $ticket_status->error ) && ( 404 === $ticket_status->error ) ) {
 														$error[] = $ticket_status->message;
 												} else {
 													$error[] = $ticket_status->message;
 												}
 											} else {
-												echo '<div class="alert alert-success alert-fixed alert-load">
+												echo '<div class="wkuvdesk-alert wkuvdesk-alert-success wkuvdesk-alert-fixed wkuvdesk-alert-load">
 														<span>
-															<span class="uv-uvdesk-remove-file alert-msg"></span>
+															<span class="wkuvdesk-remove-file wkuvdesk-alert-msg"></span>
 															' . esc_html__( 'Please insert a valid image.', 'uvdesk' ) . '
 														</span>
 													  </div>';
-												?>
-											<script>
-											setTimeout(function() {
-													jQuery(".alert-fixed").fadeOut()
-											}, 4000);
-											</script>
-
-												<?php
 											}
 									}
 								} else {
-									echo '<div class="text-center uv-notify"><span class="alert alert-danger">' . esc_html__( 'There is some issue with user permission try again.', 'uvdesk' ) . '</span><div>';
+									echo '<div class="text-center uv-notify"><span class="wkuvdesk-alert wkuvdesk-alert-danger">' . esc_html__( 'There is some issue with user permission try again.', 'uvdesk' ) . '</span><div>';
 								}
 						} else {
 							$error[] = esc_html__( 'Some fields are empty.', 'uvdesk' );
@@ -392,19 +367,14 @@ if ( ! class_exists( 'WKUVDESK_Front_Function' ) ) {
 
 			if ( ! empty( $error ) ) {
 				?>
-			<div class="alert alert-success alert-fixed alr-err alert-load"><?php esc_html_e( 'uvdesk', 'uvdesk' ); ?>
+			<div class="wkuvdesk-alert wkuvdesk-alert-success wkuvdesk-alert-fixed alr-err wkuvdesk-alert-load"><?php esc_html_e( 'uvdesk', 'uvdesk' ); ?>
 				<span>
-					<span class="uv-uvdesk-remove-file alert-msg"></span>
+					<span class="wkuvdesk-remove-file wkuvdesk-alert-msg"></span>
 						<?php
 						foreach ( $error as $sno => $err_mes ) {
 							echo esc_html( $err_mes ) . '<br>';
 						}
 						?>
-						<script>
-						setTimeout(function() {
-								jQuery(".alert-fixed").fadeOut()
-						}, 4000);
-						</script>
 				</span>
 			</div>
 				<?php
@@ -414,9 +384,9 @@ if ( ! class_exists( 'WKUVDESK_Front_Function' ) ) {
 				<div class="container">
 					<div class="title-uvdesk">
 						<h2><?php esc_html_e( 'Create a Ticket', 'uvdesk' ); ?></h2>
-						<a class="wk-uvdesk-to-home" href="<?php echo esc_url( site_url() . '/uvdesk/customer/' ); ?>"><?php esc_html_e( 'Back', 'uvdesk' ); ?></a>
+						<a class="wkuvdesk-to-home" href="<?php echo esc_url( site_url() . '/uvdesk/customer/' ); ?>"><?php esc_html_e( 'Back', 'uvdesk' ); ?></a>
 					</div>
-					<form name="" method="post" action="" enctype="multipart/form-data" novalidate="false" id="wk-uvdesk-create-ticket-form">
+					<form name="" method="post" action="" enctype="multipart/form-data" novalidate="false" id="wkuvdesk-create-ticket-form">
 					<?php wp_nonce_field( 'uvdesk_create_ticket_nonce_action', 'uvdesk_create_ticket_nonce' ); ?>
 						<div class="form-group ">
 							<label for="type" ><?php esc_html_e( 'Type', 'uvdesk' ); ?></label>
@@ -434,13 +404,13 @@ if ( ! class_exists( 'WKUVDESK_Front_Function' ) ) {
 							<textarea id="reply" name="reply" required placeholder="<?php esc_attr_e( 'Brief Description about your query', 'uvdesk' ); ?>" data-iconlibrary="<?php echo esc_attr( 'fa' ); ?>" data-height="<?php echo esc_attr( '250' ); ?>" class="form-control"></textarea>
 						</div>
 						<div class="form-group ">
-							<div class="form-group wk-uvdesk-attachments">
+							<div class="form-group wkuvdesk-attachments">
 								<div class="labelWidget">
-									<input id="uv-uvdesk-attachments" class="fileHide" type="file" enableremoveoption="enableRemoveOption" decoratecss="attach-file" decoratefile="decorateFile" infolabeltext="<?php esc_attr_e( '+ Attach File', 'uvdesk' ); ?>" infolabel="<?php echo esc_attr( 'right' ); ?>" name="attachments[]">
+									<input id="wkuvdesk-attachments" class="fileHide" type="file" enableremoveoption="enableRemoveOption" decoratecss="attach-file" decoratefile="decorateFile" infolabeltext="<?php esc_attr_e( '+ Attach File', 'uvdesk' ); ?>" infolabel="<?php echo esc_attr( 'right' ); ?>" name="attachments[]">
 									<label class="attach-file pointer"></label>
-									<i class="uv-uvdesk-remove-file" id="remove-att"></i>
+									<i class="wkuvdesk-remove-file" id="remove-att"></i>
 								</div>
-								<span id="addFile" class="label-right pointer"><?php esc_html_e( 'Attach File', 'uvdesk' ); ?></span>
+								<span id="wkuvdesk-addFile" class="label-right pointer"><?php esc_html_e( 'Attach File', 'uvdesk' ); ?></span>
 							</div>
 						</div>
 						<input type="hidden" id="_token" name="_token" value="<?php echo esc_attr( 'eJPW5s_yBH1S6iTM1eLI18Kdb304tl-IwIqE0ktJTd8' ); ?>">
@@ -448,8 +418,8 @@ if ( ! class_exists( 'WKUVDESK_Front_Function' ) ) {
 						$client_key = empty( $client_key ) ? esc_html__( 'Check for client Keys', 'uvdesk' ) : $client_key;
 						?>
 						<div class="g-recaptcha" id="recaptcha" data-sitekey="<?php echo esc_attr( $client_key ); ?>" style="transform:scale(0.77);transform-origin:0;-webkit-transform:scale(0.77);transform:scale(0.77);-webkit-transform-origin:0 0;transform-origin:0 0;"></div>
-						<div class="uv-uvdesk-captcha-error"><?php esc_html_e( 'Please verify that you are not a robot.', 'uvdesk' ); ?></div>
-						<button type="submit" id="submit1" name="submit1" class="wk-uvdesk-btn-create-tkt"><?php esc_html_e( 'Create Ticket', 'uvdesk' ); ?></button>
+						<div class="wkuvdesk-captcha-error" <?php echo esc_attr( $value_css ); ?>><?php esc_html_e( 'Please verify that you are not a robot.', 'uvdesk' ); ?></div>
+						<button type="submit" id="submit1" name="submit1" class="wkuvdesk-btn-create-tkt"><?php esc_html_e( 'Create Ticket', 'uvdesk' ); ?></button>
 					</form>
 				</div>
 			</div>
@@ -573,21 +543,12 @@ if ( ! class_exists( 'WKUVDESK_Front_Function' ) ) {
 							}
 
 								$thread_status = json_decode( $thread_status );
-								echo '<div class="alert alert-success alert-fixed alert-load">
+								echo '<div class="wkuvdesk-alert wkuvdesk-alert-success wkuvdesk-alert-fixed wkuvdesk-alert-load">
 									 <span>
-											 <span class="uv-uvdesk-remove-file alert-msg"></span>
+											 <span class="wkuvdesk-remove-file wkuvdesk-alert-msg"></span>
 											 ' . esc_html( $thread_status->message ) . '
 									 </span>
 							 </div>';
-							?>
-							<script>
-							setTimeout(
-							function() {
-									jQuery(".alert-fixed").fadeOut()
-							}
-							, 4000);
-							</script>
-								<?php
 						}
 					}
 				}
@@ -619,8 +580,8 @@ if ( ! class_exists( 'WKUVDESK_Front_Function' ) ) {
 
 					$ticket_thread = Helper\WKUVDESK_Api_Handler::wkuvdesk_get_customer_data_api( 'ticket/' . $ticket_details->ticket->id . '/trash.json' );
 					?>
-			<div class="uv-uvdesk-block-container wk-uvdesk-content-wrap">
-				<div class="uvuvdesk-pre-loader">
+			<div class="wkuvdesk-block-container wkuvdesk-content-wrap">
+				<div class="wkuvdesk-pre-loader">
 					<?php
 					echo '<img ' . wp_kses( Includes\WKUVDESK::wkuvdesk_convert_attributes_to_html( array() ), $allowed_html ) . ' alt="' . esc_attr_e( 'Loading...', 'uvdesk' ) . '" />';
 					?>
@@ -654,7 +615,7 @@ if ( ! class_exists( 'WKUVDESK_Front_Function' ) ) {
 						<?php if ( ! empty( $ticket_details->ticket->priority->name ) ) : ?>
 					<span>
 						<span class="side-title"><?php esc_html_e( 'Priority', 'uvdesk' ); ?> </span>
-						<span class="side-info"><b class="uv-uvdesk-priority-check" style="<?php echo esc_attr( 'background-color:' . $ticket_details->ticket->priority->color ); ?>"></b><?php echo esc_html( $ticket_details->ticket->priority->name ); ?></span>
+						<span class="side-info"><b class="wkuvdesk-priority-check" style="<?php echo esc_attr( 'background-color:' . $ticket_details->ticket->priority->color ); ?>"></b><?php echo esc_html( $ticket_details->ticket->priority->name ); ?></span>
 					</span>
 						<?php endif; ?>
 					<span>
@@ -665,16 +626,16 @@ if ( ! class_exists( 'WKUVDESK_Front_Function' ) ) {
 				<div class="whole-wrapper">
 						<div class="tkt-front-intro">
 							<div style="display:inline-block;margin:10px 20px;">
-								<span class="wk-highlight" ><?php esc_html_e( 'Subject :- ', 'uvdesk' ); ?></span>
+								<span class="wkuvdesk-highlight" ><?php esc_html_e( 'Subject :- ', 'uvdesk' ); ?></span>
 								<h4 class="tkt-subject">
 									<?php echo esc_html( $ticket_details->ticket->subject ); ?>
 								</h4>
 								<p>
-									<span class="wk-space">
-										<span class="wk-highlight"><?php esc_html_e( 'Created on - ', 'uvdesk' ); ?></span><?php echo esc_html( $ticket_details->ticket->formatedCreatedAt ); ?>
+									<span class="wkuvdesk-space">
+										<span class="wkuvdesk-highlight"><?php esc_html_e( 'Created on - ', 'uvdesk' ); ?></span><?php echo esc_html( $ticket_details->ticket->formatedCreatedAt ); ?>
 									</span>
-									<span class="wk-space">
-										<span class="wk-highlight"><?php esc_html_e( 'Agent - ', 'uvdesk' ); ?></span>
+									<span class="wkuvdesk-space">
+										<span class="wkuvdesk-highlight"><?php esc_html_e( 'Agent - ', 'uvdesk' ); ?></span>
 										<?php
 										$agent_name = ! empty( $ticket_details->ticket->agent->detail->name ) ?
 														esc_html( $ticket_details->ticket->agent->detail->name ) :
@@ -742,14 +703,14 @@ if ( ! class_exists( 'WKUVDESK_Front_Function' ) ) {
 													$attach_url = 'https://' . esc_attr( $domain ) . '.uvdesk.com/en/api/ticket/attachment/' . esc_attr( $aid ) . '.json?access_token=' . esc_attr( $access_token );
 													?>
 													<a href="<?php echo esc_url( $attach_url ); ?>" target="_blank">
-														<i class="wk-file-zip" title="<?php echo esc_attr( $anamea ); ?>" data-toggle="<?php echo esc_attr( 'tooltip' ); ?>" data-original-title="<?php echo esc_attr( $attchment_value->name ); ?>"></i>
+														<i class="wkuvdesk-file-zip" title="<?php echo esc_attr( $anamea ); ?>" data-toggle="<?php echo esc_attr( 'tooltip' ); ?>" data-original-title="<?php echo esc_attr( $attchment_value->name ); ?>"></i>
 													</a>
 														<?php
 												} else {
 													$attach_url = 'https://' . esc_attr( $domain ) . '.uvdesk.com/en/api/ticket/attachment/' . esc_attr( $aid ) . '.json?access_token=' . esc_attr( $access_token );
 													?>
 													<a href="<?php echo esc_url( $attach_url ); ?>" target="_blank">
-														<i class="wk-file" title="<?php echo esc_attr( $anamea ); ?>" data-toggle="<?php echo esc_attr( 'tooltip' ); ?>" data-original-title="<?php echo esc_attr( $attchment_value->name ); ?>">
+														<i class="wkuvdesk-file" title="<?php echo esc_attr( $anamea ); ?>" data-toggle="<?php echo esc_attr( 'tooltip' ); ?>" data-original-title="<?php echo esc_attr( $attchment_value->name ); ?>">
 														</i>
 													</a>
 													<?php
@@ -772,7 +733,7 @@ if ( ! class_exists( 'WKUVDESK_Front_Function' ) ) {
 							<div style="position:relative;" id="ajax-load-page">
 								<span class="pagination-space"  data-page="<?php echo esc_attr( $ticket_details->ticket->id . '-' . $ticket_thread->pagination->current ); ?>"><?php echo esc_html( $tot_post - $last_count ); ?></span>
 							</div>
-							<div id="uv-desk-content-here-aj"></div>
+							<div id="wkuvdesk-content-here-aj"></div>
 							<hr>
 							<?php
 						}
@@ -842,7 +803,7 @@ if ( ! class_exists( 'WKUVDESK_Front_Function' ) ) {
 																	$attach_url = 'https://' . esc_attr( $domain ) . '.uvdesk.com/en/api/ticket/attachment/' . esc_attr( $aid ) . '.json?access_token=' . esc_attr( $access_token );
 																	?>
 																	<a href="<?php echo esc_url( $attach_url ); ?>" target="_blank">
-																		<i class="wk-file-zip" title="<?php echo esc_attr( $anamea ); ?>" data-toggle="<?php echo esc_attr( 'tooltip' ); ?>" data-original-title="<?php echo esc_attr( $attchment_value->name ); ?>">
+																		<i class="wkuvdesk-file-zip" title="<?php echo esc_attr( $anamea ); ?>" data-toggle="<?php echo esc_attr( 'tooltip' ); ?>" data-original-title="<?php echo esc_attr( $attchment_value->name ); ?>">
 																		</i>
 																	</a>
 																		<?php
@@ -850,7 +811,7 @@ if ( ! class_exists( 'WKUVDESK_Front_Function' ) ) {
 																	$attach_url = 'https://' . esc_attr( $domain ) . '.uvdesk.com/en/api/ticket/attachment/' . esc_attr( $aid ) . '.json?access_token=' . esc_attr( $access_token );
 																	?>
 																		<a href="<?php echo esc_url( $attach_url ); ?>" target="_blank">
-																			<i class="wk-file" title="<?php echo esc_attr( $anamea ); ?>" data-toggle="<?php echo esc_attr( 'tooltip' ); ?>" data-original-title="<?php echo esc_attr( $attchment_value->name ); ?>"></i>
+																			<i class="wkuvdesk-file" title="<?php echo esc_attr( $anamea ); ?>" data-toggle="<?php echo esc_attr( 'tooltip' ); ?>" data-original-title="<?php echo esc_attr( $attchment_value->name ); ?>"></i>
 																		</a>
 																	<?php
 																}
@@ -901,13 +862,13 @@ if ( ! class_exists( 'WKUVDESK_Front_Function' ) ) {
 									echo wp_kses_post( wp_editor( '', 'product_desc', $settings ) );
 
 									?>
-									<div class="form-group wk-uvdesk-attachments">
+									<div class="form-group wkuvdesk-attachments">
 											<div class="labelWidget">
-													<input id="uv-uvdesk-attachments" class="fileHide" type="file" enableremoveoption="<?php echo esc_attr( 'enableRemoveOption' ); ?>" decoratecss="<?php echo esc_attr( 'attach-file' ); ?>" decoratefile="<?php echo esc_attr( 'decorateFile' ); ?>" infolabeltext="<?php esc_attr_e( '+ Attach File', 'uvdesk' ); ?>" infolabel="right" name="attachments[]">
+													<input id="wkuvdesk-attachments" class="fileHide" type="file" enableremoveoption="<?php echo esc_attr( 'enableRemoveOption' ); ?>" decoratecss="<?php echo esc_attr( 'attach-file' ); ?>" decoratefile="<?php echo esc_attr( 'decorateFile' ); ?>" infolabeltext="<?php esc_attr_e( '+ Attach File', 'uvdesk' ); ?>" infolabel="right" name="attachments[]">
 													<label class="attach-file pointer"></label>
-													<i class="uv-uvdesk-remove-file" id="remove-att"></i>
+													<i class="wkuvdesk-remove-file" id="remove-att"></i>
 											</div>
-											<span id="addFile" class="label-right pointer"><?php esc_html_e( 'Attach File', 'uvdesk' ); ?></span>
+											<span id="wkuvdesk-addFile" class="label-right pointer"><?php esc_html_e( 'Attach File', 'uvdesk' ); ?></span>
 									</div>
 									<div class="reply-submit">
 											<button class="submit-rply" type="submit" name="submit-thread" value="submit-thread">
