@@ -269,7 +269,7 @@ if ( ! class_exists( 'WKUVDESK_Api_Handler' ) ) {
 			$data = wp_json_encode( $thread_param );
 			$url  = 'https://' . $domain . '.uvdesk.com/en/api/' . $thread_url_param;
 
-			// Initialize cURL request.
+			// Initialize wp remote request.
 			$response = wp_remote_post(
 				$url,
 				array(
@@ -409,7 +409,7 @@ if ( ! class_exists( 'WKUVDESK_Api_Handler' ) ) {
 				'Content-Type'  => 'multipart/form-data; boundary=' . $mime_boundary,
 			);
 
-			// Use WordPress HTTP API with more cURL-like configuration.
+			// Use WordPress HTTP API configuration.
 			$args = array(
 				'method'    => 'POST',
 				'headers'   => $headers,
@@ -420,7 +420,7 @@ if ( ! class_exists( 'WKUVDESK_Api_Handler' ) ) {
 
 			$response = wp_remote_post( $url, $args );
 
-			// Handle response similar to cURL.
+			// Handle response similar to wp_remote_post.
 			if ( is_wp_error( $response ) ) {
 				return 'Error: ' . $response->get_error_message();
 			}

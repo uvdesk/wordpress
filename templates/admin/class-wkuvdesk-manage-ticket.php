@@ -264,7 +264,7 @@ if ( ! class_exists( 'WKUVDESK_Manage_Ticket' ) ) {
 									<select class="wkuvdesk-agent" data-id="<?php echo isset( $ticket_details->ticket->id ) ? esc_attr( $ticket_details->ticket->id ) : ''; ?>">
 										<option value=""><?php esc_html_e( 'Add agent', 'uvdesk' ); ?></option>
 										<?php
-										foreach ( $data_api_members as $key => $value ) {
+										foreach ( $data_api_members as $value ) {
 											$select = ( $tkt_agent === $value->name ) ? esc_attr( 'selected' ) : '';
 											echo( "<option value='" . esc_attr( $value->id ) . "' " . esc_attr( $select ) . '>' . esc_html( $value->name ) . '</option>' );
 										}
@@ -408,7 +408,7 @@ if ( ! class_exists( 'WKUVDESK_Manage_Ticket' ) ) {
 												<div class="attachments">
 													<h4><strong> <?php esc_html_e( 'Uploaded files', 'uvdesk' ); ?> </strong></h4>
 														<?php
-														foreach ( $thread_value->attachments as $attchment_key => $attchment_value ) :
+														foreach ( $thread_value->attachments as $attchment_value ) :
 															$aid          = $attchment_value->id;
 															$domain       = get_option( 'uvdesk_company_domain', '' );
 															$access_token = get_option( 'uvdesk_access_token', '' );
@@ -518,7 +518,7 @@ if ( ! class_exists( 'WKUVDESK_Manage_Ticket' ) ) {
 					</div>
 				</div>
 			</div>
-			<div class="uv-tk-manage-sidebar">
+			<div class="wkuvdesk-tk-manage-sidebar">
 				<div class="wkuvdesk-cards tkt-replay wkuvdesk-ml-0">
 					<h2><?php esc_html_e( 'Customer', 'uvdesk' ); ?></h2>
 						<?php

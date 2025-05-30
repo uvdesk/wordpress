@@ -371,7 +371,7 @@ if ( ! class_exists( 'WKUVDESK_Front_Function' ) ) {
 				<span>
 					<span class="wkuvdesk-remove-file wkuvdesk-alert-msg"></span>
 						<?php
-						foreach ( $error as $sno => $err_mes ) {
+						foreach ( $error as $err_mes ) {
 							echo esc_html( $err_mes ) . '<br>';
 						}
 						?>
