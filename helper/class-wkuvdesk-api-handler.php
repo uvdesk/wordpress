@@ -23,6 +23,59 @@ if ( ! class_exists( 'WKUVDESK_Api_Handler' ) ) {
 		public static $timeout = 45;
 
 		/**
+		 * Check rate limit for API requests.
+		 *
+		 * @return void
+		 */
+		private static function check_rate_limit() {
+			// Get and validate the client's IP address using REMOTE_ADDR.
+			if ( function_exists( 'wp_get_client_ip' ) ) {
+				$ip = wp_get_client_ip();
+			} else {
+				// Fallback with proper handling for proxies and validation.
+				$ip      = '';
+				$headers = array( 'HTTP_CLIENT_IP', 'HTTP_X_FORWARDED_FOR', 'REMOTE_ADDR' );
+				foreach ( $headers as $header ) {
+					if ( ! empty( $_SERVER[ $header ] ) ) {
+						$tmp_ip = filter_var( wp_unslash( $_SERVER[ $header ] ), FILTER_VALIDATE_IP );
+						if ( $tmp_ip ) {
+							$ip = $tmp_ip;
+							break;
+						}
+					}
+				}
+			}
+
+			// Handle invalid IP addresses.
+			if ( ! $ip ) {
+				wp_send_json_error(
+					array( 'message' => esc_html__( 'Invalid IP address.', 'uvdesk' ) ),
+					400
+				);
+				exit;
+			}
+
+			// Generate a transient key based on the validated IP.
+			$transient_key = 'uvdesk_rate_limit_' . sanitize_key( $ip );
+			$current       = get_transient( $transient_key );
+
+			if ( false === $current ) {
+				$current = 1;
+				set_transient( $transient_key, $current, MINUTE_IN_SECONDS );
+			} else {
+				++$current;
+				if ( $current > 100 ) {
+					wp_send_json_error(
+						array( 'message' => esc_html__( 'Too many requests. Please try again later.', 'uvdesk' ) ),
+						429
+					);
+					exit;
+				}
+				set_transient( $transient_key, $current, MINUTE_IN_SECONDS );
+			}
+		}
+
+		/**
 		 * Create new ticket with attachment.
 		 *
 		 * @param array $post_attachment post attachment.
@@ -31,6 +84,7 @@ if ( ! class_exists( 'WKUVDESK_Api_Handler' ) ) {
 		 * @return mixed
 		 */
 		public static function wkuvdesk_create_new_ticket_with_attachement( $post_attachment, $post_image = array() ) {
+			self::check_rate_limit();
 			$uv     = new WKUVDESK_Protected();
 			$domain = $uv->get_company_domain();
 			$url    = 'https://' . $domain . '.uvdesk.com/en/api/tickets.json';
@@ -61,17 +115,17 @@ if ( ! class_exists( 'WKUVDESK_Api_Handler' ) ) {
 						$file_path = $post_image['tmp_name'][ $key ];
 
 						if ( ! file_exists( $file_path ) ) {
-							return array( 'error' => esc_html__( 'File not found', 'wk-uvdesk' ) );
+							return array( 'error' => esc_html__( 'File not found', 'uvdesk' ) );
 						}
 
 						$file_contents = wp_remote_get( $file_path )['body'];
 						if ( false === $file_contents ) {
-							return array( 'error' => esc_html__( 'Unable to read file', 'wk-uvdesk' ) );
+							return array( 'error' => esc_html__( 'Unable to read file', 'uvdesk' ) );
 						}
 
 						$file_type = wp_check_filetype( $filename );
 						if ( empty( $file_type['type'] ) ) {
-							return array( 'error' => esc_html__( 'Invalid file type', 'wk-uvdesk' ) );
+							return array( 'error' => esc_html__( 'Invalid file type', 'uvdesk' ) );
 						}
 
 						$multipart_data .= "--{$boundary}\r\n";
@@ -111,21 +165,21 @@ if ( ! class_exists( 'WKUVDESK_Api_Handler' ) ) {
 				return wp_json_encode(
 					array(
 						'success' => 200,
-						'message' => esc_html__( 'Ticket created successfully.', 'wk-uvdesk' ),
+						'message' => esc_html__( 'Ticket created successfully.', 'uvdesk' ),
 					)
 				);
 			} elseif ( 404 === $status_code ) {
 				return wp_json_encode(
 					array(
 						'error'   => 404,
-						'message' => esc_html__( 'Error, Please check the endpoint.', 'wk-uvdesk' ),
+						'message' => esc_html__( 'Error, Please check the endpoint.', 'uvdesk' ),
 					)
 				);
 			} else {
 				return wp_json_encode(
 					array(
 						'error'   => 500,
-						'message' => esc_html__( 'Unknown error occurred!', 'wk-uvdesk' ),
+						'message' => esc_html__( 'Unknown error occurred!', 'uvdesk' ),
 					)
 				);
 			}
@@ -172,9 +226,9 @@ if ( ! class_exists( 'WKUVDESK_Api_Handler' ) ) {
 			if ( in_array( $status_code, array( 200, 201 ), true ) ) {
 				return $response_body;
 			} elseif ( 400 === $status_code ) {
-				return array( 'error' => esc_html__( 'Error, request data not valid. (http-code: 400)', 'wk-uvdesk' ) );
+				return array( 'error' => esc_html__( 'Error, request data not valid. (http-code: 400)', 'uvdesk' ) );
 			} elseif ( 404 === $status_code ) {
-				return array( 'error' => esc_html__( 'Error, resource not found (http-code: 404)', 'wk-uvdesk' ) );
+				return array( 'error' => esc_html__( 'Error, resource not found (http-code: 404)', 'uvdesk' ) );
 			} else {
 				return $response_body; // Return raw response for other HTTP codes.
 			}
@@ -194,7 +248,7 @@ if ( ! class_exists( 'WKUVDESK_Api_Handler' ) ) {
 
 			// Validate input parameters.
 			if ( empty( $thread_url_param ) ) {
-				return esc_html__( 'Error: API endpoint is required.', 'wk-uvdesk' );
+				return esc_html__( 'Error: API endpoint is required.', 'uvdesk' );
 			}
 
 			// Retrieve company domain and access token.
@@ -203,7 +257,7 @@ if ( ! class_exists( 'WKUVDESK_Api_Handler' ) ) {
 
 			// Additional validation for domain and access token.
 			if ( empty( $domain ) || empty( $access_token ) ) {
-				return esc_html__( 'Error: Missing UVDesk configuration.', 'wk-uvdesk' );
+				return esc_html__( 'Error: Missing UVDesk configuration.', 'uvdesk' );
 			}
 
 			// Construct API URL.
@@ -233,7 +287,7 @@ if ( ! class_exists( 'WKUVDESK_Api_Handler' ) ) {
 			if ( is_wp_error( $response ) ) {
 				return sprintf(
 				/* translators: %s: Error message */
-					esc_html__( 'WordPress HTTP API Error: %s', 'wk-uvdesk' ),
+					esc_html__( 'WordPress HTTP API Error: %s', 'uvdesk' ),
 					$response->get_error_message()
 				);
 			}
@@ -248,13 +302,13 @@ if ( ! class_exists( 'WKUVDESK_Api_Handler' ) ) {
 				case 201:
 					return $response_body;
 				case 400:
-					return esc_html__( 'Error: Bad Request. (HTTP Code: 400)', 'wk-uvdesk' );
+					return esc_html__( 'Error: Bad Request. (HTTP Code: 400)', 'uvdesk' );
 				case 404:
-					return esc_html__( 'Error: Resource not found. (HTTP Code: 404)', 'wk-uvdesk' );
+					return esc_html__( 'Error: Resource not found. (HTTP Code: 404)', 'uvdesk' );
 				default:
 					return sprintf(
 					/* translators: %1$d: HTTP status code, %2$s: Response message */
-						esc_html__( 'Error: HTTP Status Code: %1$d. Response: %2$s', 'wk-uvdesk' ),
+						esc_html__( 'Error: HTTP Status Code: %1$d. Response: %2$s', 'uvdesk' ),
 						$response_code,
 						$response_body
 					);
@@ -424,9 +478,9 @@ if ( ! class_exists( 'WKUVDESK_Api_Handler' ) ) {
 			if ( 200 === $status_code || 201 === $status_code ) {
 				return $response_body;
 			} elseif ( 400 === $status_code ) {
-				return esc_html__( 'Error: Request data not valid. (HTTP Code: 400)', 'wk-uvdesk' );
+				return esc_html__( 'Error: Request data not valid. (HTTP Code: 400)', 'uvdesk' );
 			} elseif ( 404 === $status_code ) {
-				return esc_html__( 'Error: Resource not found. (HTTP Code: 404)', 'wk-uvdesk' );
+				return esc_html__( 'Error: Resource not found. (HTTP Code: 404)', 'uvdesk' );
 			} else {
 				/* translators: %1$d: HTTP status code, %2$s: Response body */
 				return sprintf(
@@ -460,8 +514,14 @@ if ( ! class_exists( 'WKUVDESK_Api_Handler' ) ) {
 				'Authorization' => 'Bearer ' . sanitize_text_field( $uv->get_access_token() ),
 			);
 
-			// Make the HTTP GET request.
-			$response = wp_remote_get( $url, array( 'headers' => $headers ) );
+			// Make the HTTP GET request with timeout parameter.
+			$response = wp_remote_get(
+				$url,
+				array(
+					'headers' => $headers,
+					'timeout' => self::$timeout,
+				)
+			);
 
 			// Check if the request returned an error.
 			if ( is_wp_error( $response ) ) {
@@ -476,7 +536,7 @@ if ( ! class_exists( 'WKUVDESK_Api_Handler' ) ) {
 			if ( 200 === $status_code ) {
 				return $data;
 			} elseif ( 404 === $status_code ) {
-				return esc_html__( 'Error: Resource not found. (HTTP Code: 404)', 'wk-uvdesk' );
+				return esc_html__( 'Error: Resource not found. (HTTP Code: 404)', 'uvdesk' );
 			} else {
 				/* translators: %1$d: HTTP status code, %2$s: Response message */
 				return sprintf(
@@ -525,7 +585,7 @@ if ( ! class_exists( 'WKUVDESK_Api_Handler' ) ) {
 			if ( 200 === $status_code ) {
 				return $response_data;
 			} elseif ( 404 === $status_code ) {
-				return esc_html__( 'Error: Resource not found. (HTTP Code: 404)', 'wk-uvdesk' );
+				return esc_html__( 'Error: Resource not found. (HTTP Code: 404)', 'uvdesk' );
 			} else {
 				// * translators: % 1$d: HTTP status code, % 2$s: Response message * /
 				return sprintf(
@@ -639,7 +699,7 @@ if ( ! class_exists( 'WKUVDESK_Api_Handler' ) ) {
 			if ( 200 === $status_code ) {
 				return $response_data;
 			} elseif ( 404 === $status_code ) {
-				return esc_html__( 'Error, resource not found (http-code: 404)', 'wk-uvdesk' );
+				return esc_html__( 'Error, resource not found (http-code: 404)', 'uvdesk' );
 			}
 		}
 
@@ -655,7 +715,7 @@ if ( ! class_exists( 'WKUVDESK_Api_Handler' ) ) {
 			if ( empty( $attachment_url_param ) ) {
 				return new \WP_Error(
 					'uvdesk_invalid_param',
-					__( 'Invalid attachment URL parameter', 'wk-uvdesk' )
+					esc_html__( 'Invalid attachment URL parameter', 'uvdesk' )
 				);
 			}
 
@@ -683,7 +743,7 @@ if ( ! class_exists( 'WKUVDESK_Api_Handler' ) ) {
 					'uvdesk_api_error',
 					sprintf(
 					/* translators: %s: Error message */
-						__( 'API Communication Error: %s', 'wk-uvdesk' ),
+						esc_html__( 'API Communication Error: %s', 'uvdesk' ),
 						$response->get_error_message()
 					)
 				);
@@ -701,7 +761,7 @@ if ( ! class_exists( 'WKUVDESK_Api_Handler' ) ) {
 				case 404:
 					return new \WP_Error(
 						'uvdesk_resource_not_found',
-						__( 'Error: Resource not found (HTTP Code: 404)', 'wk-uvdesk' )
+						esc_html__( 'Error: Resource not found (HTTP Code: 404)', 'uvdesk' )
 					);
 
 				default:
@@ -716,7 +776,7 @@ if ( ! class_exists( 'WKUVDESK_Api_Handler' ) ) {
 						'uvdesk_unexpected_response',
 						sprintf(
 						/* translators: %1$d: HTTP status code, %2$s: Response message */
-							__( 'Error: Unexpected HTTP Status Code %1$d. Response: %2$s', 'wk-uvdesk' ),
+							esc_html__( 'Error: Unexpected HTTP Status Code %1$d. Response: %2$s', 'uvdesk' ),
 							$response_code,
 							$response_body
 						)
@@ -737,7 +797,7 @@ if ( ! class_exists( 'WKUVDESK_Api_Handler' ) ) {
 			if ( empty( $patch_url_param ) ) {
 				return new \WP_Error(
 					'uvdesk_invalid_param',
-					__( 'Invalid URL parameter for ticket data', 'wk-uvdesk' )
+					esc_html__( 'Invalid URL parameter for ticket data', 'uvdesk' )
 				);
 			}
 
@@ -768,7 +828,7 @@ if ( ! class_exists( 'WKUVDESK_Api_Handler' ) ) {
 					'uvdesk_api_error',
 					sprintf(
 					/* translators: %s: Error message */
-						__( 'API Communication Error: %s', 'wk-uvdesk' ),
+						esc_html__( 'API Communication Error: %s', 'uvdesk' ),
 						$response->get_error_message()
 					)
 				);
@@ -789,7 +849,7 @@ if ( ! class_exists( 'WKUVDESK_Api_Handler' ) ) {
 				case 404:
 					return new \WP_Error(
 						'uvdesk_resource_not_found',
-						__( 'Error: Resource not found (HTTP Code: 404)', 'wk-uvdesk' )
+						esc_html__( 'Error: Resource not found (HTTP Code: 404)', 'uvdesk' )
 					);
 
 				default:
@@ -803,7 +863,7 @@ if ( ! class_exists( 'WKUVDESK_Api_Handler' ) ) {
 						'uvdesk_unexpected_response',
 						sprintf(
 						/* translators: %1$d: HTTP status code, %2$s: Response message */
-							__( 'Error: Unexpected HTTP Status Code %1$d. Response: %2$s', 'wk-uvdesk' ),
+							esc_html__( 'Error: Unexpected HTTP Status Code %1$d. Response: %2$s', 'uvdesk' ),
 							$response_code,
 							$response_body
 						)

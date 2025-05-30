@@ -1,7 +1,7 @@
 === UVdesk Free Helpdesk ===
 Contributors: uvdesk, webkul
 Requires at least: 6.5
-Tested up to: 6.7
+Tested up to: 6.8
 Stable tag: 2.1.0
 Requires PHP: 7.4
 Tested up to PHP: 8.3
@@ -16,7 +16,7 @@ Uvdesk is an omnichannel helpdesk designed to deliver swift and efficient custom
 
 Uvdesk is a omni channel helpdesk for providing quick assistance to customers through diverse horizontal mediums. It needs only quick sign up to be yours for delivering fantastic customer support for your channel
 
-Numerious Apps Integrations - [https://support.uvdesk.com/en/folder/184](https://support.uvdesk.com/en/folder/184)
+Numerous Apps Integrations - [https://support.uvdesk.com/en/folder/184](https://support.uvdesk.com/en/folder/184)
 
 Automated Systems - [https://support.uvdesk.com/en/folder/175](https://support.uvdesk.com/en/folder/175)
 
@@ -97,6 +97,35 @@ For showing extensions and the support and services menu we are using our Webkul
 
 UVdesk Free Helpdesk is open-source software and is made to be extended. To reduce zip size and optimize the code, we have added minified css and js assets but developers can find non-minified (un-compressed) sources at our public ([github repository](https://github.com/uvdesk/wordpress/)) here.
 
+== External Services ==
+
+**Google reCAPTCHA**
+This plugin uses Google's reCAPTCHA service to:
+- Protect forms from spam submissions
+- Verify human interaction with forms
+
+Service provider: Google LLC
+- [reCAPTCHA Terms](https://policies.google.com/terms)
+- [Google Privacy Policy](https://policies.google.com/privacy)
+
+**Webkul Services Integration**
+This plugin includes:
+1. Extension Discovery Service (wk.ext.js)
+   - Displays available Webkul extensions within admin panel
+   - Shows compatible addons for your wordpress/woocommerce system
+
+2. Support Portal Integration (wksas.bundle.js)
+   - Shows service status notifications
+   - Displays maintenance updates
+   - Links to official documentation
+
+These Webkul services:
+- Operate in read-only mode
+- Do not collect user/website data
+- Only display information from Webkul servers
+
+Service provider: Webkul Software Pvt Ltd
+- [Webkul Privacy Policy](https://webkul.com/privacy-policy/)
 
 == Screenshots ==
 
@@ -138,11 +167,11 @@ For any Query please generate a ticket at [https://support.uvdesk.com/](https://
 == Upgrade Notice ==
 
 = 1.0.0 =
-This will include if in case the symfony api is updated for uvdesk app so in that one should must update this plugin since we will be also updating the code and the older version will not work according to new api of symfony
+This will include if in case the Symfony api is updated for uvdesk app so in that one should must update this plugin since we will be also updating the code and the older version will not work according to new api of Symfony
 
 == Changelog ==
 
-= 2.1.0 - 2025-02-15 =
+= 2.1.0 - 2025-05-27 =
 
 * Added: Page selection for booking widget display, activation functions, domain validation, and translations.
 * Updated: Admin panel, file structure to use singleton pattern.

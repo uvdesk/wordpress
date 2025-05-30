@@ -8,11 +8,42 @@
   width: 30%;
   vertical-align: top;
 }
-.wk-highlight {
+.wkuvdesk-relative {
+  position: relative;
+}
+.wkuvdesk-div-margin {
+  display: inline-block;
+  margin: 10px 20px;
+}
+.wkuvdesk-opacity {
+  opacity: 0;
+}
+.wkuvdesk-color-000 {
+  color: #000;
+}
+.wkuvdesk-vertical-bottom {
+  display: inline-block;
+  vertical-align: text-bottom;
+}
+.wkuvdesk-transform {
+  transform-origin: 0;
+  -webkit-transform: scale(0.77);
+  transform: scale(0.77);
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+}
+.wkuvdesk-block-20 {
+  display: inline-block;
+  font-size: 20px;
+}
+.wkuvdesk-ml-0 {
+  margin-left: 0;
+}
+.wkuvdesk-highlight {
   font-size: 15px;
   color: grey;
 }
-.uvuvdesk-pre-loader {
+.wkuvdesk-pre-loader {
   display: none;
   margin: auto;
   position: fixed;
@@ -22,15 +53,15 @@
   top: 0;
   background: rgba(255, 255, 255, 0.3);
 }
-.uv-uvdesk-ajax-loader-img {
+.wkuvdesk-ajax-loader-img {
   position: fixed;
   top: 50%;
   left: 50%;
 }
-.tkt-intro .wk-space {
+.tkt-intro .wkuvdesk-space {
   padding-right: 20px;
 }
-.wk-cards {
+.wkuvdesk-cards {
   background-color: #ffffff;
   border-radius: 3px;
   margin: 15px;
@@ -43,16 +74,16 @@
 .tkt-message img {
   max-width: 100%;
 }
-.wk-accord:before {
+.wkuvdesk-accord:before {
   content: "\f140";
   display: inline-block;
   font: 400 20px/1 dashicons;
   vertical-align: middle;
 }
-.wk-accord.close:before {
+.wkuvdesk-accord.close:before {
   content: "\f142";
 }
-.uv-uvdesk-remove-file:before {
+.wkuvdesk-remove-file:before {
   background: 0 0;
   color: #72777c;
   display: inline-block !important;
@@ -61,14 +92,14 @@
   font: 400 16px/20px dashicons;
   height: 20px;
 }
-.uv-uvdesk-remove-file {
+.wkuvdesk-remove-file {
   position: absolute;
   margin-left: 31px;
   margin-top: -4px;
   cursor: pointer;
   z-index: 100;
 }
-.wk-file-zip:before {
+.wkuvdesk-file-zip:before {
   content: "\f501";
   z-index: 10;
   font: 400 20px/1 dashicons;
@@ -76,7 +107,7 @@
   margin: 5px;
   padding: 5px;
 }
-.wk-file:before {
+.wkuvdesk-file:before {
   content: "\f498";
   z-index: 10;
   font: 400 20px/1 dashicons;
@@ -84,14 +115,14 @@
   margin: 5px;
   padding: 5px;
 }
-.wk-delete-tkt-reply:before {
+.wkuvdesk-delete-tkt-reply:before {
   content: "\f182";
   display: inline-block;
   font: 400 20px/1 dashicons;
   vertical-align: middle;
   cursor: pointer;
 }
-.wk-starred-ico:before {
+.wkuvdesk-starred-ico:before {
   content: "\f154";
   display: inline-block;
   font: 400 20px/1 dashicons;
@@ -99,14 +130,14 @@
   cursor: pointer;
   color: inherit;
 }
-.wk-starred-ico.stared:before {
+.wkuvdesk-starred-ico.stared:before {
   color: #eeee27;
   content: "\f155";
 }
 .tkt-section a {
   text-decoration: none;
 }
-.uv-uvdesk-priority-check {
+.wkuvdesk-priority-check {
   display: inline-block;
   vertical-align: middle;
   width: 9px;
@@ -114,45 +145,58 @@
   border-radius: 50%;
   margin-right: 5px;
 }
-.uv-uvdesk-replay-inline span {
+.wkuvdesk-replay-inline span {
   display: inline-block;
 }
-.uv-uvdesk-replay-inline {
+.wkuvdesk-replay-inline {
   background-color: #e7e7e7;
   border: 1px solid #e3d3d3;
   padding: 5px;
   border-radius: 3px;
 }
-.uv-uvdesk-replay-inline img {
+.wkuvdesk-replay-inline img {
   width: 40px;
   height: 40px;
   vertical-align: middle;
 }
 /* Uv desk Backend css */
-.wk_uvdesk_wrap {
+.wkuvdesk_wrap {
   background-color: #fff;
   padding: 20px;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
 }
-.wk_uvdesk_wrap label {
+.wkuvdesk_wrap label {
   display: block;
   margin: 30px 0px 10px 0px;
   font-weight: bold;
 }
-.wk_uvdesk_wrap input[type="text"] {
+.wkuvdesk_wrap input[type="text"] {
   padding: 8px;
   width: 50%;
 }
-.wk-sel-agent select option {
+.wkuvdesk-agent select option {
   color: #000 !important;
 }
 .wkuvdsk-list {
   display: flex;
-  flex-direction: column;
   gap: 20px;
   flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
 }
-#uv-uvdesk-attachments {
+.wkuvdsk-list.space-between {
+  justify-content: space-between;
+}
+.wkuvdsk-list .search-box {
+  margin: 50px 0 0 50px;
+}
+.wkuvdesk-header {
+  display: inline-block;
+  width: 100%;
+  border-bottom: 2px solid #000;
+  padding: 10px;
+}
+#wkuvdesk-attachments {
   opacity: 0;
   width: 30px;
   z-index: 99;
@@ -162,4 +206,9 @@
 .wkuvdesk-back-to-list {
   display: inline-block;
   vertical-align: super !important;
+}
+@media screen and (max-width: 768px) {
+  .wkuvdsk-list .search-box {
+    margin: 0;
+  }
 }

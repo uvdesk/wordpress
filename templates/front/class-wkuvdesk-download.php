@@ -40,6 +40,7 @@ if ( ! class_exists( 'WKUVDESK_Download' ) ) {
 			if ( ! static::$instance ) {
 				static::$instance = new self();
 			}
+
 			return static::$instance;
 		}
 

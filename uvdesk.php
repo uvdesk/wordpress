@@ -2,15 +2,15 @@
 /**
  * Plugin Name: UVdesk Free Helpdesk
  * Plugin URI: https://wordpress.org/plugins/uvdesk/
- * Description: WordPress Uvdesk ticket system will integrate symphony based ticket in WordPress framework using symfony api.
+ * Description: WordPress Uvdesk ticket system will integrate Symphony based ticket in WordPress framework using Symfony API.
  * Version: 2.1.0
  * Author: Webkul
  * Author URI: http://webkul.com
- * Text Domain: wk-uvdesk
+ * Text Domain: uvdesk
  * Domain Path: /languages
  *
  * Requires at least: 6.5
- * Tested up to: 6.7
+ * Tested up to: 6.8
  * Requires PHP: 7.4
  * Tested up to PHP: 8.3
  *
