@@ -248,7 +248,7 @@ class WKUVDESK_Admin_Ticket extends \WP_List_Table {
 					<?php
 					$assign_agent  = "<select class='filter-agent' name='fil-agent'>";
 					$assign_agent .= "<option value=''>" . esc_html__( 'Filter Agent', 'uvdesk' ) . '</option>';
-					if ( isset( $this->data_api_members ) ) {
+					if ( ! empty( $this->data_api_members ) && is_array( $this->data_api_members ) ) {
 						foreach ( $this->data_api_members as $value ) {
 							$selected      = ( isset( $agent ) && isset( $value->id ) && $agent === $value->id ) ? 'selected' : '';
 							$assign_agent .= sprintf( '<option value="%s" %s>%s</option>', isset( $value->id ) ? esc_attr( $value->id ) : '', isset( $value->id ) ? $selected : '', isset( $value->name ) ? esc_html( $value->name ) : '' );

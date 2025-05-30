@@ -1,6 +1,6 @@
 {
   "name": "uvdesk",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "main": "gulpfile.js",
   "scripts": {
     "npx-update": "npx npm-check-updates -u",

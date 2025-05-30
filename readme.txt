@@ -2,7 +2,7 @@
 Contributors: uvdesk, webkul
 Requires at least: 6.5
 Tested up to: 6.8
-Stable tag: 2.1.0
+Stable tag: 2.1.1
 Requires PHP: 7.4
 Tested up to PHP: 8.3
 Tags: helpdesk, support-tickets, uvdesk-help, uvdesk-ticket, uvdesk-helpdesk
@@ -171,9 +171,12 @@ This will include if in case the Symfony api is updated for uvdesk app so in tha
 
 == Changelog ==
 
-= 2.1.0 - 2025-05-31 =
+= 2.1.1 - 2025-05-30 =
+Fixed: Minor issue regarding warning message on admin ticket listing page, if it is empty.
 
-* Added: Page selection for booking widget display, activation functions, domain validation, and translations.
+= 2.1.0 - 2025-05-30 =
+
+* Added: Activation functions, domain validation, and translations.
 * Updated: Admin panel, file structure to use singleton pattern.
 * Fixed: CSS issues with new WordPress versions, minor code formatting, and security vulnerabilities.
 
