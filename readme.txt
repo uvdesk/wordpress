@@ -171,7 +171,7 @@ This will include if in case the Symfony api is updated for uvdesk app so in tha
 
 == Changelog ==
 
-= 2.1.0 - 2025-05-27 =
+= 2.1.0 - 2025-05-31 =
 
 * Added: Page selection for booking widget display, activation functions, domain validation, and translations.
 * Updated: Admin panel, file structure to use singleton pattern.

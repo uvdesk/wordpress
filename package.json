@@ -1,24 +1,24 @@
 {
   "name": "uvdesk",
-  "version": "1.0.0",
+  "version": "2.1.0",
   "main": "gulpfile.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "npx-update": "npx npm-check-updates -u",
+    "npm_install": "npm i",
 		"build": "gulp",
 		"watch": "gulp",
 		"check-engines": "wp-scripts check-engines",
-		"npx-update": "npx npm-check-updates -u",
 		"phpcbf": "cd $VAR && $PWD/.config/composer/vendor/squizlabs/php_codesniffer/bin/phpcbf --standard=$INIT_CWD/phpcs.xml --severity=1 --ignore-annotations --extensions=php,html $INIT_CWD/",
 		"phpcs": "mkdir -p phpcs-reports && cd $VAR && $PWD/.config/composer/vendor/squizlabs/php_codesniffer/bin/phpcs --standard=$INIT_CWD/phpcs.xml --severity=1 --ignore=*/wk_caching/* --report-source --report-xml=$INIT_CWD/phpcs-reports/phpcs-report-$(date \"+%Y-%m-%dT%H:%M:%S\").xml --ignore-annotations --extensions=php,html $INIT_CWD/",
 		"make-pot": "php -d xdebug.max_nesting_level=512 $(which wp) i18n make-pot --exclude=\"node_modules/,languages/,wk_caching/,.gitignore,.gitmodules,.gulpfile.js,.git,.webpack.config.js,package.json,package-lock.json,phpcs.xml,phpmd.xml,license.txt,readme.txt,assets/,$npm_package_name/\" --headers='{\"Report-Msgid-Bugs-To\":\"https://wordpress.org/support/plugin/uvdesk/\", \"language-team\":\"LANGUAGE <EMAIL@ADDRESS>\"}' . languages/uvdesk.pot",
 		"zip": "npm run phpcbf && npm run make-pot && mkdir -p $npm_package_name && cp -r assets/ autoloader/ helper/ includes/ languages/ templates/ index.php readme.txt $npm_package_name.php $npm_package_name && zip -r $npm_package_name.zip $npm_package_name && rm -r $npm_package_name"
   },
   "devDependencies": {
-    "browser-sync": "^2.18.8",
+    "browser-sync": "^3.0.4",
     "gulp": "^4.0.2",
-    "gulp-clean-css": "^3.7.0",
-    "gulp-less": "^3.3.0",
-    "gulp-uglify": "^3.0.0"
+    "gulp-clean-css": "^4.3.0",
+    "gulp-less": "^5.0.0",
+    "gulp-uglify": "^3.0.2"
   },
   "dependencies": {
     "gulp-rename": "^2.0.0",
