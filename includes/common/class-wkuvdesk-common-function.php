@@ -358,7 +358,7 @@ if ( ! class_exists( 'WKUVDESK_Common_Function' ) ) {
 
 				if ( $tot_post - $last_count > 0 && $last_count > 0 ) {
 					?>
-				<div style="position:relative;" id="ajax-load-page">
+				<div class="wkuvdesk-relative" id="ajax-load-page">
 					<span class="pagination-space" data-page="<?php echo esc_attr( $tid . '-' . $data_api->pagination->current ); ?>"><?php echo wp_kses( $tot_post - $last_count, $allowed_html ); ?></span>
 				</div>
 				<hr>

@@ -417,7 +417,7 @@ if ( ! class_exists( 'WKUVDESK_Front_Function' ) ) {
 						<?php
 						$client_key = empty( $client_key ) ? esc_html__( 'Check for client Keys', 'uvdesk' ) : $client_key;
 						?>
-						<div class="g-recaptcha" id="recaptcha" data-sitekey="<?php echo esc_attr( $client_key ); ?>" style="transform:scale(0.77);transform-origin:0;-webkit-transform:scale(0.77);transform:scale(0.77);-webkit-transform-origin:0 0;transform-origin:0 0;"></div>
+						<div class="g-recaptcha wkuvdesk-transform" id="recaptcha" data-sitekey="<?php echo esc_attr( $client_key ); ?>"></div>
 						<div class="wkuvdesk-captcha-error" <?php echo esc_attr( $value_css ); ?>><?php esc_html_e( 'Please verify that you are not a robot.', 'uvdesk' ); ?></div>
 						<button type="submit" id="submit1" name="submit1" class="wkuvdesk-btn-create-tkt"><?php esc_html_e( 'Create Ticket', 'uvdesk' ); ?></button>
 					</form>
@@ -625,7 +625,7 @@ if ( ! class_exists( 'WKUVDESK_Front_Function' ) ) {
 				</div>
 				<div class="whole-wrapper">
 						<div class="tkt-front-intro">
-							<div style="display:inline-block;margin:10px 20px;">
+							<div class="wkuvdesk-div-margin">
 								<span class="wkuvdesk-highlight" ><?php esc_html_e( 'Subject :- ', 'uvdesk' ); ?></span>
 								<h4 class="tkt-subject">
 									<?php echo esc_html( $ticket_details->ticket->subject ); ?>
@@ -730,7 +730,7 @@ if ( ! class_exists( 'WKUVDESK_Front_Function' ) ) {
 
 						if ( $tot_post - $last_count > 0 && $last_count > 0 ) {
 							?>
-							<div style="position:relative;" id="ajax-load-page">
+							<div class="wkuvdesk-relative" id="ajax-load-page">
 								<span class="pagination-space"  data-page="<?php echo esc_attr( $ticket_details->ticket->id . '-' . $ticket_thread->pagination->current ); ?>"><?php echo esc_html( $tot_post - $last_count ); ?></span>
 							</div>
 							<div id="wkuvdesk-content-here-aj"></div>

@@ -333,9 +333,9 @@ if ( ! class_exists( 'WKUVDESK_Customer_Ticket_View' ) ) {
 						</div>
 						<div class="whole-wrapper">
 								<div class="tkt-front-intro">
-									<div style="<?php echo esc_attr( 'display:inline-block;margin:10px 20px;' ); ?>">
-										<span style="<?php echo esc_attr( 'display:inline-block;font-size:20px' ); ?>" class="wkuvdesk-highlight" ><?php esc_html_e( 'Subject :-', 'uvdesk' ); ?></span>
-										<h4 style="display:inline-block;" class="tkt-subject">
+									<div class="wkuvdesk-extra-ml">
+										<span class="wkuvdesk-highlight wkuvdesk-block-20" ><?php esc_html_e( 'Subject :-', 'uvdesk' ); ?></span>
+										<h4 class="tkt-subject">
 											<?php
 											echo esc_html( $ticket_details->ticket->subject );
 											?>
@@ -586,7 +586,7 @@ if ( ! class_exists( 'WKUVDESK_Customer_Ticket_View' ) ) {
 
 								if ( $tot_post - $last_count > 0 && $last_count > 0 ) {
 									?>
-									<div style="position:relative;" id="ajax-load-page">
+									<div class="wkuvdesk-relative" id="ajax-load-page">
 										<span class="pagination-space" data-page="<?php echo esc_attr( $ticket_details->ticket->id . '-' . $ticket_thread->pagination->current ); ?>"><?php echo wp_kses( $tot_post - $last_count, $allowed_html ); ?></span>
 									</div>
 									<div id="wkuvdesk-content-here-aj">

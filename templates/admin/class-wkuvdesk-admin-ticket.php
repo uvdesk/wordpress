@@ -725,7 +725,7 @@ class WKUVDESK_Admin_Ticket extends \WP_List_Table {
 
 		return sprintf(
 			'<div>
-				<input type="radio" style="opacity: 0;">
+				<input type="radio" class="wkuvdesk-opacity">
 				<span class="wkuvdesk-priority-check" style="background-color: %1$s"></span>
 				<span class="wkuvdesk-starred-ico %2$s" data-id="%3$s" data-star-val="%4$s"></span>
 			</div>',
@@ -775,7 +775,7 @@ class WKUVDESK_Admin_Ticket extends \WP_List_Table {
 $ticket_obj = new WKUVDESK_Admin_Ticket();
 ?>
 	<header class="wkuvdesk-header">
-		<h1 style="display:inline-block"><?php esc_html_e( 'Uvdesk Tickets List', 'uvdesk' ); ?></h1>
+		<h1><?php esc_html_e( 'Uvdesk Tickets List', 'uvdesk' ); ?></h1>
 		<?php
 		$data_api = Helper\WKUVDESK_Api_Handler::wkuvdesk_get_customer_data_api( 'tickets.json', array() );
 		if ( ! empty( $data_api->error ) ) {

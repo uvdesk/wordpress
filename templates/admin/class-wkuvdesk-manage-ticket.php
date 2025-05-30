@@ -233,7 +233,7 @@ if ( ! class_exists( 'WKUVDESK_Manage_Ticket' ) ) {
 						$tkt_agent_email = ! empty( $ticket_details->ticket->agent->email ) ? $ticket_details->ticket->agent->email : '';
 						?>
 					<div>
-						<header style="display:inline-block;">
+						<header>
 							<h1>
 							<?php
 							esc_html_e( 'Ticket #', 'uvdesk' );
@@ -254,7 +254,7 @@ if ( ! class_exists( 'WKUVDESK_Manage_Ticket' ) ) {
 									<?php
 									$select = $ticket_details->ticket->isStarred ? esc_attr( 'stared' ) : '';
 									$str_no = $ticket_details->ticket->isStarred ? 1 : 0;
-									echo( '<div style="display: inline-block;vertical-align: text-bottom;"><input type="radio" style="opacity: 0;" ><span class="wkuvdesk-starred-ico ' . ( isset( $select ) ? esc_attr( $select ) : '' ) . '" data-id="' . ( isset( $ticket_details->ticket->id ) ? esc_attr( $ticket_details->ticket->id ) : '' ) . '" data-star-val="' . ( isset( $str_no ) ? esc_attr( $str_no ) : '' ) . '"></span></div>' );
+									echo( '<div class="wkuvdesk-vertical-bottom"><input type="radio" class="wkuvdesk-opacity" ><span class="wkuvdesk-starred-ico ' . ( isset( $select ) ? esc_attr( $select ) : '' ) . '" data-id="' . ( isset( $ticket_details->ticket->id ) ? esc_attr( $ticket_details->ticket->id ) : '' ) . '" data-star-val="' . ( isset( $str_no ) ? esc_attr( $str_no ) : '' ) . '"></span></div>' );
 									?>
 									<?php echo isset( $ticket_details->ticket->subject ) ? esc_attr( $ticket_details->ticket->subject ) : ''; ?>
 								<h2>
@@ -368,7 +368,7 @@ if ( ! class_exists( 'WKUVDESK_Manage_Ticket' ) ) {
 
 						if ( $tot_post - $last_count > 0 && $last_count > 0 ) {
 							?>
-						<div style="position:relative;" id="ajax-load-page">
+						<div class="wkuvdesk-relative" id="ajax-load-page">
 							<span class="pagination-space"  data-page="<?php echo esc_attr( $ticket_details->ticket->id . '-' . $ticket_thread->pagination->current ); ?>"><?php echo esc_html( $tot_post - $last_count ); ?></span>
 						</div>
 						<div id="wkuvdesk-content-here-aj"></div><hr>
@@ -519,7 +519,7 @@ if ( ! class_exists( 'WKUVDESK_Manage_Ticket' ) ) {
 				</div>
 			</div>
 			<div class="uv-tk-manage-sidebar">
-				<div class="wkuvdesk-cards tkt-replay" style="margin-left: 0;">
+				<div class="wkuvdesk-cards tkt-replay wkuvdesk-ml-0">
 					<h2><?php esc_html_e( 'Customer', 'uvdesk' ); ?></h2>
 						<?php
 						$thumbnail = isset( $ticket_details->ticket->customer->detail->customer->smallThumbnail ) && ! empty( $ticket_details->ticket->customer->detail->customer->smallThumbnail )
@@ -548,7 +548,7 @@ if ( ! class_exists( 'WKUVDESK_Manage_Ticket' ) ) {
 						?>
 					</p>
 				</div>
-				<div class="wkuvdesk-cards tkt-replay" style="margin-left: 0;">
+				<div class="wkuvdesk-cards tkt-replay wkuvdesk-ml-0">
 						<?php
 						if ( isset( $ticket_details->ticket->customer->id ) ) {
 							$c_email         = $ticket_details->ticket->customer->email;
@@ -568,9 +568,9 @@ if ( ! class_exists( 'WKUVDESK_Manage_Ticket' ) ) {
 						if ( isset( $data_assign_api->tickets ) && is_array( $data_assign_api->tickets ) ) {
 							foreach ( $data_assign_api->tickets as $tkt_detail ) {
 								?>
-						<a style="text-decoration: none" href="<?php echo esc_url( '?page=wkuvdesk_ticket_system&action=view&post=' . esc_attr( $tkt_detail->incrementId ) ); ?>">
+						<a class="wkuvdesk-td-none" href="<?php echo esc_url( '?page=wkuvdesk_ticket_system&action=view&post=' . esc_attr( $tkt_detail->incrementId ) ); ?>">
 							<p><?php echo esc_html( $count ); ?>.
-								<span style="color:#000"><?php echo esc_html( '#' . $tkt_detail->id ); ?></span>
+								<span class="wkuvdesk-color-000"><?php echo esc_html( '#' . $tkt_detail->id ); ?></span>
 								<span> <?php echo esc_html( $tkt_detail->subject ); ?></span>
 							</p>
 						</a>

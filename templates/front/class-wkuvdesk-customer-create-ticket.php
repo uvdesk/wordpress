@@ -205,7 +205,7 @@ if ( ! class_exists( 'WKUVDESK_Customer_Create_Ticket' ) ) {
 							<?php
 							$client_key = empty( $client_key ) ? esc_html__( 'Check for client Keys', 'uvdesk' ) : $client_key;
 							?>
-							<div class="g-recaptcha" id="recaptcha" data-sitekey="<?php echo esc_attr( $client_key ); ?>" style="transform:scale(0.77);transform-origin:0;-webkit-transform:scale(0.77);transform:scale(0.77);-webkit-transform-origin:0 0;transform-origin:0 0;"></div>
+							<div class="g-recaptcha wkuvdesk-transform" id="recaptcha" data-sitekey="<?php echo esc_attr( $client_key ); ?>"></div>
 							<div class="uvdesk-captcha-error"><?php esc_html_e( 'Please verify that you are not a robot.', 'uvdesk' ); ?></div>
 							<?php
 							if ( ! empty( $error ) ) {
