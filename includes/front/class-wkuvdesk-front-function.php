@@ -583,7 +583,7 @@ if ( ! class_exists( 'WKUVDESK_Front_Function' ) ) {
 			<div class="wkuvdesk-block-container wkuvdesk-content-wrap">
 				<div class="wkuvdesk-pre-loader">
 					<?php
-					echo '<img ' . wp_kses( Includes\WKUVDESK::wkuvdesk_convert_attributes_to_html( array() ), $allowed_html ) . ' alt="' . esc_attr_e( 'Loading...', 'uvdesk' ) . '" />';
+					echo '<img ' . wp_kses( Includes\WKUVDESK::wkuvdesk_convert_attributes_to_html( array() ), $allowed_html ) . ' alt="' . esc_attr__( 'Loading...', 'uvdesk' ) . '" />';
 					?>
 				</div>
 				<div class="tkt-front-header">
